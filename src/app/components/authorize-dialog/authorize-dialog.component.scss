@@ -1,0 +1,29 @@
+.letter-of-credit-modal{   
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: center;
+    color: #969995;
+    .dialog-content{
+        padding: 20px 59px 40px 58px;
+        .dialog-content-bold{
+            color: #323232;
+        }
+    }
+
+}
+.close-dialog{
+    background-color: white;
+    border:none;
+    float: right;
+    font-size: 20px;
+    color: #b3b6b2;
+    font-family: monospace;
+}
+.success-icon{
+    clear: both;
+    text-align: center;
+}

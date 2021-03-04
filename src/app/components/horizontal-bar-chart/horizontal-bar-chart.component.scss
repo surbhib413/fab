@@ -1,0 +1,71 @@
+.bar {
+	fill: #6F257F;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #D4D8DA;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+.x path {
+	display: none;
+}
+.grid line {
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
+  }
+  .grid path {
+    stroke-width: 0;
+  }
+  .axis {
+    stroke-opacity: 0;
+  }
+  
+  .axis text {
+    fill:#323232;
+  }
+  
+  .legend-color{
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .legend-name{
+      font-family: graphik_light;
+      font-size: 10px;
+      font-weight: 300;
+      color: #363b4e;
+    }
+    .in-text{
+      font-family: fs_matthew_light;
+      font-size: 16px;
+      font-weight: 300;
+      color: #6c7c93;
+    }
+  
+    ::ng-deep .mat-form-field-underline {
+      display: none;
+  }
+  
+  .entity-field-width{
+    width:90px!important;
+  }
+  .option-field-width{
+    width:160px!important;
+  }
+  .currency-field-width{
+    width:60px!important;
+  }
+  .dropdown-text{
+    font-family: graphik_light;
+    font-size: 16px;
+    font-weight: 500;
+    color: #848484;
+  }
+
+  .content{
+      margin-top: -20px;
+  }

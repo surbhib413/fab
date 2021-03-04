@@ -1,0 +1,52 @@
+
+<div class="pl-1 pt-1">
+  <ul class="list-unstyled">
+      <li class="list-inline-item cursorPointer">
+        <mat-form-field class="entity-field-width dropdown-text">
+          <input type="text" aria-label="Number" matInput [matAutocomplete]="dropdown" value='{{dropdownList[0]}}'>
+          <img src="assets/icons/down_arrow_gray.svg" alt="" matSuffix>
+          <mat-autocomplete #dropdown="matAutocomplete">
+            <mat-option *ngFor="let e of dropdownList" [value]="e" (click)="dropDownChange(e)">
+              {{e}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </li>
+      <li class="list-inline-item cursorPointer pl-4">
+        <mat-form-field class="option-field-width dropdown-text">
+          <input type="text" aria-label="Number" matInput [matAutocomplete]="option" value='Account Currency'>
+          <img src="assets/icons/down_arrow_gray.svg" alt="" matSuffix>
+          <mat-autocomplete #option="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </li>
+      <li class="list-inline-item in-text pl-1">in</li>
+      <li class="list-inline-item cursorPointer">
+        <mat-form-field class="currency-field-width dropdown-text">
+          <input type="text" aria-label="Number" matInput [matAutocomplete]="currency" value='AED'>
+          <img src="assets/icons/down_arrow_gray.svg" alt="" matSuffix>
+          <mat-autocomplete #currency="matAutocomplete">
+            <mat-option *ngFor="let currency of currencyList" [value]="currency">
+              {{currency}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </li>
+  </ul>
+</div>
+<div class="row pb-5">
+  <div class="content col-10">
+    <svg #barChart id="bar-chart"></svg>
+  </div>
+  <div class="col-2 pt-5">
+    <ul class="list-unstyled pt-4">
+      <li class="py-1" *ngFor="let legend of keysArray; let i = index">
+        <span class="legend-color" [ngStyle]="{'background-color': colorCodes[i]}"></span>
+        <span class="pl-2 legend-name">{{legend}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

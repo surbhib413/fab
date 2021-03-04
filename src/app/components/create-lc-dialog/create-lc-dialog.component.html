@@ -1,0 +1,27 @@
+<div mat-dialog-content class="create-lc-dialog">
+  <div class="title">
+  <div class="lc-head">Create New LC</div>
+  <button [mat-dialog-close]="true" class="close-dialog"><img _ngcontent-nha-c28="" src="assets/icons/close_gray_icon.svg"></button>
+  </div>
+  <div class="dialog-content row">
+      <div class="col-6 radio-btn-dialog">
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="radio-group-left">
+            <mat-radio-button class="example-radio-button" value="new" color="primary" checked="true"> New / Blank</mat-radio-button>
+            <mat-radio-button class="example-radio-button" value="template" color="primary"> Template</mat-radio-button>
+            <mat-radio-button class="example-radio-button" value="copy_lc" color="primary"> Copy from LC</mat-radio-button>
+            <mat-radio-button class="example-radio-button" value="recommend" color="primary"> Recommendation</mat-radio-button>
+        </mat-radio-group>
+        <div class="blue-arrow" ><img src="https://img.icons8.com/offices/16/000000/more-than.png"></div>
+      </div>
+      <div class="col-6 radio-btn-dialog" >
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group-right">
+            <mat-radio-button class="example-radio-button" value="new" color="primary" checked="true"> Conventional LC</mat-radio-button>
+            <mat-radio-button class="example-radio-button" value="template" color="primary"> Islamic LC</mat-radio-button>
+          </mat-radio-group>
+      </div>
+
+
+  </div>
+  <mat-dialog-actions class="buttons-create">
+      <button mat-stroked-button color="primary" [mat-dialog-close]="true" class="custom_btn create_btn" (click)="goToNewLcForm()">CREATE</button>
+    </mat-dialog-actions>

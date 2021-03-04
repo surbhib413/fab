@@ -1,0 +1,557 @@
+<div [formGroup]="general">
+  <div class="container-fluid general-form-content px-3 pt-4 pb-3 mt-0">
+    <p class="general-app-details-txt">Applicant Details</p>
+    <div class="example-form" autocomplete="nope">
+      <div class="row">
+        <div class="col-12 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input type="text" aria-label="Number" matInput [matAutocomplete]="bankName"
+              formControlName="applicant_bankName" (click)="general_applicant_bankName = true; prevValue = lcForm.value.general.applicant_bankName" (blur)="sendAuditLog('Bank Name(51A)', prevValue, lcForm.value.general.applicant_bankName)">
+            <mat-label>Bank Name* <span class="limit-character" *ngIf="isSwiftSelected">51A</span></mat-label>
+            <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+            <mat-autocomplete #bankName="matAutocomplete">
+              <mat-option *ngFor="let t of bankNameArray" [value]="t.name">
+                {{t.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="general.controls['applicant_bankName'].hasError('required')">
+              Bank Name is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker">
+              <p class="mb-0 checker_label">Bank Name*</p>
+              <input matInput value="{{lcForm.value.general.applicant_bankName}}" formControlName="applicant_bankName"  (click)="general_applicant_bankName = false" class="mt-1 checker_label_val" readonly/>
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-flex mt-4" >
+          <div class="mr-2">
+            <img src="assets/icons/i.svg" class="dropInfo"/>
+          </div>
+          <div class="cursorPointer ml-1" *ngIf="general_applicant_bankName || isChecker || lcComment['general_applicant_bankName'].updated" style="position: relative;" >
+            <img src="assets/icons/comment_icon.svg" class="dropInfo" (click)="general_applicant_bankName = true;openComment('left','general_applicant_bankName','Bank Name');"/>
+            <span class="comment_num">{{lcComment['general_applicant_bankName']?lcComment['general_applicant_bankName'].comments.length:0}}</span>
+            <app-comment style="position: absolute;" *ngIf="showComment==='general_applicant_bankName'"></app-comment>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input type="text" placeholder="Issuer's Reference*" aria-label="Number" matInput [matAutocomplete]="issuerRef"
+              formControlName="applicant_issuerReference" (click)="general_applicant_issuerReference = true; prevValue = lcForm.value.general.applicant_issuerReference" (blur)="sendAuditLog('Issuer Reference', prevValue, lcForm.value.general.applicant_issuerReference)">
+            <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+            <mat-autocomplete #issuerRef="matAutocomplete" (optionSelected)='selectIssuerRef($event.option.value)'>
+              <mat-option *ngFor="let issuer of issuerRefArray" [value]="issuer.issuer_reference">
+                {{issuer.issuer_reference}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="general.controls['applicant_issuerReference'].hasError('required')">
+              Issuer's Reference is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker">
+              <p class="mb-0 checker_label">Issuer's Reference*</p>
+              <input matInput value="{{lcForm.value.general.applicant_issuerReference}}" formControlName="applicant_issuerReference"  (click)="general_applicant_issuerReference = false" class="mt-1 checker_label_val" readonly/>
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-flex mt-4">
+            <div class="mr-2">
+                <img src="assets/icons/i.svg" class="dropInfo"/>
+            </div>
+          <div class="cursorPointer position-relative" *ngIf="general_applicant_issuerReference || isChecker || lcComment['general_applicant_issuerReference'].updated">
+            <img src="assets/icons/comment_icon.svg" class="dropInfo" (click)="general_applicant_issuerReference = true;openComment('right','general_applicant_issuerReference','Issuers Reference');"/>
+            <span class="comment_num">{{lcComment['general_applicant_issuerReference']?lcComment['general_applicant_issuerReference'].comments.length:0}}</span>
+            <app-comment style="position: absolute;" *ngIf="showComment==='general_applicant_issuerReference'"></app-comment>
+          </div>
+          
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input matInput placeholder="Name*" formControlName="applicant_name" autocomplete="none"
+              (click)="applicant_name = false">
+            <!-- <img src="assets/icons/search_gray.svg" alt="" matSuffix> -->
+            <mat-error *ngIf="general.controls['applicant_name'].hasError('required')">
+              Name is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+            <mat-error *ngIf="general.controls['applicant_name'].errors?.pattern">
+              Name is <strong>not valid</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Applicant Name*</p>
+            <input matInput value="{{lcForm.value.general.applicant_name}}" formControlName="applicant_name"
+              (click)="applicant_name = false" class="mt-1 checker_label_val" readonly />
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-4" (click)="applicant_name=false">
+            <span>
+                <img src="assets/icons/i.svg" class="dropInfo"/>
+            </span>
+          <span class="cursorPointer" *ngIf="applicant_name">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </span>
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input matInput placeholder="Address Line 1*" formControlName="applicant_addressLine1" autocomplete="none"
+              (click)="applicant_addressLine1 = false">
+            <mat-label>Address Line 1* <span class="limit-character" *ngIf="isSwiftSelected">50</span></mat-label>
+            <mat-error *ngIf="general.controls['applicant_addressLine1'].hasError('required')">
+              Applicant Address is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+            <mat-error *ngIf="general.controls['applicant_addressLine1'].errors?.pattern">
+              Applicant Address is <strong>not valid</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Address Line 1*</p>
+            <input matInput value="{{lcForm.value.general.applicant_addressLine1}}"
+              formControlName="applicant_addressLine1" (click)="applicant_addressLine1 = false"
+              class="mt-1 checker_label_val" readonly />
+
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-4">
+          <div class="cursorPointer" *ngIf="applicant_addressLine1">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input matInput autocomplete="none" placeholder="Address Line 2*" autocomplete="none"
+              formControlName="applicant_addressLine2" (click)="applicant_addressLine2 = false">
+            <mat-label>Address Line 2* <span class="limit-character" *ngIf="isSwiftSelected">50</span></mat-label>
+            <mat-error *ngIf="general.controls['applicant_addressLine2'].hasError('required')">
+              Applicant Address is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+            <mat-error *ngIf="general.controls['applicant_addressLine2'].errors?.pattern">
+              Applicant Address is <strong>not valid</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Address Line 2*</p>
+            <input matInput value="{{lcForm.value.general.applicant_addressLine2}}"
+              formControlName="applicant_addressLine2" (click)="applicant_addressLine2 = false"
+              class="mt-1 checker_label_val" readonly />
+
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-4">
+          <div class="cursorPointer" *ngIf="applicant_addressLine2">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input matInput placeholder="Address Line 3*" autocomplete="none" formControlName="applicant_addressLine3"
+              (click)="applicant_addressLine3 = false">
+            <mat-label>Address Line 3* <span class="limit-character" *ngIf="isSwiftSelected">50</span></mat-label>
+            <mat-error *ngIf="general.controls['applicant_addressLine3'].hasError('required')">
+              Applicant Address is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+            <mat-error *ngIf="general.controls['applicant_addressLine3'].errors?.pattern">
+              Applicant Address is <strong>not valid</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Address Line 3*</p>
+            <input matInput value="{{lcForm.value.general.applicant_addressLine3}}"
+              formControlName="applicant_addressLine3" (click)="applicant_addressLine3 = false"
+              class="mt-1 checker_label_val" readonly />
+
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-4">
+          <div class="cursorPointer" *ngIf="applicant_addressLine3">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input type="text" placeholder="Country*" matInput [matAutocomplete]="autocountryapp"
+              formControlName="applicant_country" (click)="applicant_country = false" (input)="clearFlag($event,'applicant')" />
+            <span matSuffix class="input-country-abbr">{{applCountryAbbr}}</span>
+            <span matSuffix class="flag-icon {{applCountryFlag}} input-flag-icon"></span>
+            <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+            <mat-autocomplete #autocountryapp="matAutocomplete" autocomplete="off" (optionSelected)="onCountryChange($event,'applicant')">
+                <mat-option *ngFor="let t of countries" [value]="t.name">
+                  {{t.name}}
+                  <span class="flag-icon {{t.class}}"></span>
+                  <span class="float-flag">{{ t.abbrv }}</span>
+                </mat-option>
+              </mat-autocomplete>
+            <mat-error *ngIf="general.controls['applicant_country'].hasError('required')">
+              Applicant Country is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+            <mat-error *ngIf="general.controls['applicant_country'].errors?.pattern">
+              Applicant Country is <strong>not valid</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Country*</p>
+            <div class="d-flex">
+                <input matInput value="{{lcForm.value.general.applicant_country}}" formControlName="applicant_country"
+                (click)="applicant_country = false" class="mt-1 checker_label_val width80" readonly />
+                <div class="d-flex align-items-center">
+                  <span class="mr-3">{{applCountryAbbr}}</span>
+                  <span class="flag-icon {{applCountryFlag}} checkerFlag" ></span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-4">
+          <div class="cursorPointer" *ngIf="applicant_country">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-12 my-4 col-md-12">
+          <img src="assets/icons/plus.svg" alt="">
+          <span class="general-add-field pl-1">Add Field</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid general-form-content px-3 pt-4 pb-3 mt-3">
+    <p class="general-app-details-txt">Beneficiary Details</p>
+    <div class="example-form">
+      <div class="row">
+        <div class="col-12 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input type="text" aria-label="Number" autocomplete="nope" matInput [matAutocomplete]="beneficiaryName"
+              formControlName="beneficiary_name" (click)="beneficiary_name = false; prevValue = lcForm.value.general.beneficiary_name" (blur)="sendAuditLog('Beneficiary Name(59)', prevValue, lcForm.value.general.beneficiary_name)">
+            <mat-label>Name* <span class="limit-character" *ngIf="isSwiftSelected">59</span></mat-label>
+            <!-- <img src="assets/icons/search_gray.svg" alt="" matSuffix> -->
+            <mat-autocomplete #beneficiaryName="matAutocomplete">
+              <mat-option *ngFor="let option of beneficiaryNameArray" [value]="option.name" autocomplete="off">
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="general.controls['beneficiary_name'].hasError('required')">
+              Beneficiary Name is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+            <mat-error *ngIf="general.controls['beneficiary_name'].errors?.pattern">
+              Beneficiary Name is <strong>not valid</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Name*</p>
+            <input matInput value="{{lcForm.value.general.beneficiary_name}}" formControlName="beneficiary_name"
+              (click)="beneficiary_name = false" class="mt-1 checker_label_val" readonly />
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-md-block mt-4">
+          <div class="cursorPointer" *ngIf="beneficiary_name">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <!-- <div class="col-1 d-none d-md-block"></div> -->
+        <div class="col-12 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input matInput formControlName="beneficiary_addressLine1" (click)="beneficiary_addressLine1 = false"
+              autocomplete="none">
+            <mat-label>Address Line 1* <span class="limit-character">51A</span></mat-label>
+            <mat-error *ngIf="general.controls['beneficiary_addressLine1'].hasError('required')">
+              Beneficiary Address is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+            <mat-error *ngIf="general.controls['beneficiary_addressLine1'].errors?.pattern">
+              Beneficiary Address is <strong>not valid</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Address Line 1*</p>
+            <input matInput value="{{lcForm.value.general.beneficiary_addressLine1}}"
+              formControlName="beneficiary_addressLine1" (click)="beneficiary_addressLine1 = false"
+              class="mt-1 checker_label_val" readonly />
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-md-block mt-4">
+          <div class="cursorPointer" *ngIf="beneficiary_addressLine1">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input matInput placeholder="Address Line 2*" autocomplete="none" formControlName="beneficiary_addressLine2"
+              (click)="beneficiary_addressLine2 = false">
+            <mat-error *ngIf="general.controls['beneficiary_addressLine2'].hasError('required')">
+              Applicant Address is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+            <mat-error *ngIf="general.controls['beneficiary_addressLine2'].errors?.pattern">
+              Applicant Address is <strong>not valid</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Address Line 2*</p>
+            <input matInput value="{{lcForm.value.general.beneficiary_addressLine2}}"
+              formControlName="beneficiary_addressLine2" (click)="beneficiary_addressLine2 = false"
+              class="mt-1 checker_label_val" readonly />
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-md-block mt-4">
+          <div class="cursorPointer" *ngIf="beneficiary_addressLine2">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input matInput placeholder="Address Line 3*" autocomplete="none" formControlName="beneficiary_addressLine3"
+              (click)="beneficiary_addressLine3 = false">
+            <mat-error *ngIf="general.controls['beneficiary_addressLine3'].hasError('required')">
+              Applicant Address is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+            <mat-error *ngIf="general.controls['beneficiary_addressLine3'].errors?.pattern">
+              Applicant Address is <strong>not valid</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Address Line 3*</p>
+            <input matInput value="{{lcForm.value.general.beneficiary_addressLine3}}"
+              formControlName="beneficiary_addressLine3" (click)="beneficiary_addressLine3 = false"
+              class="mt-1 checker_label_val" readonly />
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-md-block mt-4">
+          <div class="cursorPointer" *ngIf="beneficiary_addressLine3">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input type="text" placeholder="Country*" matInput [matAutocomplete]="autocountry"
+             formControlName="beneficiary_country" (click)="beneficiary_country = false" autocomplete="nope" (input)="clearFlag($event,'beneficiary')" />
+             <span matSuffix class="input-country-abbr">{{benificiaryAbbr}}</span>
+             <span matSuffix class="flag-icon {{benificiaryFlag}} input-flag-icon"></span>
+             <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+            <mat-autocomplete #autocountry="matAutocomplete" (optionSelected)="onCountryChange($event,'beneficiary')">
+                <mat-option *ngFor="let t of countries" [value]="t.name"  (click)="benCountryMapping(t.name)" autocomplete="off">
+                  {{t.name}}
+                  <span class="flag-icon {{t.class}}"></span>
+                  <span class="float-flag">{{ t.abbrv }}</span>
+                </mat-option>
+              </mat-autocomplete>
+            <mat-error *ngIf="general.controls['beneficiary_country'].hasError('required')">
+              Applicant Country is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+            <mat-error *ngIf="general.controls['beneficiary_country'].errors?.pattern">
+              Applicant Country is <strong>not valid</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <!-- <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Country*</p>
+            <input matInput value="{{lcForm.value.general.beneficiary_country}}" formControlName="beneficiary_country"
+              (click)="beneficiary_country = false" class="mt-1 checker_label_val" readonly />
+              <div class="d-inline position-relative">
+                <span class="position-absolute checkerAbbr">{{benificiaryAbbr}}</span>
+                <span class="flag-icon {{benificiaryFlag}} position-absolute checkerFlag" ></span>
+              </div>
+          </div> -->
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Country*</p>
+            <div class="d-flex">
+                <input matInput value="{{lcForm.value.general.beneficiary_country}}" formControlName="beneficiary_country"
+              (click)="beneficiary_country = false" class="mt-1 checker_label_val  width80" readonly />
+                <div class="d-flex align-items-center">
+                  <span class="mr-3">{{benificiaryAbbr}}</span>
+                  <span class="flag-icon {{benificiaryFlag}} checkerFlag" ></span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-md-block mt-4">
+          <div class="cursorPointer" *ngIf="beneficiary_country">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid general-form-content px-3 pt-4 pb-3 mt-3">
+    <p class="general-app-details-txt">LC Details</p>
+    <div class="d-flex flex-row pt-4">
+      <p class="fsmatthew-normal font-size-16 fab-text-gray">Form of LC (All LC's are irrevocable) </p>
+      <mat-checkbox class="fsmatthew-normal font-size-16 fab-text-gray ml-4" formControlName="lc_form">Transferrable</mat-checkbox>
+      <mat-checkbox class="fsmatthew-normal font-size-16 fab-text-gray ml-4" formControlName="lc_form_standBy">Stand By</mat-checkbox>
+    </div>
+    <div class="example-form">
+      <div class="row">
+        <div class="col-12 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input matInput [matDatepicker]="picker"  formControlName="lc_expiryDate" (click)="lc_expiryDate = false" autocomplete="nope">
+            <mat-label>Expiry Date*<span class="limit-character" *ngIf="isSwiftSelected">31D</span></mat-label>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="general.controls['lc_expiryDate'].hasError('required')">
+              Expiry Date is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="general.controls['lc_expiryDate'].errors?.pattern">
+              Expiry Date is <strong>not valid</strong>
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Expiry Date</p>
+            <input matInput value="{{lcForm.value.general.lc_expiryDate | date:'shortDate'}}" formControlName="lc_expiryDate"
+              (click)="lc_expiryDate = false" class="mt-1 checker_label_val" readonly />
+          </div>
+        </div>
+        <div class="col-2 d-none d-md-block mt-4">
+          <div class="cursorPointer" *ngIf="lc_expiryDate">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <!-- <input type="text" aria-label="Number" matInput [matAutocomplete]="autoPlaceOfExp" [formControl]="myControl1" formControlName="lc_placeOfExpiry" -->
+            <input type="text" aria-label="Number" matInput [matAutocomplete]="autoPlaceOfExp" formControlName="lc_placeOfExpiry"
+            autocomplete="nope" (click)="lc_placeOfExpiry = false">
+            <mat-label>Place of Expiry*<span class="limit-character" *ngIf="isSwiftSelected">31D</span></mat-label>
+            <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+            <mat-autocomplete #autoPlaceOfExp="matAutocomplete" activeOption="activeOption">
+              <mat-option *ngFor="let country of countries" [value]="country.name" autocomplete="off">
+                {{country.name}}
+                <span class="flag-icon {{country.class}}"></span>
+                <span class="float-flag">{{ country.abbrv }}</span>
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="general.controls['lc_placeOfExpiry'].hasError('required')">
+              Place Of Expiry is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Place of Expiry*</p>
+            <input matInput value="{{lcForm.value.general.lc_placeOfExpiry}}" formControlName="lc_placeOfExpiry"
+              (click)="lc_placeOfExpiry = false" class="mt-1 checker_label_val" readonly />
+          </div>
+        </div>
+        <div class="col-2 d-none d-md-block mt-4">
+          <div class="cursorPointer" *ngIf="lc_placeOfExpiry">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-11 mt-2 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input matInput placeholder="Fee Account*" formControlName="lc_feeAccount" (click)="lc_feeAccount = false" autocomplete="none">
+            <!-- <img src="assets/icons/search_gray.svg" alt="" matSuffix> -->
+            <mat-error *ngIf="general.controls['lc_feeAccount'].hasError('required')">
+              Fee Account is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Fee Account*</p>
+            <input matInput value="{{lcForm.value.general.lc_feeAccount}}" formControlName="lc_feeAccount"
+              (click)="lc_feeAccount = false" class="mt-1 checker_label_val" readonly />
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center mt-4">
+          <div class="cursorPointer mt-4" *ngIf="lc_feeAccount">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-11 mt-2 col-md-4 mt-4">
+          <mat-form-field class="w-100" *ngIf="!isChecker">
+            <input matInput placeholder="Principle Account*" autocomplete="none" formControlName="lc_principleAccount"  (click)="lc_principleAccount = false; prevValue = lcForm.value.general.lc_principleAccount" (blur)="sendAuditLog('Principal Account', prevValue, lcForm.value.general.lc_principleAccount)">
+            <!-- <img src="assets/icons/search_gray.svg" alt="" matSuffix> -->
+            <mat-error *ngIf="general.controls['lc_principleAccount'].hasError('required')">
+              Principle Account is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+          </mat-form-field>
+          <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Principle Account*</p>
+            <input matInput value="{{lcForm.value.general.lc_principleAccount}}" formControlName="lc_principleAccount"
+              (click)="lc_principleAccount = false" class="mt-1 checker_label_val" readonly />
+          </div>
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center mt-4">
+          <div class="cursorPointer mt-4" *ngIf="lc_principleAccount">
+            <img src="assets/icons/i.svg" class="dropInfo" />
+            <span class="comment_num">0</span>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 mt-3 mt-4">
+          <!-- <p class="bmd-label-floating sendLcByText">Send LC By*</p> -->
+          <p class="fsmatthew-normal font-size-16 fab-text-gray">Send LC By</p>
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+            formControlName="lc_sendLcBy">
+            <mat-radio-button class="example-radio-button pl-2" value="swift" color="primary">
+              SWIFT
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button pl-5" value="courier" 
+              color="primary">
+              Courier
+            </mat-radio-button>
+            <!-- <mat-error *ngIf="general.controls['lc_sendLcBy'].hasError('required')">
+              Send Lc by is <strong>required</strong>
+            </mat-error> -->
+          </mat-radio-group>
+        </div>
+        <div class="col-2 d-none d-sm-block"></div>
+
+        <div class="col-10 col-md-4 mt-3">
+          <p class="fsmatthew-normal font-size-16 fab-text-gray">Confirmation Instructions</p>
+          <mat-radio-group aria-label="Select an option" formControlName="lc_confirmationInstructions">
+            <mat-radio-button value="1" class="fsmatthew-normal font-size-16 fab-text-gray" color="primary">Without</mat-radio-button>
+            <mat-radio-button value="2" class="fsmatthew-normal font-size-16 fab-text-gray ml-5" color="primary">May Add</mat-radio-button>
+            <mat-radio-button value="3" class="fsmatthew-normal font-size-16 fab-text-gray ml-5" color="primary">Confirm</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-12 col-md-4 mt-3">
+              <mat-form-field class="w-100" *ngIf="!isChecker">
+                <input matInput placeholder="Rules Applicable*"  matInput [matAutocomplete]="rulesApplicable" formControlName="lc_rulesApplicable">
+                <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+                <mat-autocomplete #rulesApplicable="matAutocomplete">
+                  <mat-option *ngFor="let option of ['UCP Latest Version', 'others']" [value]="option" autocomplete="off">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <div *ngIf="isChecker" class="mt-3">
+                  <p class="mb-0 checker_label">Rules Applicable*</p>
+                  <input matInput value="{{lcForm.value.general.lc_rulesApplicable}}" formControlName="lc_rulesApplicable"
+                     class="mt-1 checker_label_val" readonly />
+                </div>
+        </div>
+        <div class="col-12 my-4">
+          <img src="assets/icons/plus.svg" alt="">
+          <span class="general-add-field pl-1">Add Field</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

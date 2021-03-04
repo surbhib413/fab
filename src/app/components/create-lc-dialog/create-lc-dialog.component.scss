@@ -1,0 +1,67 @@
+.create-lc-dialog{
+    overflow: hidden;
+    min-height: 400px;
+}
+.lc-head{
+    font-family: fs_matthew_medium;
+    font-size: 20px;
+    color: black;
+    padding-bottom: 30px;
+
+}
+.close-dialog{
+    background-color: aliceblue;
+    border:none;
+    float: right;
+    font-size: 20px;
+    color: #b3b6b2;
+    font-family: monospace;
+}
+.title{
+    position: relative;
+    .close-dialog{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+}
+.radio-btn-dialog{
+
+    margin-top: 20px;
+    .radio-group-left{
+        padding-top: 20px;
+        padding-left: 5px;
+        padding-bottom: 20px;
+    }
+}
+.radio-btn-dialog:last-child{
+    padding-top: 25px;
+}
+.example-radio-button{
+    display: block;
+    padding-bottom: 25px;
+}
+.dialog-content{
+    background-color: white;
+    border-radius: 10px;
+}
+
+.create_btn{
+    margin-top: 10px;
+    background-color: #003087;
+    padding: 2px 34px;
+    color: white;
+    margin-bottom: 5px
+}
+.buttons-create{
+    display: block;
+    text-align: center;
+}
+.blue-arrow{
+    position: absolute;
+    top:17px;
+    right: 0px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #003087;
+}

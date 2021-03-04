@@ -1,0 +1,48 @@
+<!-- <div class="wrapper">
+  <div class="col-2 p-0 dashboardSidebar">
+    <app-side-bar></app-side-bar>
+  </div>
+  <div id="content">
+    <app-header></app-header>
+    <div class="px-0 px-sm-3 ">
+      <app-lc-form></app-lc-form>
+    </div>
+     <div class="dashboardFooter">
+      <app-footer [lcForm]="lcForm"></app-footer>
+    </div> 
+  </div>
+</div> -->
+
+
+
+<mat-drawer-container class="mat-typography" autosize style="height: 100vh">
+  <mat-drawer #drawer mode="side" disableClose="true" opened="true">
+    <!-- <app-side-bar (locBreadCrumb)="locBreadCrumb($event)"></app-side-bar> -->
+    <app-side-bar ></app-side-bar>
+  </mat-drawer>
+
+  <!-- <div class="sidenav-content">
+    <div class="sidebar-toggle-button">
+      <button type="button" mat-button (click)="drawer.toggle(); footerExpand()" class="">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div> -->
+
+  <div class="example-sidenav-content">
+    <div class="right-side-content">
+      <app-header></app-header>
+      
+      <div class="">
+          <!-- px-0 px-sm-2 -->
+
+        <!-- <app-lc-form [isExpandedVar]="isExpanded"></app-lc-form> -->
+        <!-- <app-landing></app-landing> -->
+
+        <!-- <app-account-details ></app-account-details> -->
+        <router-outlet></router-outlet>
+        <!-- <app-account-service-landing></app-account-service-landing> -->
+      </div>
+    </div>
+  </div>
+</mat-drawer-container>

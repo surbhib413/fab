@@ -1,0 +1,86 @@
+.overview-tab-col {
+  background-color: #e2e8f0;
+  color: #094684;
+  box-shadow: 0 2px 0 0 rgba(83, 97, 255, 0.05);
+  font-family: fs_matthew_medium;
+  width: 213px;
+  border-radius: 8px;
+}
+.td-class{
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  text-align: left;
+}
+.table-custom tr:last-child td{
+  border-bottom:  1px solid rgba(0, 0, 0, 0.12);
+}
+
+.font-size-45 {
+  font-size: 45px;
+}
+
+.font-size-50 {
+  font-size: 50px;
+}
+
+.font-size-24 {
+  font-size: 24px;
+}
+
+.gray-color {
+  color: #6c7c93;
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.border-color {
+  border-color: #b3b6b2 !important;
+}
+
+// .alrlines {
+//   border-radius: 8px;
+//   box-shadow: 0 0 40px -9px #71adff;
+//   background-image: linear-gradient(115deg, #71adff, #4066b3 61%, #003087);
+//   height: 177px;
+// }
+
+.alrlines li {
+  height: 89px;
+  line-height: 89px;
+}
+
+table {
+  width: 100%;
+  box-shadow: initial;
+  border: solid 1px #979797;
+}
+
+table tr:last-child td {
+  border-bottom-color: #979797;
+}
+
+.inner-drop-down {
+  right: 10px;
+  top: 5px;
+  line-height: 1;
+  cursor: pointer;
+}
+.accListPaginator {
+  height: 20px;
+}
+
+.matTableHeader {
+  width: 93px;
+  height: 16px;
+  font-family: FSMatthew-Light;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #969995;
+}

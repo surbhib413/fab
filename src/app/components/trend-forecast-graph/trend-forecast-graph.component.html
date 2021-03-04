@@ -1,0 +1,73 @@
+<div class="row line-chart-container">
+  <div class="col-12">
+    <!-- <h3 class="forecast-head fsmatthew-medium mt-2 pl-2">Trend (AED)</h3> -->
+
+    <div class="pl-3 pt-3" *ngIf="displayFilters">
+      <ul class="list-unstyled">
+        <li class="list-inline-item cursorPointer">
+          <mat-form-field class="entity-field-width dropdown-text">
+            <input type="text" aria-label="Number" matInput [matAutocomplete]="dropdown" value='{{dropdownList[0]}}'>
+            <img src="assets/icons/down_arrow_gray.svg" alt="" matSuffix>
+            <mat-autocomplete #dropdown="matAutocomplete">
+              <mat-option *ngFor="let e of dropdownList" [value]="e" (click)="dropDownChange(e)">
+                {{e}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </li>
+        <li class="list-inline-item cursorPointer pl-4">
+            <mat-form-field class="option-field-width dropdown-text">
+              <input type="text" aria-label="Number" matInput [matAutocomplete]="dropdown" value='Account Currency'>
+              <img src="assets/icons/down_arrow_gray.svg" alt="" matSuffix>
+              <mat-autocomplete #dropdown="matAutocomplete">
+                <mat-option *ngFor="let e of options" [value]="e" (click)="dropDownChange(e)">
+                  {{e}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </li>
+          <li class="list-inline-item in-text pl-1">in</li>
+          <li class="list-inline-item cursorPointer">
+            <mat-form-field class="currency-field-width dropdown-text">
+              <input type="text" aria-label="Number" matInput [matAutocomplete]="currency" value='AED'>
+              <img src="assets/icons/down_arrow_gray.svg" alt="" matSuffix>
+              <mat-autocomplete #currency="matAutocomplete">
+                <mat-option *ngFor="let currency of currencyList" [value]="currency">
+                  {{currency}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            </li>
+      </ul>
+    </div>
+
+
+    <div class="col-9 float-right" *ngIf="displayFilters">
+      <button mat-button class="fsmatthew-medium font-size-16 fab-text-gray active" (click)="filterByTime('week')">1 W</button>
+      <button mat-button class="fsmatthew-medium font-size-16 fab-text-gray" (click)="filterByTime('one_month')">1
+        M</button>
+      <button mat-button class="fsmatthew-medium font-size-16 fab-text-gray" (click)="filterByTime('three_month')">3
+        M</button>
+      <button mat-button class="fsmatthew-medium font-size-16 fab-text-gray" (click)="filterByTime('six_month')">6
+        M</button>
+      <button mat-button class="fsmatthew-medium font-size-16 fab-text-gray" (click)="filterByTime('one_year')">1
+        Y</button>
+      <button mat-button class="fsmatthew-medium font-size-16 fab-text-gray"
+        (click)="filterByTime('custom')">Custom</button>
+    </div>
+
+
+    <!-- <app-line-chart [lineGraphData] = "lineGraphData"></app-line-chart> -->
+
+
+    <div class="line-chart p-3">
+      <div class="line-chart-content">
+        <svg #lineChart id="line-chart"></svg>
+      </div>
+
+      <!-- <div class="no-data-msg" *ngIf="seedData && seedData.length ==0 ">
+        {{seedData}}No data at the moment.
+      </div> -->
+    </div>
+  </div>
+</div>

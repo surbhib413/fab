@@ -1,0 +1,152 @@
+<div Class="container-fluid px-0 payment_details_container" [formGroup]="payment">
+  <div class="payment_details_content px-3 pt-4 mt-0">
+    <p class="payment_details_label">Amount & Charges</p>
+    <div class="row">
+      <div class="col-12 col-md-4 justify-content-start">
+        <div class="row">
+          <div class="col-11 pr-0">
+            <mat-form-field *ngIf="!isChecker" class="w-100">
+              <input matInput [matAutocomplete]="auto1" placeholder="LC Currency*" formControlName="amount_currency"
+                autocomplete="off" (click)="payment_amount_currency = true" (input)="clearCurrency($event)">
+                <span matSuffix class="input-currency-abbr">{{currencyAbbr}}</span>
+              <img matSuffix width="15px" class="float-currency input-currency-icon" src="{{ currencySymbol }}" />
+              <mat-autocomplete #auto1="matAutocomplete" class="matAuto1" (optionSelected)="onCurrencyChange($event)">
+                <mat-option *ngFor="let currency of currencies" [value]="currency.name" autocomplete="off">
+                    <div class="d-flex d-flex-row justify-content-between">
+                      <span>{{ currency.name }}</span>
+                      <div class="dropdown_options d-flex justify-content-between">
+                        <span class="float-flag">{{ currency.abbrv }}</span>
+                        <span>
+                            <img class="float-currency mr-2" width="17px" src="{{ currency.src }}" />
+                        </span>
+                      </div>
+                    </div>
+                </mat-option>
+              </mat-autocomplete>
+
+              <span matSuffix><img src="assets/icons/search_gray.svg" /></span>
+              <mat-error *ngIf="payment.controls['amount_currency'].hasError('required')">
+                Currency is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <!-- <div *ngIf="isChecker">
+              <p class="mb-0 checker_label">LC Currency*</p>
+              <input matInput value="{{lcForm.value.payment.amount_currency}}" formControlName="amount_currency"
+                (click)="payment_amount_currency = true" class="mt-1 checker_label_val" readonly />
+                <div class="d-inline position-relative">
+                  <span class="position-absolute checkerAbbr">{{currencyAbbr}}</span>
+                  <img matSuffix width="15px" class="position-absolute float-currency input-currency-icon checkerFlag" src="{{ currencySymbol }}" />
+                </div>
+            </div> -->
+            <div *ngIf="isChecker" class="mt-3">
+                <p class="mb-0 checker_label">LC Currency*</p>
+                <div class="d-flex">
+                    <input matInput value="{{lcForm.value.payment.amount_currency}}" formControlName="amount_currency"
+                (click)="payment_amount_currency = true" class="mt-1 checker_label_val width80" readonly />
+                    <div class="d-flex align-items-center">
+                      <span class="mr-3">{{currencyAbbr}}</span>
+                      <!-- <span class="flag-icon {{benificiaryFlag}} checkerFlag" ></span> -->
+                      <img matSuffix width="15px" class="float-currency checkerFlag" src="{{ currencySymbol }}" />
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="cursorPointer d-flex justify-content-center mt-2 col-1">
+            <div class="cursorPointer position-relative" *ngIf="payment_amount_currency || isChecker || lcComment['payment_amount_currency'].updated">
+              <img src="assets/icons/comment_icon.svg" class="dropInfo"
+                (click)="payment_amount_currency = true;openComment('left','payment_amount_currency','Principle Account');" />
+              <span class="comment_num">{{lcComment['payment_amount_currency']?lcComment['payment_amount_currency'].comments.length:0}}</span>
+              <app-comment style="position: absolute;" *ngIf="showComment==='payment_amount_currency'"></app-comment>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-12 col-md-4">
+        <mat-form-field class="w-90 d-inline-block" *ngIf="!isChecker">
+          <input type="text" placeholder="Country*" aria-label="Number" matInput formControlName="amount_country"
+            [matAutocomplete]="auto" (input)="clearFlag($event)"/>
+            <span matSuffix class="input-country-abbr">{{countryAbbr}}</span>
+            <span matSuffix class="flag-icon {{countryFlag}} input-flag-icon"></span>
+          <span matSuffix><img src="assets/icons/search_gray.svg" /></span>
+          <mat-autocomplete #auto="matAutocomplete" class="matAuto1" (optionSelected)="onCountryChange($event)">
+            <mat-option *ngFor="let country of countries" #c [value]="country.name" autocomplete="off">
+              {{ country.name }}
+              <span class="flag-icon {{country.class}}"></span>
+              <span class="float-flag">{{ country.abbrv }}</span>
+            </mat-option>
+            </mat-autocomplete>   
+        </mat-form-field>
+        <!-- <div *ngIf="isChecker">
+          <p class="mb-0 checker_label">Country*</p>
+          <input matInput value="{{lcForm.value.payment.amount_country}}" formControlName="amount_country"
+            (click)="payment_amount_country = true" class="mt-1 checker_label_val" readonly />
+          <div class="d-inline position-relative">
+            <span class="position-absolute checkerAbbr">{{countryAbbr}}</span>
+            <span class="flag-icon {{countryFlag}} position-absolute checkerFlag" ></span>
+          </div>
+        </div> -->
+        <div *ngIf="isChecker" class="mt-3">
+            <p class="mb-0 checker_label">Country*</p>
+            <div class="d-flex">
+                <input matInput value="{{lcForm.value.payment.amount_country}}" formControlName="amount_country"
+                (click)="payment_amount_country = true" class="mt-1 checker_label_val width80" readonly />
+                <div class="d-flex align-items-center">
+                  <span class="mr-3">{{countryAbbr}}</span>
+                  <span class="flag-icon {{countryFlag}} checkerFlag" ></span>
+                </div>
+            </div>
+          </div>
+      </div>
+
+   
+
+
+      <div class="col-12 col-md-4">
+        <div class="row">
+          <div class="col-11">
+            <mat-form-field *ngIf="!isChecker" class="w-100">
+              <input matInput placeholder="LC Amount*" formControlName="amount_lcAmount" autocomplete="nope"
+                (click)="payment_amount_lcAmount = true">
+              <mat-label>LC Amount* <span *ngIf="isSwiftSelected" class="limit-character">32B</span></mat-label>
+              <mat-error *ngIf="payment.controls['amount_lcAmount'].hasError('required')">
+                Amount is <strong>required</strong>
+                <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+              </mat-error>
+              <mat-error *ngIf="payment.controls['amount_lcAmount'].errors?.pattern">
+                Amount is <strong>not valid</strong>
+                <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+              </mat-error>
+            </mat-form-field>
+            <div *ngIf="isChecker">
+              <p class="mb-0 checker_label">Amount*</p>
+              <input matInput value="{{lcForm.value.payment.amount_lcAmount}}" formControlName="amount_lcAmount"
+                (click)="payment_amount_lcAmount = true" class="mt-1 checker_label_val" readonly />
+            </div>
+
+          </div>
+
+          <div class="cursorPointer d-flex justify-content-center mt-2 col-1">
+              <!-- <div class="col-2 justify-content-start align-self-center d-none d-sm-block "> -->
+            <div class="cursorPointer position-relative" *ngIf="payment_amount_lcAmount || isChecker || lcComment['payment_amount_lcAmount'].updated">
+              <img src="assets/icons/comment_icon.svg" class="dropInfo" (click)="payment_amount_lcAmount = true;openComment('right','payment_amount_lcAmount','Amount');" />
+              <span class="comment_num">{{lcComment['payment_amount_lcAmount']?lcComment['payment_amount_lcAmount'].comments.length:0}}</span>
+              <app-comment style="position: absolute;" *ngIf="showComment==='payment_amount_lcAmount'"></app-comment>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-12 mb-2">
+          <!-- <img _ngcontent-ydm-c11="" alt="" src="assets/icons/plus.svg"> -->
+          <p class="paymentDetails-link my-4"><img src="assets/icons/plus.svg" class="pr-2">Add Field
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>

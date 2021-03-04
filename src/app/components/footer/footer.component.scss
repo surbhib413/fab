@@ -1,0 +1,59 @@
+.custom_footer {
+  height: 84px;
+  border-radius: 4px;
+  border: solid 1px #e7e7e7;
+  background-color: white;
+  box-shadow: 10px 0 4px 0 rgba(143, 143, 143, 0.5);
+ 
+  .custom_btn{
+    width: 130px;
+    height: 40px;
+    // border-color: #003087;
+    border-radius: 4px;
+    font-size: 14px;
+    
+
+  }
+  .next_button{
+    width: 130px;
+    height: 40px;
+    background-color: #003087;
+    color: white;
+  }
+  .save-button{
+    width: 155px;
+    height: 40px;
+    // border-color: #003087;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #003087;
+    color: #fff;
+  }
+}
+.terms-check-style{
+  font-family: graphik_regular;
+  font-size: 15px;
+  color: #646d82;
+}
+.terms-link-style{
+  font-family: graphik_medium;
+  font-size: 14px;
+  color: #71adff!important;
+}
+.authorize-button{
+  width: 120px;
+  height: 40px;
+  border-color: #003087;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.return-button{
+  width: 220px;
+  height: 40px;
+  border-color: #003087;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+
+.submit_btn{background-color: #003087; color: #fff !important;}

@@ -1,0 +1,139 @@
+.chat-box {
+    position: absolute;
+    right: 0;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    z-index: 5;
+    //top:115px;
+    //left:540px;
+    max-height: 400px;
+    min-width: 400px;
+  }
+
+  .chat_box_left{
+    left:40px;
+    top:-18px;
+  }
+
+  .chat_box_right{
+    right:60px;
+    top:-18px;
+  }
+
+//chat box right arrow
+
+.chat_box_right:after, .chat_box_right:before {
+  left: 100%;
+	top: 30px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.chat_box_right:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-left-color: #fff;
+	border-width: 15px;
+	margin-top: -15px;
+}
+.chat_box_right:before {
+	border-color: rgba(225, 225, 225, 0);
+	border-left-color: #e1e1e1;
+	border-width: 16px;
+	margin-top: -16px;
+}
+// chat box right arrow end
+
+
+//chat box left arrow
+
+.chat_box_left:after, .chat_box_left:before {
+  right: 100%;
+    top: 30px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.chat_box_left:after{
+  border-color: rgba(255, 255, 255, 0);
+    border-right-color: #fff;
+    border-width: 15px;
+    margin-top: -15px;
+}
+
+.chat_box_left:before{
+  border-color: rgba(204, 204, 204, 0);
+    border-right-color: #ccc;
+    border-width: 16px;
+    margin-top: -16px;
+}
+
+//chat box left arrow end
+
+
+
+
+
+
+
+
+
+  
+  .comments-input{
+    background: initial;
+  }
+  
+  .chat-box .input-group{
+    border: 1px solid #e2e2e2;
+  }
+  
+  .comments-input:focus {
+    outline-offset: inherit !important ;
+  }
+  
+  span.comments-num {
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 2px 4px 0 #ffdf72;
+    background-image: linear-gradient(to bottom, #fff8c0, #ffe513 32%, #fec708);
+    border-radius: 50px;
+    display: inline-block;
+    text-align: center;
+    line-height: 23px;
+    margin-left: 5px; 
+  }
+  
+  .closebutton{right: 15px; top: 15px;}
+  .comment-box{  background-color: #f5faff;
+  }
+  
+  
+  .comments-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 14px;
+  }
+  .comments-input::-moz-placeholder { /* Firefox 19+ */
+    font-size: 14px;
+  }
+  .comments-input:-ms-input-placeholder { /* IE 10+ */
+    font-size: 14px;
+  }
+  .comments-input:-moz-placeholder { /* Firefox 18- */
+    font-size: 14px;
+  }
+
+  .alignicon{
+    vertical-align: top;
+    color: #d8d8d8;
+  }
+
+  .menu-icon-align{
+    margin-left: auto;
+  }

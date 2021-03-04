@@ -1,0 +1,389 @@
+<div class="container-fluid">
+  <div class="row div-alignment mt-4">
+    <div *ngFor="let x of colCount" class="col-3" style="display: inline-block;">
+      <div class="container-fluid mr-2 accountList-card">
+        <div class="row pt-2">
+          <div class="col-12 accountList-card-header">
+            {{accountDetails ? accountDetails['counts'][x] : 0}}
+            {{accountDetails ? accountDetails['bank_names'][x] : 0}}
+            {{(accountDetails && accountDetails['counts'][x]==1) ? 'Account' : 'Accounts'}}
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="col-8 accountList-card-bal">
+            {{accountDetails ? ((accountDetails['total_balances'][x] / 1000000) | number : '1.3-3') : 0}} M <span
+              class="accountList-card-cur">AED</span>
+          </div>
+          <div class="col-4 text-right">
+            <div class="accountList-card-percentage accountList-card-red">-20%</div>
+            <div class="accountList-card-thisweek">this week</div>
+          </div>
+        </div>
+        <div class="row w-100 m-0">
+          <div class="col-12 p-0 chart-class">
+            <app-line-chart class="accountList-card-graph" [data]="depositsGraph">
+            </app-line-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Graph section (start)-->
+  <div class="row mt-4 div-alignment">
+    <div class="col-6 ">
+      <div class="container-fluid graph-container">
+        <div class="row text-center">
+          <div class="col-2 p-0 position-relative filter-dropdown box filled-box">
+            <div class="px-0 py-2 cursorPointer">
+              Balance <img src="assets/icons/filter-arrow-active.svg" />
+            </div>
+          </div>
+          <div class="col-2 p-0 position-relative filter-dropdown"
+            [ngClass]="{'box empty-box':entityDisplayVal!='All Entities'}">
+            <div class="px-0 py-2 cursorPointer" (click)="[filterGraphData('entity1'),setSelectedFilter('entity1')]">
+              {{entityDisplayVal}} <img src="assets/icons/filter-arrow-active.svg" />
+            </div>
+            <app-chart-filter-modal class="position-absolute" *ngIf="showFilter==='entity1'" [dropDownVal]="entity1"
+              (updateGraph)="updateGraph($event)">
+            </app-chart-filter-modal>
+          </div>
+          <div class="col-2 p-0 position-relative filter-dropdown"
+            [ngClass]="{'box empty-box':bankDisplayVal!='All Banks'}">
+            <div class="px-0 py-2 cursorPointer" (click)="[filterGraphData('bank1'),setSelectedFilter('bank1')]">
+              {{bankDisplayVal}} <img src="assets/icons/filter-arrow-active.svg" /></div>
+            <app-chart-filter-modal class="position-absolute" *ngIf="showFilter==='bank1'" [dropDownVal]="bank1"
+              (updateGraph)="updateGraph($event)">
+            </app-chart-filter-modal>
+          </div>
+          <div class="col-2 p-0 position-relative filter-dropdown"
+            [ngClass]="{'box empty-box':regionDisplayVal!='All Regions'}">
+            <div class="px-0 py-2 cursorPointer" (click)="filterGraphData('region1')">
+              {{regionDisplayVal}} <img src="assets/icons/filter-arrow-active.svg" /></div>
+            <app-chart-filter-modal class="position-absolute" *ngIf="showFilter==='region1'" [dropDownVal]="region1"
+              (updateGraph)="updateGraph($event)">
+            </app-chart-filter-modal>
+          </div>
+          <div class="col-3 p-0 filter-dropdown ">
+            <div class="px-0 py-2">
+              Conv value <img src="assets/icons/filter-arrow-active.svg" />&nbsp;&nbsp; in AED
+              <img src="assets/icons/filter-arrow-active.svg" />
+            </div>
+          </div>
+          <div class="col-1 p-0 filter-dropdown-right">
+            <div class=" px-0 py-2">
+              <img src="assets/icons/menu_gray.svg" />
+            </div>
+          </div>
+        </div>
+        <div class="row w-100 m-0">
+          <div class="container-fluid pt-4 pb-2 pr-4 pl-2 w-100">
+            <app-heat-map [heatMapData]="heatMapData" (updatelegend)="updatelegend($event)"></app-heat-map>
+          </div>
+        </div>
+        <div class="row py-3">
+          <div class="filter-date col-2">
+            15 Oct 2019
+          </div>
+          <div class="col-8 legend-div" *ngIf="legendRange">
+            <div *ngFor="let range of legendRange" class="pr-4">
+              <span class="legend-color" [ngStyle]="{'background-color': range.bgColor}"></span>
+              <span class="range-val">&nbsp;{{ (range.min / 1000) | number : '1.0-0'}}K -
+                {{ (range.max / 1000) | number : '1.0-0'}} K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="container-fluid graph-container">
+        <div class="row text-center">
+          <div class="col-2 p-0 position-relative filter-dropdown box filled-box">
+            <div class="px-0 py-2 cursorPointer">
+              Balance <img src="assets/icons/filter-arrow-active.svg" />
+            </div>
+          </div>
+          <div class="col-2 p-0 position-relative filter-dropdown">
+            <div class="px-0 py-2 cursorPointer">
+              All Entities<img src="assets/icons/filter-arrow-active.svg" />
+            </div>
+          </div>
+          <div class="col-2 p-0 position-relative filter-dropdown">
+            <div class="px-0 py-2 cursorPointer">
+              All Banks <img src="assets/icons/filter-arrow-active.svg" /></div>
+          </div>
+          <div class="col-2 p-0 position-relative filter-dropdown">
+            <div class="px-0 py-2 cursorPointer">
+              All Regions <img src="assets/icons/filter-arrow-active.svg" /></div>
+          </div>
+          <div class="col-3 p-0 filter-dropdown ">
+            <div class="px-0 py-2">
+              Conv value <img src="assets/icons/filter-arrow-active.svg" />&nbsp;&nbsp; in AED
+              <img src="assets/icons/filter-arrow-active.svg" />
+            </div>
+          </div>
+          <div class="col-1 p-0 filter-dropdown-right">
+            <div class=" px-0 py-2">
+              <img src="assets/icons/menu_gray.svg" />
+            </div>
+          </div>
+        </div>
+        <div class="row w-100 m-0">
+          <div class="container-fluid pt-4 pb-2 pr-4 pl-2 w-100">
+            <app-mirror-chart [mirrorChartData]="mirrorChartData"></app-mirror-chart>
+          </div>
+        </div>
+        <div class="row py-3">
+          <div class="col-12 filter-date">
+            15 Oct 2019
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="row mt-4">
+    <div class="col-4 left-card-layout pr-5 pt-4" style="display: inline-block;">
+      <span class="container-heading px-3">10 Reports</span>
+      <img style="float: right;" src="assets/icons/filter-arrow-active.svg" />
+    </div>
+    <div class="col-8 right-card-layout pt-4 px-2" style="display: inline-block;">
+      <span class="container-heading px-2">10 Actions need attention</span>
+      <img style="float: right;" class="pr-4" src="assets/icons/filter-arrow-active.svg" />
+    </div>
+  </div> -->
+
+  <div class="row mt-4 div-alignment">
+    <div class="col-4">
+      <div class="container-fluid reports-container p-3">
+        <div class="row">
+          <div class="col-6 container-heading">10 Reports</div>
+          <div class="col-6 text-right">
+            <img src="assets/icons/filter-arrow-active.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="container-fluid actions-container p-3">
+        <div class="row">
+          <div class="col-6 container-heading">10 Actions need attention</div>
+          <div class="col-6 text-right">
+            <img src="assets/icons/filter-arrow-active.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-12 " style="background-color: #ffffff;">
+      <div class="row">
+        <div class="col-6 p-3">
+          <span class="container-heading">Account List</span>
+          <span class="" style="color: #003087;float: right;text-decoration: underline;cursor: pointer;"
+            (click)="clearAllFilters();">Clear all</span>
+        </div>
+        <div class="col-6 text-right">
+          <div class="row text-center">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-4 p-0 position-relative filter-dropdown box left-border"
+                  [ngStyle]="{'border-left-color': selectedFilter=='balance'?'rgba(12,35,64,0.7)':'#364dac','border-top-color':selectedFilter=='balance'?'rgba(12,35,64,0.7)':'#364dac'}">
+                  <div class="row">
+                    <div class="col-2 py-2" style="font-size: 15px; margin-left: 10px;margin-right: -20px;">
+                      <i class="fa fa-search"></i>
+                    </div>
+                    <div class="col-10">
+                      <span style="float: left;" class="py-2">Search...</span>
+                      <!-- <mat-form-field>
+                        <input matInput placeholder="Search..." value="">
+                      </mat-form-field> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2 p-0 position-relative filter-dropdown box"
+                  [ngStyle]="{'border-left-color': selectedFilter=='balance'?'rgba(12,35,64,0.7)':'#fff','border-top-color':selectedFilter=='balance'?'rgba(12,35,64,0.7)':'#fff'}">
+                  <div class="px-0 py-2 cursorPointer" (click)="[filterAccountList('groupBy')]">
+                    Group by <img src="assets/icons/filter-arrow-active.svg" />
+                  </div>
+                  <div>
+                    <app-account-list-filter-modal class="position-absolute" *ngIf="filterCategory==='groupBy'"
+                      [dropDownVal]="groupBy" (updateAccountList)="updateAccountList($event)">
+                    </app-account-list-filter-modal>
+                  </div>
+
+                </div>
+                <div class="col-2 p-0 position-relative filter-dropdown box"
+                  [ngStyle]="{'border-left-color': selectedFilter=='balance'?'rgba(12,35,64,0.7)':'#fff','border-top-color':selectedFilter=='balance'?'rgba(12,35,64,0.7)':'#fff'}">
+                  <div class="px-0 py-2 cursorPointer" style="display: inline-block;"
+                    (click)="[filterGraphData('balance')]">
+                    Filters <img src="assets/icons/filter-arrow-active.svg" />
+                  </div>
+                </div>
+                <div class="col-3 p-0 position-relative filter-dropdown box"
+                  [ngStyle]="{'border-left-color': selectedFilter=='balance'?'rgba(12,35,64,0.7)':'#fff','border-top-color':selectedFilter=='balance'?'rgba(12,35,64,0.7)':'#fff'}">
+                  <!-- <div class="p-0 cursorPointer" style="display: inline-block;margin-top:-10px;">
+                    <mat-paginator [length]="accountListLength" [pageSize]="pageSize" [pageSizeOptions]="[5, 10,20]">
+                    </mat-paginator>
+                  </div> -->
+                   <div class="p-0 cursorPointer stylePaginator" style="margin-top:-18px;">
+                    <mat-paginator [length]="accountListLength" [pageSize]="pageSize" [pageSizeOptions]="[5, 10,20]">
+                    </mat-paginator>
+                  </div>
+                </div>
+                <div class="col-1 p-0 position-relative filter-dropdown box"
+                  [ngStyle]="{'border-left-color': selectedFilter=='balance'?'rgba(12,35,64,0.7)':'#fff','border-top-color':selectedFilter=='balance'?'rgba(12,35,64,0.7)':'#fff'}">
+                  <div class="px-0 py-2 cursorPointer" style="display: inline-block;"
+                    (click)="[filterGraphData('balance')]">
+                    <img src="assets/icons/menu_gray.svg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="row">
+            <!-- <div class="col-4" *ngIf="showEntityView">
+              <div class="row w-100 m-0">
+                <div class="container-fluid p-4 w-100">
+                  <app-multi-line></app-multi-line>
+                </div>
+              </div>
+            </div> -->
+            <!-- <div [ngClass]="showEntityView ? 'col-8' : 'col-12'"> -->
+            <div class="col-12">
+              <div class="" *ngIf="!showEntityView">
+                <table mat-table [dataSource]="dataSource" matSort [matSortActive]="orderByStr" matSortDirection="asc"
+                  matSortDisableClear class="w-100 mt-2 mat-elevation-z8 accountList-container">
+                  <ng-container matColumnDef="entity_name">
+                    <th mat-header-cell *matHeaderCellDef> Entity</th>
+                    <td mat-cell *matCellDef="let action"> {{action.entity_name  | titlecase}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="bank_name">
+                    <th mat-header-cell *matHeaderCellDef> Bank </th>
+                    <td mat-cell *matCellDef="let action"> {{action.bank_name}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="branch_name">
+                    <th mat-header-cell *matHeaderCellDef> Branch </th>
+                    <td mat-cell *matCellDef="let action"> {{action.branch_name}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="account_name">
+                    <th mat-header-cell *matHeaderCellDef> A/C Name </th>
+                    <td mat-cell *matCellDef="let action"> {{action.account_name}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="account_number">
+                    <th mat-header-cell *matHeaderCellDef> A/C Number</th>
+                    <td mat-cell *matCellDef="let action" class="cursorPointer"
+                      (click)="goToAccountDetails(action.account_number)">
+                      {{action.account_number}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="account_type">
+                    <th mat-header-cell *matHeaderCellDef>A/C Type </th>
+                    <td mat-cell *matCellDef="let action"> {{action.account_type  | titlecase}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="account_base_currency">
+                    <th mat-header-cell *matHeaderCellDef>Curr </th>
+                    <td mat-cell *matCellDef="let action"> {{action.account_base_currency}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="available_balance">
+                    <th mat-header-cell *matHeaderCellDef> Avail Balance </th>
+                    <td mat-cell *matCellDef="let action"> {{action.available_balance}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="balance_in_aed">
+                    <th mat-header-cell *matHeaderCellDef> Balance In AED </th>
+                    <td mat-cell *matCellDef="let action"> {{action.balance_in_aed}} </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+
+              <ng-container *ngIf="showEntityView">
+                <div class="m-2 entity-card-view " *ngFor="let entity of entityTypes">
+                  <div class="row p-3 mt-4">
+                    <div class="col-11">
+                      <span>
+                        <h2>{{entity | titlecase}}</h2>
+                      </span>
+                    </div>
+                    <div class="col-1 p-0 position-relative" style="align-items: right;">
+                      <img src="assets/icons/menu_gray.svg" />
+                    </div>
+                    <div class="col-12">
+                      <table mat-table [dataSource]="groupedData[entity] | sortAccountData : orderByStr" matSort
+                        matSortActive="orderByStr" matSortDirection="asc"
+                        class="w-100 mt-2 mat-elevation-z8 accountList-container">
+                        <ng-container matColumnDef="entity_name">
+                          <th mat-header-cell *matHeaderCellDef> Entity</th>
+                          <td mat-cell *matCellDef="let action"> {{action.entity_name  | titlecase}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="bank_name">
+                          <th mat-header-cell *matHeaderCellDef> Bank </th>
+                          <td mat-cell *matCellDef="let action"> {{action.bank_name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="branch_name">
+                          <th mat-header-cell *matHeaderCellDef> Branch </th>
+                          <td mat-cell *matCellDef="let action"> {{action.branch_name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="account_name">
+                          <th mat-header-cell *matHeaderCellDef> A/C Name </th>
+                          <td mat-cell *matCellDef="let action"> {{action.account_name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="account_number">
+                          <th mat-header-cell *matHeaderCellDef> A/C Number</th>
+                          <td mat-cell *matCellDef="let action" class="cursorPointer"
+                            (click)="goToAccountDetails(action.account_number)">
+                            {{action.account_number}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="account_type">
+                          <th mat-header-cell *matHeaderCellDef>A/C Type </th>
+                          <td mat-cell *matCellDef="let action"> {{action.account_type | titlecase}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="account_base_currency">
+                          <th mat-header-cell *matHeaderCellDef>Curr </th>
+                          <td mat-cell *matCellDef="let action"> {{action.account_base_currency}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="available_balance">
+                          <th mat-header-cell *matHeaderCellDef> Avail Balance </th>
+                          <td mat-cell *matCellDef="let action"> {{action.available_balance}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="balance_in_aed">
+                          <th mat-header-cell *matHeaderCellDef> Balance In AED </th>
+                          <td mat-cell *matCellDef="let action"> {{action.balance_in_aed}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

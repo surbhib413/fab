@@ -1,0 +1,134 @@
+<div class="container-fluid bankDetails-container p-4 mt-0" [formGroup]="bank">
+  <p class="bankDetails-label ">Credit Available With</p>
+  <div class="row">
+    <div class="col-12 col-md-4 mt-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input type="text" placeholder="Type*" aria-label="Number" matInput [matAutocomplete]="bankType" formControlName="creditAvailable_type" autocomplete="none" (click)="bank_creditAvailable_type = true">
+        <mat-label>Type*<span *ngIf="isSwiftSelected" class="limit-character" >41A</span></mat-label>
+        <img src="assets/icons/drop-menu.png" matSuffix>
+        <mat-error *ngIf="bank.controls['creditAvailable_type'].hasError('required')">
+          Type is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+        <mat-autocomplete #bankType="matAutocomplete">
+          <mat-option *ngFor="let type of bankTypeArray" [value]="type.name" autocomplete="off">
+            {{type.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div *ngIf="isChecker">
+
+          <p class="mb-0 checker_label">Type*</p>
+          <input matInput value="{{lcForm.value.bank.creditAvailable_type}}" formControlName="creditAvailable_type"  (click)="bank_creditAvailable_type = true" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block mt-4">
+        <div class="cursorPointer mt-4 d-inline-block" style="position: relative;" *ngIf="bank_creditAvailable_type || isChecker || lcComment['bank_creditAvailable_type'].updated">
+          <img src="assets/icons/comment_icon.svg" class="dropInfo" (click)="bank_creditAvailable_type = true;openComment('left','bank_creditAvailable_type','Type');"/>
+          <span class="comment_num">{{lcComment['bank_creditAvailable_type']?lcComment['bank_creditAvailable_type'].comments.length:0}}</span>
+          <app-comment style="position: absolute;" *ngIf="showComment==='bank_creditAvailable_type'"></app-comment>
+        </div>
+        
+    </div>
+
+
+    <div class="col-12 col-md-4 mt-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input type="text" placeholder="Name*" aria-label="Number" matInput autocomplete="none" formControlName="creditAvailable_name" autocomplete="off">
+        <mat-label>Name*<span *ngIf="isSwiftSelected" class="limit-character" >41A</span></mat-label>
+        <mat-error *ngIf="bank.controls['creditAvailable_name'].hasError('required')">
+            Name is <strong>required</strong>
+            <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+          </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker">
+          <p class="mb-0 checker_label">Name*</p>
+          <input matInput  value="{{lcForm.value.bank.creditAvailable_name}}" formControlName="creditAvailable_name" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-sm-block mt-4" >
+        <span>
+            <img src="assets/icons/i.svg" class="dropInfo mt-3"/>
+        </span>
+    </div>
+
+    <div class="col-12 col-md-4 mt-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input matInput placeholder="Address Line 1*" aria-label="Number" matInput formControlName="creditAvailable_addressLine1"  autocomplete="none">
+        <mat-label>Address Line 1*<span *ngIf="isSwiftSelected" class="limit-character" >41A</span></mat-label>
+        <mat-error *ngIf="bank.controls['creditAvailable_addressLine1'].hasError('required')">
+            Address Line 1 is <strong>required</strong>
+            <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+          </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker">
+          <p class="mb-0 checker_label">Address Line 1*</p>
+          <input matInput  value="{{lcForm.value.bank.creditAvailable_addressLine1}}" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+
+    <div class="col-2 d-none d-md-block"></div>
+
+    <div class="col-12 col-md-4 mt-4">
+        <mat-form-field class="w-100" *ngIf="!isChecker">
+          <input type="text" placeholder="Address Line 2*" aria-label="Number" matInput formControlName="creditAvailable_addressLine2"  autocomplete="none">
+          <mat-label>Address Line 2*<span *ngIf="isSwiftSelected" class="limit-character" >41A</span></mat-label>
+          <mat-error *ngIf="bank.controls['creditAvailable_addressLine2'].hasError('required')">
+              Address Line 2 is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+        </mat-form-field>
+        <div *ngIf="isChecker">
+            <p class="mb-0 checker_label">Address Line 2*</p>
+            <input matInput  value="{{lcForm.value.bank.creditAvailable_addressLine2}}" class="mt-1 checker_label_val" readonly/>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4 mt-4">
+        <mat-form-field class="w-100" *ngIf="!isChecker">
+          <input type="text" placeholder="Address Line 3*" aria-label="Number" matInput formControlName="creditAvailable_addressLine3" autocomplete="none">
+          <mat-label>Address Line 3*<span *ngIf="isSwiftSelected" class="limit-character" >41A</span></mat-label>
+          <mat-error *ngIf="bank.controls['creditAvailable_addressLine3'].hasError('required')">
+              Address Line 3 is <strong>required</strong>
+              <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+            </mat-error>
+        </mat-form-field>
+        <div *ngIf="isChecker">
+            <p class="mb-0 checker_label">Address Line 3*</p>
+            <input matInput value="{{lcForm.value.bank.creditAvailable_addressLine3}}" class="mt-1 checker_label_val" readonly/>
+        </div>
+    </div>
+
+    <div class="col-2 d-none d-md-block"></div>
+
+    <div class="col-12 col-md-4 mt-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+
+        <input type="text" placeholder="Drawee Details*" aria-label="Number"  matInput [matAutocomplete]="draweeDetails" autocomplete="none" formControlName="creditAvailable_draweeDetails" (click)="bank_creditAvailable_draweeDetails = true">
+        <mat-label>Drawee Details*<span *ngIf="isSwiftSelected" class="limit-character" >41A</span></mat-label>
+        <img src="assets/icons/drop-menu.png" matSuffix>
+        <mat-error *ngIf="bank.controls['creditAvailable_draweeDetails'].hasError('required')">
+          Drawee Details <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+        <mat-autocomplete #draweeDetails="matAutocomplete">
+          <mat-option *ngFor="let drawee of draweeDetailsArray" [value]="drawee.name" autocomplete="off">
+            {{drawee.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div *ngIf="isChecker">
+          <p class="mb-0 checker_label">Drawee Details*</p>
+          <input matInput value="{{lcForm.value.payment.creditAvailable_draweeDetails}}" formControlName="creditAvailable_draweeDetails"  (click)="bank_creditAvailable_draweeDetails = true" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block mt-4">
+        <div class="cursorPointer" style="position: relative;" *ngIf="bank_creditAvailable_draweeDetails || isChecker || lcComment['bank_creditAvailable_draweeDetails'].updated">
+          <img src="assets/icons/comment_icon.svg" class="dropInfo" (click)="bank_creditAvailable_draweeDetails = true;openComment('right','bank_creditAvailable_draweeDetails','Drawee Details');"/>
+          <span class="comment_num">{{lcComment['bank_creditAvailable_draweeDetails']?lcComment['bank_creditAvailable_draweeDetails'].comments.length:0}}</span>
+          <app-comment style="position: absolute;" *ngIf="showComment==='bank_creditAvailable_draweeDetails'"></app-comment>
+        </div>
+    </div>
+  </div>
+  <p class="bankDetails-link my-4"><img src="assets/icons/plus.svg" class="pr-2">Add Field</p>
+</div>

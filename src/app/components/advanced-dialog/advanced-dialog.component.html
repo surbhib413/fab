@@ -1,0 +1,86 @@
+<div id="autoComplete">
+  <div mat-dialog-content style="overflow:hidden">
+    <div class="row row-cross">
+      <div class="offset-11 col-1">
+        <button class="cross" [mat-dialog-close]="true"><img _ngcontent-nha-c28="" src="assets/icons/close_gray_icon.svg"></button>
+      </div>
+    </div>
+    <div class="row data-row">
+      <div class="col-3 first-sec">
+        <form class="advanced-filter">
+          <mat-form-field class="example-full-width">
+            <input
+              type="text"
+              placeholder="Filter By"
+              aria-label="Number"
+              matInput
+              [formControl]="myControl"
+              [matAutocomplete]="auto"
+            />
+            <mat-autocomplete #auto="matAutocomplete" class="matAuto1">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-3 first-sec">
+        <form class>
+          <mat-form-field class="abc">
+            <input
+              type="text"
+              placeholder="Select"
+              aria-label="Number"
+              matInput
+              [formControl]="myControl"
+              [matAutocomplete]="auto1"
+              class="customInput"
+            />
+            <mat-autocomplete #auto1="matAutocomplete" class="matAuto1" >
+              <mat-option *ngFor="let option1 of options1" [value]="option1" >
+                {{ option1 }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-3">
+        <form class="advanced-filter">
+          <mat-form-field class="example-full-width">
+            <input
+              type="text"
+              placeholder="Select"
+              aria-label="Number"
+              matInput
+              [formControl]="myControl"
+              [matAutocomplete]="auto2"
+            />
+            <mat-autocomplete #auto2="matAutocomplete" (optionSelected)='getPosts($event.option.value)'>
+              <mat-option *ngFor="let option2 of options2" [value]="option2">
+                {{ option2 }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-1 icon-sec">
+        <div class="minus">-</div>
+        <div class="plus">+</div>
+      </div>
+    </div>
+    <div class="row button-row">
+      <div class="offset-10 col-2">
+        <button
+          mat-stroked-button
+          color="primary"
+          class="my-0 mx-2 custom_btn"
+          [mat-dialog-close]="true"
+          (click)="applyStatusFilter('save_as_draft')"
+        >
+          APPLY
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

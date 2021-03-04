@@ -1,0 +1,1359 @@
+<section class="landing-dashboard">
+  <div class="container-fluid">
+    <div class="row mx-0">
+      <div class="col-12 border-bottom py-1 px-0">
+        <ul class="pl-0 mb-0 list-unstyled text-md-right dashboard-menus">
+          <li class="list-inline-item px-3"><img src="assets/icons/search.svg" /></li>
+          <li class="list-inline-item px-3 cursor-pointer"><a
+              class="fsmatthew-normal font-size-16 text-decoration-none fab-text-gray"
+              (click)="appendLcBreadcrumb(true)">Create New LC</a></li>
+          <li class="list-inline-item" style="cursor: pointer;">
+            <a class="fsmatthew-normal font-size-16 text-decoration-none fab-text-gray"
+            [matMenuTriggerFor]="filterMenu">Filters <img class="ml-1" src="assets/icons/down_arrow_gray.svg"></a>
+            <mat-menu #filterMenu="matMenu">
+              <button mat-menu-item>
+                <img class="mr-3" src="assets/images/noun-filter.svg">
+                <span (click)="displayFilter()">Advance Filters</span>
+              </button>
+
+              <button mat-menu-item>
+                <img class="mr-3" *ngIf="frequentFilter" src="assets/images/filter.svg">
+                <img class="mr-3" *ngIf="!frequentFilter" src="assets/icons/grey-filter.svg">
+                <span [ngClass]="{'activefrequentFilter':frequentFilter,'inactiveFrequentFilter':!frequentFilter}"
+                  (click)="toggleFrequentFilter()">Show Frequent Filters
+                </span>
+                <img class="ml-3" *ngIf="frequentFilter" src="assets/icons/check-blue.svg">
+              </button>
+            </mat-menu>
+          </li>
+
+          <li class="list-inline-item px-3" style="cursor: pointer;">
+            <a class="fsmatthew-normal font-size-16 text-decoration-none fab-text-gray"
+              [matMenuTriggerFor]="sortDropdown">Sort By <img class="ml-1" src="assets/icons/down_arrow_gray.svg"></a>
+            <mat-menu #sortDropdown="matMenu">
+              <button mat-menu-item
+                (click)="orderByBeneficiaryName('general_info.beneficiary_detail.name'); resetPaginatorToOne()">
+                <span class="fsmatthew-normal font-size-14 fab-text-black "><img src="assets/icons/arrow_up_blue.svg" />
+                  &nbsp; Beneficiary Name</span>
+              </button>
+              <button mat-menu-item>
+                <span class="fsmatthew-normal font-size-14 fab-text-black">&nbsp; &nbsp; &nbsp; Initiation Date</span>
+              </button>
+              <button mat-menu-item
+                (click)="orderByBeneficiaryName('payment_detail.amount_charges.lc_amount'); resetPaginatorToOne()">
+                <span class="fsmatthew-normal font-size-14 fab-text-black">&nbsp; &nbsp; &nbsp; LC Amount</span>
+              </button>
+            </mat-menu>
+          </li>
+          <!-- <li class="list-inline-item px-3 slide-toggle">
+                <span class="fsmatthew-normal font-size-16 text-decoration-none fab-text-gray mr-2">Status Tag</span>
+                 <mat-slide-toggle class="float-right" [color]="color" [checked]="checked" [disabled]="disabled">
+                </mat-slide-toggle>
+              </li> -->
+
+          <button mat-button [matMenuTriggerFor]="menu"
+            class="fsmatthew-normal font-size-16 text-decoration-none fab-text-gray">{{viewType}} &nbsp; <img
+              class="ml-1" src="assets/icons/down_arrow_gray.svg"></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="changeView('listView')">List View</button>
+            <button mat-menu-item (click)="changeView('tableView')">Table View</button>
+          </mat-menu>
+          <!-- <li class="list-inline-item px-3 slide-toggle" (click)="changeView('listView')">
+            <span class="fsmatthew-normal font-size-16 text-decoration-none fab-text-gray mr-2">List View</span>
+            <img class="ml-1" src="assets/icons/down_arrow_gray.svg">
+          </li>
+          <li class="list-inline-item px-3 slide-toggle" (click)="changeView('tableView')">
+            <span class="fsmatthew-normal font-size-16 text-decoration-none fab-text-gray mr-2">Table View</span>
+            <img class="ml-1" src="assets/icons/down_arrow_gray.svg">
+          </li> -->
+          <li class="list-inline-item ">
+            <button mat-icon-button [matMenuTriggerFor]="lcOption" color="primary">
+              <!-- <mat-icon class="">more_vert</mat-icon> -->
+              <img class="px-2" src="assets/icons/menu_gray.svg" />
+            </button>
+            <mat-menu #lcOption="matMenu" class="pdf-dropdown">
+              <button mat-menu-item>
+                <img src="assets/icons/pdf.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 fab-text-black pl-4">PDF</span>
+              </button>
+              <button mat-menu-item>
+                <img src="assets/icons/print.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 fab-text-black pl-4">Print</span>
+              </button>
+              <button mat-menu-item [disabled]="!applySelectAll">
+                <img src="assets/icons/assign.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 fab-text-black pl-4">Assign</span>
+              </button>
+              <button mat-menu-item [disabled]="!applySelectAll">
+                <img src="assets/icons/mailbox.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 fab-text-black pl-4">Email</span>
+              </button>
+              <button mat-menu-item [disabled]="!applySelectOne">
+                <img src="assets/icons/save_as_template.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 fab-text-black pl-4">Save as Template</span>
+              </button>
+              <button mat-menu-item [disabled]="!applySelectOne">
+                <img src="assets/icons/delete_icon.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 fab-text-black pl-4">Delete</span>
+              </button>
+              <button mat-menu-item [matMenuTriggerFor]="groupBy">
+                <img src="assets/icons/group_folder.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 fab-text-black pl-4">Group By</span>
+              </button>
+
+              <mat-menu #groupBy="matMenu">
+                <button mat-menu-item [matMenuTriggerFor]="table">
+                  <span class="fsmatthew-normal font-size-14 fab-text-black">Table columns</span>
+                </button>
+                <button mat-menu-item>Custom</button>
+              </mat-menu>
+
+              <mat-menu #table="matMenu">
+                <button mat-menu-item (click)="groupByBeneficiary()">Beneficiary</button>
+                <button mat-menu-item>Applicant Name</button>
+                <button mat-menu-item>Issue Currency</button>
+                <button mat-menu-item>Issue Amount</button>
+              </mat-menu>
+
+              <button mat-menu-item [disabled]="!applySelectOne">
+                <img src="assets/icons/approve_gray.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 disable-text-gray pl-4">Approve</span>
+              </button>
+
+              <button mat-menu-item [disabled]="!applySelectAll">
+                <img src="assets/icons/view_shift_mode_gray.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 disable-text-gray pl-4">View in Shift mode</span>
+              </button>
+
+              <button mat-menu-item [disabled]="!applySelectOne">
+                <img src="assets/icons/audit_log_gray.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 disable-text-gray pl-4">Audit Log</span>
+              </button>
+
+              <!-- <button mat-menu-item [disabled]="!applySelectOne">
+                <img src="assets/icons/approve_icon.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 fab-text-black pl-4">Approve</span>
+              </button>
+
+              <button mat-menu-item [disabled]="!applySelectAll">
+                <img src="assets/icons/view_in_swift_mode_icon.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 fab-text-black pl-4">View in Shift mode</span>
+              </button>
+
+              <button mat-menu-item [disabled]="!applySelectOne">
+                <img src="assets/icons/audit_log.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14 fab-text-black pl-4">Audit Log</span>
+              </button> -->
+            </mat-menu>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="row" *ngIf="frequentFilter">
+      <div class="col-12 col-md-4">
+
+        <!-- <p class="mt-4 mb-3 fsmatthew-normal">Status</p> -->
+        <!-- <button mat-button [matMenuTriggerFor]="Status" class="mt-1 mb-2 fsmatthew-normal font-size-16">Status <img
+          src="assets/icons/down_arrow_gray.svg" alt="" matSuffix></button> -->
+        <button mat-button [matMenuTriggerFor]="status" class="mt-1 mb-2 fsmatthew-normal font-size-16">
+          Status <img class="ml-1" src="assets/icons/down_arrow_gray.svg">
+        </button>
+        <mat-menu #status="matMenu">
+          <button mat-menu-item>Draft</button>
+          <button mat-menu-item>Bank Review</button>
+          <button mat-menu-item>Returned to GHQ</button>
+          <button mat-menu-item>Not Processed</button>
+          <button mat-menu-item>Acknowledged</button>
+          <button mat-menu-item>Authorized</button>
+          <button mat-menu-item>Pending Authorization</button>
+        </mat-menu>
+        <!-- <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu> -->
+
+        <ul class="pl-0 list-none w-100 shadow-sm status-height fsmatthew-medium mb-0">
+          <li [class.active-tab]="isDraftTrue"
+            class="d-inline-block w-50 text-center position-relative border-right border-bottom fab-text-black"
+            style="cursor: pointer; border-radius: 8px 0 0 0;"
+            (click)="applyStatusFilter('save_as_draft');resetPaginatorToOne()">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">Draft</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="draftStatus" class="fsmatthew-medium font-size-13">Draft <img
+                  src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #draftStatus="matMenu" [overlapTrigger]="false" class="">
+                <button mat-menu-item>Draft</button>
+                <button mat-menu-item>Bank Review</button>
+                <button mat-menu-item>Returned to GHQ</button>
+                <button mat-menu-item>Not Processed</button>
+                <button mat-menu-item>Acknowledged</button>
+                <button mat-menu-item>Authorized</button>
+                <button mat-menu-item>Pending Authorization</button>
+              </mat-menu>
+            </div>
+
+            <span class="font-size-30 fsmatthew-normal">{{statusCountMap['save_as_draft'] || 0}}</span>
+          </li>
+          <li [class.active-tab]="isBankReviewTrue"
+            class="d-inline-block w-50 text-center position-relative border-bottom fab-text-black"
+            style="cursor: pointer;border-radius: 0 8px 0 0;"
+            (click)="applyStatusFilter('submitted_to_bank_for_review');resetPaginatorToOne()">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">Bank Review</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">Bank Review
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+            <span class="font-size-30 fsmatthew-normal">{{statusCountMap['submitted_to_bank_for_review'] || 0}}</span>
+          </li>
+          <li [class.active-tab]="isReturned"
+            class="d-inline-block w-50 text-center position-relative border-right fab-text-black"
+            style="cursor: pointer;border-radius: 0 0 0 8px;"
+            (click)="applyStatusFilter('returned_to_ghq_for_correction');resetPaginatorToOne()">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">Returned</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">Returned
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+            <span class="fsmatthew-normal font-size-30">{{statusCountMap['returned_to_ghq_for_correction'] || 0}}</span>
+          </li>
+          <li [class.active-tab]="isNotProcessed"
+            class="d-inline-block w-50 text-center position-relative fab-text-black"
+            style="cursor: pointer;border-radius: 0 0 8px 0;"
+            (click)="applyStatusFilter('not_processed');resetPaginatorToOne()">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">Not Processed</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">Not Processed
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+            <span class="font-size-30 fsmatthew-normal">{{statusCountMap['not_processed'] || 0}}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <ul class="list-unstyled mb-0 position-absolute">
+          <li class="list-inline-item w-25">
+            <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-normal font-size-16 pr-0">LC
+              Amount <img src="assets/icons/down_arrow_gray.svg" alt="" matSuffix></button>
+            <mat-menu #Status="matMenu">
+              <button mat-menu-item>50,000</button>
+              <button mat-menu-item>200,000</button>
+            </mat-menu>
+          </li>
+          <li class="list-inline-item ml-2" style="width: 35%;">
+            <mat-form-field class="mr-4 w-100">
+              <mat-label> <span class="font-size-16 fsmatthew-normal ">Currency of LC </span> </mat-label>
+              <img class="" src="assets/icons/drop-menu.png" matSuffix />
+              <mat-select>
+                <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
+                      {{food.viewValue}}
+                    </mat-option> -->
+              </mat-select>
+            </mat-form-field>
+          </li>
+          <li class="list-inline-item w-25 ml-3">
+            <mat-form-field class="mr-4 w-100">
+              <mat-label class="">AED</mat-label>
+              <img class="" src="assets/icons/drop-menu.png" matSuffix />
+              <mat-select>
+                <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
+                      {{food.viewValue}}
+                    </mat-option> -->
+              </mat-select>
+            </mat-form-field>
+          </li>
+        </ul>
+
+        <ul class="pl-0 list-none w-100 shadow-sm amount-height mt-1 fsmatthew-medium mt-5 mb-0">
+          <li [class.active-tab]="isLowAmountTrue"
+            class="d-inline-block w-50 text-center position-relative fab-text-black border-right border-bottom"
+            style="cursor: pointer;border-radius: 8px 0 0 0;"
+            (click)="applyAmountFilter('lowAmount');resetPaginatorToOne()">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">
+                  50,000</span>  -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">50,000
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+                <button mat-menu-item>7 Days</button>
+                <button mat-menu-item>30 Days</button>
+              </mat-menu>
+            </div>
+            <span class="font-size-30 fsmatthew-normal">{{lcAmountCountMap['0-50K'] || 0}}
+            </span>
+          </li>
+          <li [class.active-tab]="isMidAmountTrue"
+            class="d-inline-block w-50 text-center position-relative border-bottom fab-text-black"
+            style="cursor: pointer;border-radius: 0 8px 0 0;"
+            (click)="applyAmountFilter('midAmount');resetPaginatorToOne()">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">50,000 - 200,000</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">50,000 - 200,000
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+                <!-- <button mat-menu-item>Item 1</button>
+                      <button mat-menu-item>Item 2</button> -->
+              </mat-menu>
+            </div>
+            <span class="font-size-30 fsmatthew-normal">{{lcAmountCountMap['50K-2L'] || 0}}</span>
+          </li>
+          <li [class.active-tab]="isHighAmountTrue"
+            class="d-inline-block w-50 text-center position-relative border-right fab-text-black"
+            style="cursor: pointer;border-radius: 0 0 0 8px;"
+            (click)="applyAmountFilter('highAmount');resetPaginatorToOne()">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">>20,00,000 - 500,000</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">200,000 - 500,000
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+                <!-- <button mat-menu-item>Item 1</button>
+                      <button mat-menu-item>Item 2</button> -->
+              </mat-menu>
+            </div>
+            <span class="font-size-30 fsmatthew-normal">{{lcAmountCountMap['2L-5L'] || 0}}</span>
+          </li>
+          <li [class.active-tab]="isHigherAmountTrue"
+            class="d-inline-block w-50 text-center position-relative fab-text-black"
+            style="cursor: pointer;border-radius: 0 0 8px 0;"
+            (click)="applyAmountFilter('higherAmount');resetPaginatorToOne()">
+            <!-- <span class="position-absolute py-2 px-3 inner-text"> More Then 500,000</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">More Then 500,000
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+                <!-- <button mat-menu-item>Item 1</button>
+                      <button mat-menu-item>Item 2</button> -->
+              </mat-menu>
+            </div>
+            <span class="font-size-30 fsmatthew-normal">{{lcAmountCountMap['5L'] || 0}}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-4">
+        <!-- <P class="fsmatthew-normal mt-4 mb-3">Expiring In</P> -->
+        <button mat-button [matMenuTriggerFor]="Status" class="mt-1 mb-2 fsmatthew-normal font-size-16">Expiring In <img
+            src="assets/icons/down_arrow_gray.svg" alt="" matSuffix></button>
+        <button (click)="clearFilters()" class="btn-clear-all fsmatthew-normal font-size-16 float-right mt-3">Clear
+          All</button>
+        <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+          <!-- <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button> -->
+        </mat-menu>
+        <ul class="pl-0 list-none w-100 shadow-sm expiring-height fsmatthew-medium mb-0">
+          <li [class.active-tab]="isLowDaysTrue"
+            class="d-inline-block w-50 text-center position-relative fab-text-black border-right border-bottom"
+            style="cursor: pointer;border-radius: 8px 0 0 0;"
+            (click)="applyExpireFilter('lowDays');resetPaginatorToOne()">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">7 days</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">7 days
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+                <!-- <button mat-menu-item>Item 1</button>
+                      <button mat-menu-item>Item 2</button> -->
+              </mat-menu>
+            </div>
+            <span class="font-size-30 fsmatthew-normal">{{lcExpiryCountMap['seven_days'] || 0}}</span>
+          </li>
+          <li [class.active-tab]="isMidDaysTrue"
+            class="d-inline-block w-50 text-center position-relative text-uppercase fab-text-black border-bottom"
+            style="cursor: pointer;border-radius: 0 8px 0 0;" (click)="applyExpireFilter('midDays')">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">30 Days</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">30 Days
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+                <!-- <button mat-menu-item>Item 1</button>
+                      <button mat-menu-item>Item 2</button> -->
+              </mat-menu>
+            </div>
+            <span class="font-size-30 fsmatthew-normal">{{lcExpiryCountMap['one_month'] || 0}}</span>
+          </li>
+          <li [class.active-tab]="isHighDaysTrue"
+            class="d-inline-block w-50 text-center position-relative fab-text-black border-right"
+            style="cursor: pointer;border-radius: 0 0 0 8px;" (click)="applyExpireFilter('highDays')">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">2 Months</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">2 Months
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+                <!-- <button mat-menu-item>Item 1</button>
+                      <button mat-menu-item>Item 2</button> -->
+              </mat-menu>
+            </div>
+            <span class="font-size-30 fsmatthew-normal">{{lcExpiryCountMap['two_months'] || 0}}</span>
+          </li>
+          <li [class.active-tab]="isHigherDaysTrue"
+            class="d-inline-block w-50 text-center position-relative fab-text-black"
+            style="cursor: pointer;border-radius: 0 0 8px 0;" (click)="applyExpireFilter('higherDays')">
+            <!-- <span class="position-absolute py-2 px-3 inner-text">3 Months</span> -->
+            <div class="position-absolute inner-text">
+              <button mat-button [matMenuTriggerFor]="Status" class="fsmatthew-medium font-size-13">3 Months
+                <img src="assets/icons/status_down_arrow.svg" alt="" matSuffix></button>
+              <mat-menu #Status="matMenu" [overlapTrigger]="false" class="my-full-width-menu">
+                <!-- <button mat-menu-item>Item 1</button>
+                      <button mat-menu-item>Item 2</button> -->
+              </mat-menu>
+            </div>
+            <span class="font-size-30 fsmatthew-normal">{{lcExpiryCountMap['three_months'] || 0}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- cards -->
+
+  <div class="container-fluid" *ngIf="isListView">
+    <div class="row">
+      <div class="col-6">
+        <ul class="pl-0 mt-3 float-left mb-0">
+          <li class="list-inline-item">
+            <mat-checkbox *ngIf="showCheckboxVar" class="fsmatthew-normal font-size-14 fab-text-gray"
+              (change)="selectAllFn()">
+            </mat-checkbox>
+            <span class="fsmatthew-normal font-size-14 fab-text-gray pl-1 pt-1 cursor-pointer" (click)="showCheckbox()"
+              style="color: #71adff !important;">Select</span>
+
+          </li>
+          <li class="list-inline-item fsmatthew-normal font-size-14 fab-text-gray ml-4 mt-1">
+            Status - Draft
+          </li>
+        </ul>
+      </div>
+      <!-- Call this function whenever resetting of paginator is required -->
+      <div class="col-6">
+        <div class="paginator float-right">
+          <mat-paginator [length]="lcFormListLength" [pageSize]="pageSize" [pageSizeOptions]="[20, 60, 120]"
+            (page)="pageEvent = getPaginatorData($event)">
+          </mat-paginator>
+        </div>
+
+      </div>
+
+      <!-- <div class="col-6 status text-right">
+              <ul class="list-unstyled p-0 mb-0 fsmatthew-normal fab-text-gray font-size-12">
+                <li class="list-inline-item mx-3"><span class="fab-text-blue fsmatthew-bold">1</span> - 20 of 2000</li>
+                <li class="list-inline-item mx-3"><a href="#"><img src="assets/icons/gray-left-arrow.svg"></a></li>
+                <li class="list-inline-item mx-3"><a href="#"><img src="assets/icons/blue-right-arrow.svg"></a></li>
+              </ul>
+            </div> -->
+    </div>
+  </div>
+
+
+
+  <div class="container-fluid" *ngIf="isListView">
+    <div *ngFor="let form of lcFormList | sortLcData : orderByStr | slice: lowValue : highValue"
+      class="mb-3 form-list-item ">
+
+      <div *ngIf="showCheckboxVar" class="float-left show-check-box">
+        <mat-checkbox class="fsmatthew-normal font-size-16" [checked]="selectAllVar" (change)="selectOne(form.uuid)">
+          <!-- [(ngModel)]='myModelChange+""+form.uuid' -->
+        </mat-checkbox>
+      </div>
+      <div>
+        <div class="row m-0 dashboard_status">
+          <div class="col-3 pl-0">
+            <ul class="px-3 mb-0 list-unstyled saved-as-drafts d-inline-block w-100 px-1"
+              [ngClass]="{lc_status_badge_yellow: form.status == 'save_as_draft', lc_status_badge_green: form.status == 'submitted_to_bank_for_review' || form.status == 'submitted_to_bank_for_authorization' || form.status == 'acknowledged', lc_status_badge_red: form.status == 'pending_authorized' || form.status == 'not_processed' || form.status == 'approaching_expiry' || form.status == 'expired', lc_status_badge_orange: form.status == 'returned_to_ghq_for_correction' }">
+              <li class="list-inline-item float-left">
+                <img src="assets/icons/{{form.status}}.svg" />
+                <span class="ml-2 fsmatthew-medium font-size-12 fab-text-black" style="text-transform: capitalize">
+                  {{statusMap[form.status]}}
+                </span>
+              </li>
+              <li class="list-inline-item days fsmatthew-medium font-size-12 fab-text-black float-right">
+                <!-- {{statusDays(form.status_updated_at)}}d -->
+                {{statusDays(form.updatedAt)}}d
+
+              </li>
+            </ul>
+          </div>
+          <div class="col-8 px-0">
+            <ul class="list-unstyled mb-3 fsmatthew-normal font-size-12 status-details pl-0">
+              <li class="list-inline-item pl-0" *ngIf="showLcName">
+                <span class="ml-1 fab-text-gray">LC Name -</span>
+                <span> {{form.common_info.lc_name}}</span>
+                <!-- <mat-form-field class="example-full-width pb-0 mb-0">
+                          <input matInput>
+                        </mat-form-field> -->
+              </li>
+              <li class="list-inline-item" *ngIf="showLcType">
+                <span class="pr-1 fab-text-gray">Type -</span>
+                <span class="capitalize"> {{form.common_info.lc_type}}</span>
+              </li>
+              <li class="list-inline-item" *ngIf="showLcId">
+                <span class="pr-1 fab-text-gray">ID -</span>
+                <span>{{form.common_info.lc_id}}</span>
+              </li>
+              <li class="list-inline-item" *ngIf="showLcRole">
+                <span class="pr-1 fab-text-gray">Role -</span>
+                <span class="capitalize"> {{role}}</span>
+              </li>
+              <li class="list-inline-item" *ngIf="showStatusQuo">
+                <span class="fab-text-gray">Status Quo -</span>
+                <span> {{form.updatedAt | date: 'd/M/yy'}}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-1 text-right">
+            <ul class="list-unstyled mb-0 fsmatthew-normal font-size-12">
+              <li class="d-inline-block pr-0 pr-sm-4 mr-5 mr-md-0">
+                <div class="image-upload">
+                  <label for="file-input">
+                    <img src="assets/icons/path.svg" /><span class="sum-num">{{form.attached_documents.length}}</span>
+                  </label>
+                  <input id="file-input" type="file" [disabled]="true" />
+                </div>
+              </li>
+              <li class="list-inline-item text-gray">
+                <img class="mr-1" src="assets/icons/group.svg">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row cursor-pointer m-0" (click)="goToLCForm(form.uuid , form.common_info.lc_id)"
+        style="box-shadow: 0 2px 4px 0 rgba(195, 195, 195, 0.5);">
+        <div class="col-2 col-md-2 tabs-border p-2 border-radius-top"
+          [ngClass]="{'green-border-active': form.general_info.valid, 'yellow-border-active': !form.general_info.valid && form.general_info.visited}">
+          <ul class="pl-0 text-left mb-0 list-none">
+            <li class="my-1 mb-2 l-h-initial">
+              <img src="assets/icons/gereral_icon_blue.svg" class="mr-2 d-inline-blcok">
+              <span
+                class="lc-tab-content mb-0 d-inline-blcok fsmatthew-medium font-size-14 fab-text-blue text-uppercase">General</span>
+            </li>
+            <li class="l-h-initial">
+              <span *ngIf="isShown" class="fsmatthew-normal font-size-11 fab-text-black word_wrap_dashboard">Issuer's
+                Reference -
+                {{form.general_info.applicant_detail.issuer_reference}}</span>
+            </li>
+            <li class="l-h-initial">
+              <span *ngIf="isShown" class="fsmatthew-normal font-size-11 fab-text-black word_wrap_dashboard">Beneficiary
+                Name -
+                {{form.general_info.beneficiary_detail.name}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-2 tabs-border p-2 border-radius-top"
+          [ngClass]="{'green-border-active': form.payment_detail.valid, 'yellow-border-active': !form.payment_detail.valid && form.payment_detail.visited}">
+          <ul class="pl-0 text-left mb-0 list-none">
+            <li class="my-1 mb-2 l-h-initial">
+              <img src="assets/icons/wallet_icon_blue.svg" class="mr-2 d-inline-blcok">
+              <span
+                class="lc-tab-content mb-0 d-inline-blcok fsmatthew-medium font-size-14 fab-text-blue text-uppercase">Payment</span>
+            </li>
+            <li class="l-h-initial">
+              <span *ngIf="isShown" class="fsmatthew-normal font-size-11 fab-text-black word_wrap_dashboard">LC Currency
+                -
+                {{form.payment_detail.amount_charges.currency}}</span>
+            </li>
+            <li class="l-h-initial">
+              <span *ngIf="isShown" class="fsmatthew-normal font-size-11 fab-text-black word_wrap_dashboard">LC Amount -
+                {{form.payment_detail.amount_charges.lc_amount}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-2 tabs-border p-2 border-radius-top"
+          [ngClass]="{'green-border-active': form.bank_other_party_detail.valid, 'yellow-border-active': !form.bank_other_party_detail.valid && form.bank_other_party_detail.visited}">
+          <ul class="pl-0 text-left mb-0 list-none">
+            <li class="my-1 mb-2 l-h-initial">
+              <img src="assets/icons/bank_icon_blue.svg" class="mr-2 d-inline-blcok">
+              <span
+                class="lc-tab-content mb-0 d-inline-blcok fsmatthew-medium font-size-14 fab-text-blue text-uppercase">BANK
+                &
+                OTHER PARTIES</span>
+            </li>
+            <li class="l-h-initial">
+              <span *ngIf="isShown"
+                class="fsmatthew-normal font-size-11 fab-text-black text-truncate word_wrap_dashboard">Available with -
+                {{form.bank_other_party_detail.credit_available.type}}</span>
+            </li>
+            <li class="l-h-initial">
+              <span *ngIf="isShown"
+                class="fsmatthew-normal font-size-11 fab-text-black text-truncate word_wrap_dashboard">Availabe by -
+                {{form.bank_other_party_detail.credit_available.credit_available_by}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-2 tabs-border p-2 border-radius-top"
+          [ngClass]="{'green-border-active': form.shipment_detail.valid, 'yellow-border-active': !form.shipment_detail.valid && form.shipment_detail.visited}">
+          <ul class="pl-0 text-left mb-0 list-none">
+            <li class="my-1 mb-2 l-h-initial">
+              <img src="assets/icons/shipment_icon_blue.svg" class="mr-2 d-inline-blcok">
+              <span
+                class="lc-tab-content mb-0 d-inline-blcok fsmatthew-medium font-size-14 fab-text-blue text-uppercase">SHIPMENT</span>
+            </li>
+            <li class="l-h-initial">
+              <span *ngIf="isShown"
+                class="fsmatthew-normal font-size-11 fab-text-black text-truncate word_wrap_dashboard">Shipment From -
+                {{form.shipment_detail.general_info.shipment_from}}</span>
+            </li>
+            <li class="l-h-initial">
+              <span *ngIf="isShown"
+                class="fsmatthew-normal font-size-11 fab-text-black text-truncate word_wrap_dashboard">Shipment To -
+                {{form.shipment_detail.general_info.shipment_to}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-2 tabs-border p-2 border-radius-top"
+          [ngClass]="{'green-border-active': form.narrative_detail.valid, 'yellow-border-active': !form.narrative_detail.valid && form.narrative_detail.visited}">
+          <ul class="pl-0 text-left mb-0 list-none">
+            <li class="my-1 mb-2 l-h-initial">
+              <img src="assets/icons/narrative_icon_blue.svg" class="mr-2 d-inline-blcok">
+              <span
+                class="lc-tab-content mb-0 d-inline-blcok fsmatthew-medium font-size-14 fab-text-blue text-uppercase">NARRATIVE</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-2 tabs-border p-2 border-radius-top"
+          [ngClass]="{'green-border-active': form.valid, 'yellow-border-active': !form.valid && form.visited}">
+          <ul class="pl-0 text-left mb-0 list-none">
+            <li class="my-1 mb-2 l-h-initial">
+              <img src="assets/icons/review_icon_blue.svg" class="mr-2 d-inline-blcok">
+              <span
+                class="lc-tab-content mb-0 d-inline-blcok fsmatthew-medium font-size-14 fab-text-blue text-uppercase">REVIEW</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- End Cards  -->
+
+  <!-- Table View -->
+
+  <div class="container-fluid" *ngIf="!isListView">
+    <div class="row">
+      <div class="col-6">
+        <ul class="pl-0 mt-3 float-left mb-0">
+          <li class="list-inline-item">
+            <mat-checkbox *ngIf="showCheckboxVar" class="fsmatthew-normal font-size-14 fab-text-gray"
+              (change)="selectAllFn()">
+            </mat-checkbox>
+            <span class="fsmatthew-normal font-size-14 fab-text-gray pl-1 pt-1 cursor-pointer" (click)="showCheckbox()"
+              style="color: #71adff !important;">Select</span>
+
+          </li>
+          <li class="list-inline-item fsmatthew-normal font-size-14 fab-text-gray ml-4 mt-1">
+            Status - Draft
+          </li>
+        </ul>
+      </div>
+      <!-- Call this function whenever resetting of paginator is required -->
+      <div class="col-6 text-right">
+        <div class="paginator d-inline-block">
+          <mat-paginator [length]="lcFormListLength" [pageSize]="pageSize" [pageSizeOptions]="[20, 60, 120]"
+            (page)="pageEvent = getPaginatorData($event)">
+          </mat-paginator>
+        </div>
+        <div class="d-inline-block">
+          <ng-container action-bar-items>
+            <button va-mat-table-column-sorter [(columns)]="displayedColumns" [columnNames]="displayedColumnsNames"
+              [saveName]="'V2'">
+              <mat-icon>view_column</mat-icon>
+              Columns
+            </button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid" *ngIf="!isListView">
+    <div class="row">
+      <div class="col-12 lc-dashboard-table">
+        <va-mat-table class="mat-elevation-z8" *ngIf="!isGroupBy">
+          <table mat-table [dataSource]="lcFormList" matSort  class="w-100">
+            <ng-container matColumnDef="checkBox">
+              <th mat-header-cell *matHeaderCellDef [ngClass]="{'d-none': !showCheckboxVar}"> CHECKBOX </th>
+              <td mat-cell [ngClass]="{'d-none': !showCheckboxVar}" *matCellDef="let checkBox" class="text-center">
+                <div *ngIf="showCheckboxVar" class="d-inline-block">
+                  <mat-checkbox class="fsmatthew-normal font-size-16" [checked]="selectAllVar"
+                    (change)="selectOne(form.uuid)">
+                  </mat-checkbox>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>STATUS </th>
+              <td mat-cell *matCellDef="let element">
+                <span class="p-2"
+                  [ngClass]="{lc_status_badge_yellow: element.status == 'save_as_draft', lc_status_badge_green: element.status == 'submitted_to_bank_for_review' || element.status == 'submitted_to_bank_for_authorization' || element.status == 'acknowledged', lc_status_badge_red: element.status == 'pending_authorized' || element.status == 'not_processed' || element.status == 'approaching_expiry' || element.status == 'expired', lc_status_badge_orange: element.status == 'returned_to_ghq_for_correction' }">
+                  <img src="assets/icons/{{element.status}}.svg" />
+                </span>
+              </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="lcName">
+                <th mat-header-cell *matHeaderCellDef> LC NAME </th>
+                <td mat-cell *matCellDef="let element"> {{element.common_info.lc_name}} </td>
+              </ng-container> -->
+
+            <!-- <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> TYPE </th>
+                <td mat-cell *matCellDef="let element"> C </td>
+              </ng-container> -->
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.common_info.lc_id}} </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef> ROLE </th>
+                <td mat-cell *matCellDef="let element" class="capitalize"> {{role[0]}} </td>
+              </ng-container> -->
+
+            <ng-container matColumnDef="general">
+              <th mat-header-cell *matHeaderCellDef> <span>GENERAL</span> <br> <i class="fsmatthew-normal">Issuer |
+                  Beneficiary </i></th>
+              <td mat-cell *matCellDef="let element">
+                <div class="d-inline-block text-left"
+                  [ngClass]="{'green-border-bottom': element.general_info.valid, 'yellow-border-bottom': !element.general_info.valid && element.general_info.visited}">
+                  <span class="word_wrap">{{element.general_info.applicant_detail.issuer_reference}}</span>
+                  <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                  <span class="word_wrap">{{element.general_info.beneficiary_detail.name}}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="payment">
+              <th mat-header-cell *matHeaderCellDef> <span>PAYMENT</span> <br> <i class="fsmatthew-normal">LC Currency |
+                  LC Amt </i></th>
+              <td mat-cell *matCellDef="let element">
+                <div class="d-inline-block text-left"
+                  [ngClass]="{'green-border-bottom': element.payment_detail.valid, 'yellow-border-bottom': !element.payment_detail.valid && element.payment_detail.visited}">
+                  <span class="word_wrap">{{element.payment_detail.amount_charges.currency}} </span>
+                  <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                  <span class="word_wrap"> {{element.payment_detail.amount_charges.lc_amount}} </span>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="bankAndOtherParty">
+              <th mat-header-cell *matHeaderCellDef> <span>BANK & OTHER PARTIES</span> <br> <i
+                  class="fsmatthew-normal">Avlbl with | Avlbl by </i></th>
+              <td mat-cell *matCellDef="let element">
+                <div class="d-inline-block text-left"
+                  [ngClass]="{'green-border-bottom': element.bank_other_party_detail.valid, 'yellow-border-bottom': !element.bank_other_party_detail.valid && element.bank_other_party_detail.visited}">
+                  <span class="word_wrap">{{element.bank_other_party_detail.credit_available.type}}</span>
+                  <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                  <span
+                    class="word_wrap">{{element.bank_other_party_detail.credit_available.credit_available_by}}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="shipment">
+              <th mat-header-cell *matHeaderCellDef> <span>SHIPMENT</span> <br> <i class="fsmatthew-normal">From | To
+                </i>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="d-inline-block text-left"
+                  [ngClass]="{'green-border-bottom': element.bank_other_party_detail.valid, 'yellow-border-bottom': !element.bank_other_party_detail.valid && element.bank_other_party_detail.visited}">
+                  <span class="word_wrap"> {{element.shipment_detail.general_info.shipment_from}} </span>
+                  <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                  <span class="word_wrap">{{element.shipment_detail.general_info.shipment_to}}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="narrative">
+              <th mat-header-cell *matHeaderCellDef> NARRATIVE</th>
+              <td mat-cell *matCellDef="let element">
+                <span
+                  [ngClass]="{'green-icon': element.narrative_detail.valid, 'yellow-icon': !element.narrative_detail.valid && element.narrative_detail.visited}"></span>
+                <!-- <span [ngClass]="{'green-border-bottom': form.narrative_detail.valid, 'yellow-border-bottom': !form.narrative_detail.valid && form.narrative_detail.visited}"></span> -->
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="review">
+              <th mat-header-cell *matHeaderCellDef>REVIEW</th>
+              <td mat-cell *matCellDef="let element">
+                <!-- <span [ngClass]="{'green-icon': element.narrative === 'green', 'yellow-icon': element.narrative === 'yellow'}"></span> -->
+                <span
+                  [ngClass]="{'green-icon': element.valid, 'yellow-icon': !element.valid && element.visited}"></span>
+              </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="attachment">
+                <th mat-header-cell *matHeaderCellDef><img src="assets/icons/path.svg" /></th>
+                <td mat-cell *matCellDef="let element"> <label class="position-relative"><img
+                      src="assets/icons/path.svg" /><span class="sum-num">
+                      {{element.attached_documents.length}}</span> </label></td>
+              </ng-container> -->
+
+            <ng-container matColumnDef="issueDate">
+              <th mat-header-cell *matHeaderCellDef>ISSUE DATE </th>
+              <td mat-cell *matCellDef="let element">
+                <!-- <span>{{ element.issueDate }}</span> -->
+                <span>{{element.createdAt | date: shortDate}}</span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="expiryDate">
+              <th mat-header-cell *matHeaderCellDef>EXPIRY DATE </th>
+              <td mat-cell *matCellDef="let element">
+                <span>{{ element.general_info.lc_detail.expiry_date | date: shortDate}}</span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ofAmends">
+              <th mat-header-cell *matHeaderCellDef># OF <br /> AMENDS</th>
+              <td mat-cell *matCellDef="let element">
+                <span>{{ element.ofAmends }}</span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ofPayments">
+              <th mat-header-cell *matHeaderCellDef># OF <br /> PAYMENTS</th>
+              <td mat-cell *matCellDef="let element">
+                <span>{{ element.ofPayments }}</span>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="cursor-pointer"
+              (click)="goToLCFormTable(row)"></tr>
+          </table>
+        </va-mat-table>
+
+
+        <!-- Accordians starts here -->
+        <mat-accordion *ngIf="isGroupBy">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <img src="assets/icons/group_folder.svg " />
+                <span class="ml-4 fsmatthew-normal font-size-14 fab-text-black">Beneficiary Group 01
+                  ({{ this.bGroup0.length }})</span>
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <va-mat-table class="mat-elevation-z8">
+              <table mat-table [dataSource]="bGroup0" matSort class="w-100">
+                <ng-container matColumnDef="checkBox">
+                  <th mat-header-cell *matHeaderCellDef [ngClass]="{'d-none': !showCheckboxVar}"> CHECKBOX </th>
+                  <td mat-cell [ngClass]="{'d-none': !showCheckboxVar}" *matCellDef="let checkBox" class="text-center">
+                    <div *ngIf="showCheckboxVar" class="d-inline-block">
+                      <mat-checkbox class="fsmatthew-normal font-size-16" [checked]="selectAllVar"
+                        (change)="selectOne(form.uuid)">
+                      </mat-checkbox>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef>STATUS </th>
+                  <td mat-cell *matCellDef="let element">
+                    <span class="p-2"
+                      [ngClass]="{lc_status_badge_yellow: element.status == 'save_as_draft', lc_status_badge_green: element.status == 'submitted_to_bank_for_review' || element.status == 'submitted_to_bank_for_authorization' || element.status == 'acknowledged', lc_status_badge_red: element.status == 'pending_authorized' || element.status == 'not_processed' || element.status == 'approaching_expiry' || element.status == 'expired', lc_status_badge_orange: element.status == 'returned_to_ghq_for_correction' }">
+                      <img src="assets/icons/{{element.status}}.svg" />
+                    </span>
+                  </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="lcName">
+                      <th mat-header-cell *matHeaderCellDef> LC NAME </th>
+                      <td mat-cell *matCellDef="let element"> {{element.common_info.lc_name}} </td>
+                    </ng-container> -->
+
+                <!-- <ng-container matColumnDef="type">
+                      <th mat-header-cell *matHeaderCellDef> TYPE </th>
+                      <td mat-cell *matCellDef="let element"> C </td>
+                    </ng-container> -->
+
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.common_info.lc_id}} </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="role">
+                      <th mat-header-cell *matHeaderCellDef> ROLE </th>
+                      <td mat-cell *matCellDef="let element" class="capitalize"> {{role[0]}} </td>
+                    </ng-container> -->
+
+                <ng-container matColumnDef="general">
+                  <th mat-header-cell *matHeaderCellDef> <span>GENERAL</span> <br> <i class="fsmatthew-normal">Issuer |
+                      Beneficiary </i></th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.general_info.valid, 'yellow-border-bottom': !element.general_info.valid && element.general_info.visited}">
+                      <span class="word_wrap">{{element.general_info.applicant_detail.issuer_reference}}</span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span class="word_wrap">{{element.general_info.beneficiary_detail.name}}</span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="payment">
+                  <th mat-header-cell *matHeaderCellDef> <span>PAYMENT</span> <br> <i class="fsmatthew-normal">LC
+                      Currency |
+                      LC Amt </i></th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.payment_detail.valid, 'yellow-border-bottom': !element.payment_detail.valid && element.payment_detail.visited}">
+                      <span class="word_wrap">{{element.payment_detail.amount_charges.currency}} </span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span class="word_wrap"> {{element.payment_detail.amount_charges.lc_amount}} </span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="bankAndOtherParty">
+                  <th mat-header-cell *matHeaderCellDef> <span>BANK & OTHER PARTIES</span> <br> <i
+                      class="fsmatthew-normal">Avlbl with | Avlbl by </i></th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.bank_other_party_detail.valid, 'yellow-border-bottom': !element.bank_other_party_detail.valid && element.bank_other_party_detail.visited}">
+                      <span class="word_wrap">{{element.bank_other_party_detail.credit_available.type}}</span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span
+                        class="word_wrap">{{element.bank_other_party_detail.credit_available.credit_available_by}}</span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="shipment">
+                  <th mat-header-cell *matHeaderCellDef> <span>SHIPMENT</span> <br> <i class="fsmatthew-normal">From |
+                      To
+                    </i>
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.bank_other_party_detail.valid, 'yellow-border-bottom': !element.bank_other_party_detail.valid && element.bank_other_party_detail.visited}">
+                      <span class="word_wrap"> {{element.shipment_detail.general_info.shipment_from}} </span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span class="word_wrap">{{element.shipment_detail.general_info.shipment_to}}</span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="narrative">
+                  <th mat-header-cell *matHeaderCellDef> NARRATIVE</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span
+                      [ngClass]="{'green-icon': element.narrative_detail.valid, 'yellow-icon': !element.narrative_detail.valid && element.narrative_detail.visited}"></span>
+                    <!-- <span [ngClass]="{'green-border-bottom': form.narrative_detail.valid, 'yellow-border-bottom': !form.narrative_detail.valid && form.narrative_detail.visited}"></span> -->
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="review">
+                  <th mat-header-cell *matHeaderCellDef>REVIEW</th>
+                  <td mat-cell *matCellDef="let element">
+                    <!-- <span [ngClass]="{'green-icon': element.narrative === 'green', 'yellow-icon': element.narrative === 'yellow'}"></span> -->
+                    <span
+                      [ngClass]="{'green-icon': element.valid, 'yellow-icon': !element.valid && element.visited}"></span>
+                  </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="attachment">
+                      <th mat-header-cell *matHeaderCellDef><img src="assets/icons/path.svg" /></th>
+                      <td mat-cell *matCellDef="let element"> <label class="position-relative"><img
+                            src="assets/icons/path.svg" /><span class="sum-num">
+                            {{element.attached_documents.length}}</span> </label></td>
+                    </ng-container> -->
+
+                <ng-container matColumnDef="issueDate">
+                  <th mat-header-cell *matHeaderCellDef>ISSUE DATE </th>
+                  <td mat-cell *matCellDef="let element">
+                    <!-- <span>{{ element.issueDate }}</span> -->
+                    <span>{{element.createdAt | date: shortDate}}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="expiryDate">
+                  <th mat-header-cell *matHeaderCellDef>EXPIRY DATE </th>
+                  <td mat-cell *matCellDef="let element">
+                    <span>{{ element.general_info.lc_detail.expiry_date | date: shortDate}}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ofAmends">
+                  <th mat-header-cell *matHeaderCellDef># OF <br /> AMENDS</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span>{{ element.ofAmends }}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ofPayments">
+                  <th mat-header-cell *matHeaderCellDef># OF <br /> PAYMENTS</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span>{{ element.ofPayments }}</span>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="cursor-pointer"
+                  (click)="goToLCFormTable(row)"></tr>
+              </table>
+            </va-mat-table>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <img src="assets/icons/group_folder.svg " />
+                <span class="ml-4 fsmatthew-normal font-size-14 fab-text-black">Beneficiary Group 02
+                  ({{ this.bGroup1.length }})</span>
+              </mat-panel-title>
+              <mat-panel-description>
+
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <va-mat-table class="mat-elevation-z8">
+              <table mat-table [dataSource]="bGroup1" matSort class="w-100">
+                <ng-container matColumnDef="checkBox">
+                  <th mat-header-cell *matHeaderCellDef [ngClass]="{'d-none': !showCheckboxVar}"> CHECKBOX </th>
+                  <td mat-cell [ngClass]="{'d-none': !showCheckboxVar}" *matCellDef="let checkBox" class="text-center">
+                    <div *ngIf="showCheckboxVar" class="d-inline-block">
+                      <mat-checkbox class="fsmatthew-normal font-size-16" [checked]="selectAllVar"
+                        (change)="selectOne(form.uuid)">
+                      </mat-checkbox>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef>STATUS </th>
+                  <td mat-cell *matCellDef="let element">
+                    <span class="p-2"
+                      [ngClass]="{lc_status_badge_yellow: element.status == 'save_as_draft', lc_status_badge_green: element.status == 'submitted_to_bank_for_review' || element.status == 'submitted_to_bank_for_authorization' || element.status == 'acknowledged', lc_status_badge_red: element.status == 'pending_authorized' || element.status == 'not_processed' || element.status == 'approaching_expiry' || element.status == 'expired', lc_status_badge_orange: element.status == 'returned_to_ghq_for_correction' }">
+                      <img src="assets/icons/{{element.status}}.svg" />
+                    </span>
+                  </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="lcName">
+                      <th mat-header-cell *matHeaderCellDef> LC NAME </th>
+                      <td mat-cell *matCellDef="let element"> {{element.common_info.lc_name}} </td>
+                    </ng-container> -->
+
+                <!-- <ng-container matColumnDef="type">
+                      <th mat-header-cell *matHeaderCellDef> TYPE </th>
+                      <td mat-cell *matCellDef="let element"> C </td>
+                    </ng-container> -->
+
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.common_info.lc_id}} </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="role">
+                      <th mat-header-cell *matHeaderCellDef> ROLE </th>
+                      <td mat-cell *matCellDef="let element" class="capitalize"> {{role[0]}} </td>
+                    </ng-container> -->
+
+                <ng-container matColumnDef="general">
+                  <th mat-header-cell *matHeaderCellDef> <span>GENERAL</span> <br> <i class="fsmatthew-normal">Issuer |
+                      Beneficiary </i></th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.general_info.valid, 'yellow-border-bottom': !element.general_info.valid && element.general_info.visited}">
+                      <span class="word_wrap">{{element.general_info.applicant_detail.issuer_reference}}</span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span class="word_wrap">{{element.general_info.beneficiary_detail.name}}</span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="payment">
+                  <th mat-header-cell *matHeaderCellDef> <span>PAYMENT</span> <br> <i class="fsmatthew-normal">LC
+                      Currency |
+                      LC Amt </i></th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.payment_detail.valid, 'yellow-border-bottom': !element.payment_detail.valid && element.payment_detail.visited}">
+                      <span class="word_wrap">{{element.payment_detail.amount_charges.currency}} </span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span class="word_wrap"> {{element.payment_detail.amount_charges.lc_amount}} </span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="bankAndOtherParty">
+                  <th mat-header-cell *matHeaderCellDef> <span>BANK & OTHER PARTIES</span> <br> <i
+                      class="fsmatthew-normal">Avlbl with | Avlbl by </i></th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.bank_other_party_detail.valid, 'yellow-border-bottom': !element.bank_other_party_detail.valid && element.bank_other_party_detail.visited}">
+                      <span class="word_wrap">{{element.bank_other_party_detail.credit_available.type}}</span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span
+                        class="word_wrap">{{element.bank_other_party_detail.credit_available.credit_available_by}}</span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="shipment">
+                  <th mat-header-cell *matHeaderCellDef> <span>SHIPMENT</span> <br> <i class="fsmatthew-normal">From |
+                      To
+                    </i>
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.bank_other_party_detail.valid, 'yellow-border-bottom': !element.bank_other_party_detail.valid && element.bank_other_party_detail.visited}">
+                      <span class="word_wrap"> {{element.shipment_detail.general_info.shipment_from}} </span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span class="word_wrap">{{element.shipment_detail.general_info.shipment_to}}</span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="narrative">
+                  <th mat-header-cell *matHeaderCellDef> NARRATIVE</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span
+                      [ngClass]="{'green-icon': element.narrative_detail.valid, 'yellow-icon': !element.narrative_detail.valid && element.narrative_detail.visited}"></span>
+                    <!-- <span [ngClass]="{'green-border-bottom': form.narrative_detail.valid, 'yellow-border-bottom': !form.narrative_detail.valid && form.narrative_detail.visited}"></span> -->
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="review">
+                  <th mat-header-cell *matHeaderCellDef>REVIEW</th>
+                  <td mat-cell *matCellDef="let element">
+                    <!-- <span [ngClass]="{'green-icon': element.narrative === 'green', 'yellow-icon': element.narrative === 'yellow'}"></span> -->
+                    <span
+                      [ngClass]="{'green-icon': element.valid, 'yellow-icon': !element.valid && element.visited}"></span>
+                  </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="attachment">
+                      <th mat-header-cell *matHeaderCellDef><img src="assets/icons/path.svg" /></th>
+                      <td mat-cell *matCellDef="let element"> <label class="position-relative"><img
+                            src="assets/icons/path.svg" /><span class="sum-num">
+                            {{element.attached_documents.length}}</span> </label></td>
+                    </ng-container> -->
+
+                <ng-container matColumnDef="issueDate">
+                  <th mat-header-cell *matHeaderCellDef>ISSUE DATE </th>
+                  <td mat-cell *matCellDef="let element">
+                    <!-- <span>{{ element.issueDate }}</span> -->
+                    <span>{{element.createdAt | date: shortDate}}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="expiryDate">
+                  <th mat-header-cell *matHeaderCellDef>EXPIRY DATE </th>
+                  <td mat-cell *matCellDef="let element">
+                    <span>{{ element.general_info.lc_detail.expiry_date | date: shortDate}}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ofAmends">
+                  <th mat-header-cell *matHeaderCellDef># OF <br /> AMENDS</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span>{{ element.ofAmends }}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ofPayments">
+                  <th mat-header-cell *matHeaderCellDef># OF <br /> PAYMENTS</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span>{{ element.ofPayments }}</span>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="cursor-pointer"
+                  (click)="goToLCFormTable(row)"></tr>
+              </table>
+            </va-mat-table>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <img src="assets/icons/group_folder.svg " />
+                <span class="ml-4 fsmatthew-normal font-size-14 fab-text-black">Beneficiary Group 03
+                  ({{ this.bGroup2.length }})</span>
+              </mat-panel-title>
+              <mat-panel-description>
+
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <va-mat-table class="mat-elevation-z8">
+              <table mat-table [dataSource]="bGroup2" matSort class="w-100">
+                <ng-container matColumnDef="checkBox">
+                  <th mat-header-cell *matHeaderCellDef [ngClass]="{'d-none': !showCheckboxVar}"> CHECKBOX </th>
+                  <td mat-cell [ngClass]="{'d-none': !showCheckboxVar}" *matCellDef="let checkBox" class="text-center">
+                    <div *ngIf="showCheckboxVar" class="d-inline-block">
+                      <mat-checkbox class="fsmatthew-normal font-size-16" [checked]="selectAllVar"
+                        (change)="selectOne(form.uuid)">
+                      </mat-checkbox>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef>STATUS </th>
+                  <td mat-cell *matCellDef="let element">
+                    <span class="p-2"
+                      [ngClass]="{lc_status_badge_yellow: element.status == 'save_as_draft', lc_status_badge_green: element.status == 'submitted_to_bank_for_review' || element.status == 'submitted_to_bank_for_authorization' || element.status == 'acknowledged', lc_status_badge_red: element.status == 'pending_authorized' || element.status == 'not_processed' || element.status == 'approaching_expiry' || element.status == 'expired', lc_status_badge_orange: element.status == 'returned_to_ghq_for_correction' }">
+                      <img src="assets/icons/{{element.status}}.svg" />
+                    </span>
+                  </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="lcName">
+                      <th mat-header-cell *matHeaderCellDef> LC NAME </th>
+                      <td mat-cell *matCellDef="let element"> {{element.common_info.lc_name}} </td>
+                    </ng-container> -->
+
+                <!-- <ng-container matColumnDef="type">
+                      <th mat-header-cell *matHeaderCellDef> TYPE </th>
+                      <td mat-cell *matCellDef="let element"> C </td>
+                    </ng-container> -->
+
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.common_info.lc_id}} </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="role">
+                      <th mat-header-cell *matHeaderCellDef> ROLE </th>
+                      <td mat-cell *matCellDef="let element" class="capitalize"> {{role[0]}} </td>
+                    </ng-container> -->
+
+                <ng-container matColumnDef="general">
+                  <th mat-header-cell *matHeaderCellDef> <span>GENERAL</span> <br> <i class="fsmatthew-normal">Issuer |
+                      Beneficiary </i></th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.general_info.valid, 'yellow-border-bottom': !element.general_info.valid && element.general_info.visited}">
+                      <span class="word_wrap">{{element.general_info.applicant_detail.issuer_reference}}</span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span class="word_wrap">{{element.general_info.beneficiary_detail.name}}</span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="payment">
+                  <th mat-header-cell *matHeaderCellDef> <span>PAYMENT</span> <br> <i class="fsmatthew-normal">LC
+                      Currency |
+                      LC Amt </i></th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.payment_detail.valid, 'yellow-border-bottom': !element.payment_detail.valid && element.payment_detail.visited}">
+                      <span class="word_wrap">{{element.payment_detail.amount_charges.currency}} </span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span class="word_wrap"> {{element.payment_detail.amount_charges.lc_amount}} </span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="bankAndOtherParty">
+                  <th mat-header-cell *matHeaderCellDef> <span>BANK & OTHER PARTIES</span> <br> <i
+                      class="fsmatthew-normal">Avlbl with | Avlbl by </i></th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.bank_other_party_detail.valid, 'yellow-border-bottom': !element.bank_other_party_detail.valid && element.bank_other_party_detail.visited}">
+                      <span class="word_wrap">{{element.bank_other_party_detail.credit_available.type}}</span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span
+                        class="word_wrap">{{element.bank_other_party_detail.credit_available.credit_available_by}}</span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="shipment">
+                  <th mat-header-cell *matHeaderCellDef> <span>SHIPMENT</span> <br> <i class="fsmatthew-normal">From |
+                      To
+                    </i>
+                  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <div class="d-inline-block text-left"
+                      [ngClass]="{'green-border-bottom': element.bank_other_party_detail.valid, 'yellow-border-bottom': !element.bank_other_party_detail.valid && element.bank_other_party_detail.visited}">
+                      <span class="word_wrap"> {{element.shipment_detail.general_info.shipment_from}} </span>
+                      <span class="d-inline-block overflow-hidden">&nbsp; | &nbsp;</span>
+                      <span class="word_wrap">{{element.shipment_detail.general_info.shipment_to}}</span>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="narrative">
+                  <th mat-header-cell *matHeaderCellDef> NARRATIVE</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span
+                      [ngClass]="{'green-icon': element.narrative_detail.valid, 'yellow-icon': !element.narrative_detail.valid && element.narrative_detail.visited}"></span>
+                    <!-- <span [ngClass]="{'green-border-bottom': form.narrative_detail.valid, 'yellow-border-bottom': !form.narrative_detail.valid && form.narrative_detail.visited}"></span> -->
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="review">
+                  <th mat-header-cell *matHeaderCellDef>REVIEW</th>
+                  <td mat-cell *matCellDef="let element">
+                    <!-- <span [ngClass]="{'green-icon': element.narrative === 'green', 'yellow-icon': element.narrative === 'yellow'}"></span> -->
+                    <span
+                      [ngClass]="{'green-icon': element.valid, 'yellow-icon': !element.valid && element.visited}"></span>
+                  </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="attachment">
+                      <th mat-header-cell *matHeaderCellDef><img src="assets/icons/path.svg" /></th>
+                      <td mat-cell *matCellDef="let element"> <label class="position-relative"><img
+                            src="assets/icons/path.svg" /><span class="sum-num">
+                            {{element.attached_documents.length}}</span> </label></td>
+                    </ng-container> -->
+
+                <ng-container matColumnDef="issueDate">
+                  <th mat-header-cell *matHeaderCellDef>ISSUE DATE </th>
+                  <td mat-cell *matCellDef="let element">
+                    <!-- <span>{{ element.issueDate }}</span> -->
+                    <span>{{element.createdAt | date: shortDate}}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="expiryDate">
+                  <th mat-header-cell *matHeaderCellDef>EXPIRY DATE </th>
+                  <td mat-cell *matCellDef="let element">
+                    <span>{{ element.general_info.lc_detail.expiry_date | date: shortDate}}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ofAmends">
+                  <th mat-header-cell *matHeaderCellDef># OF <br /> AMENDS</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span>{{ element.ofAmends }}</span>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ofPayments">
+                  <th mat-header-cell *matHeaderCellDef># OF <br /> PAYMENTS</th>
+                  <td mat-cell *matCellDef="let element">
+                    <span>{{ element.ofPayments }}</span>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="cursor-pointer"
+                  (click)="goToLCFormTable(row)"></tr>
+              </table>
+            </va-mat-table>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Table View -->

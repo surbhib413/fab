@@ -1,0 +1,266 @@
+<div [formGroup]="lcForm">
+  <div class="d-flex justify-content-between">
+    <p class="general-app-details-txt mb-0 mt-4">General</p>
+    <img *ngIf="!isChecker" src="assets/image/edit.png" (click)="goToTab(0)" class="cursorPointer editIcon mt-4" alt="">
+  </div>
+  <div class="container-fluid general-form-content px-3 pt-4 pb-4 mt-2">
+    <p class="general-app-details-txt">Applicant Details</p>
+    <div class="example-form" autocomplete="nope">
+      <div class="row">
+        <div class="col-12 col-md-4">
+            
+          <p class="mb-0 review_label">Bank Name</p>
+          <input matInput value="{{lcForm.value.general.applicant_bankName}}" readonly class="mt-1 review-style"style="width:90%" />
+          
+           
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+         
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="mb-0 review_label">Issuer's Reference*</p>
+          <input matInput value="{{lcForm.value.general.applicant_issuerReference}}" readonly  class="mt-1 review-style"style="width:90%"/>
+         
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+         
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-3">
+          <p class="mb-0 review_label">Name</p>
+          <input matInput value="{{lcForm.value.general.applicant_name}}" readonly class="mt-1 review-style"style="width:90%" />
+          
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-3">
+         
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-3">
+          <p class="mb-0 review_label">Address Line 1*</p>
+          <input matInput value="{{lcForm.value.general.applicant_addressLine1}}" readonly class="mt-1 review-style"style="width:90%" />
+          
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-3">
+          
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-3">
+           
+            <p class="mb-0 review_label">Address Line 2*</p>
+            <input matInput value="{{lcForm.value.general.applicant_addressLine2}}" readonly class="mt-1 review-style"style="width:90%" />
+            
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-3">
+          
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-3">
+            <p class="mb-0 review_label">Address Line 3*</p>
+            <input matInput value="{{lcForm.value.general.applicant_addressLine3}}" readonly class="mt-1 review-style"style="width:90%" />
+            
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+         
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-3">
+            <p class="mb-0 review_label">Country*</p>
+            <input matInput value="{{lcForm.value.general.applicant_country}}" readonly class="mt-1 review-style"style="width:90%" />
+           
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="container-fluid general-form-content px-3 pt-4 pb-3 mt-2">
+    <p class="general-app-details-txt">Beneficiary Details</p>
+    <div class="example-form" autocomplete="nope">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          
+          <p class="mb-0 review_label">Name*</p>
+          <input matInput value="{{lcForm.value.general.beneficiary_name}}" readonly class="mt-1 review-style"style="width:90%" />
+         
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+         
+        </div>
+        <div class="col-12 col-md-4">
+          
+          <p class="mb-0 review_label">Address Line 1*</p>
+          <input matInput value="{{lcForm.value.general.beneficiary_addressLine1}}" readonly class="mt-1 review-style"style="width:90%"/>
+         
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+          
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-3">
+            <p class="mb-0 review_label">Address Line 2*</p>
+            <input matInput value="{{lcForm.value.general.beneficiary_addressLine1}}" readonly class="mt-1 review-style"style="width:90%" />
+            
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-3">
+          
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-3">
+            <p class="mb-0 review_label">Address Line 3*</p>
+            <input matInput value="{{lcForm.value.general.beneficiary_addressLine3}}" readonly class="mt-1 review-style"style="width:90%" />
+          
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-3">
+         
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-3">
+          
+          <p class="mb-0 review_label">Country</p>
+          <input matInput value="{{lcForm.value.general.beneficiary_addressLine3}}" readonly class="mt-1 review-style"style="width:90%" />
+         
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="container-fluid general-form-content px-3 pt-4 pb-3 mt-2">
+    <p class="general-app-details-txt">LC Details</p>
+    <div class="example-form" autocomplete="nope">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          
+          <p class="mb-0 review_label">Expiry Date*</p>
+          <input matInput value="{{lcForm.value.general.lc_expiryDate | date:'shortDate'}}" readonly class="mt-1 review-style"style="width:90%" />
+          
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+          
+        </div>
+        <div class="col-12 col-md-4">
+          
+          <p class="mb-0 review_label">Place of Expiry*</p>
+          <input matInput value="{{lcForm.value.general.lc_placeOfExpiry}}" readonly class="mt-1 review-style"style="width:90%" />
+          
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+          
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-3">
+          
+          <p class="mb-0 review_label">Fee Account*</p>
+          <input matInput value="{{lcForm.value.general.lc_feeAccount}}" readonly class="mt-1 review-style"style="width:90%" />
+          
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block mt-3">
+        </div>
+        <div class="col-12 mt-2 col-md-4 mt-3">
+          
+          <p class="mb-0 review_label">Principle Account*</p>
+          <input matInput value="{{lcForm.value.general.lc_principleAccount}}" readonly class="mt-1 review-style"style="width:90%" />
+        
+        </div>
+        <div class="col-12 col-md-4 mt-3">
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" style="pointer-events: none">
+            <mat-radio-button class="example-radio-button " value="season" color="primary" ng-disabled="true">
+              SWIFT
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button pl-5" value="season1" color="primary">
+              Courier
+            </mat-radio-button>
+           </mat-radio-group>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  
+  <div class="d-flex justify-content-between">
+      <p class="general-app-details-txt mb-0 mt-4">Payment</p>
+    <img *ngIf="!isChecker" src="assets/image/edit.png" (click)="goToTab(1)" class="cursorPointer editIcon mt-4" alt="">
+  </div>
+  <div class="container-fluid general-form-content px-3 pt-4 pb-3 mt-2">
+    <p class="general-app-details-txt">Amount & Changes</p>
+    <div class="example-form" autocomplete="nope">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <p class="mb-0 review_label">Principle Account*</p>
+          <input matInput value="{{lcForm.value.payment.amount_currency}}" readonly class="mt-2 review-style" style="width:90%" />
+          
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+        </div>
+        <div class="col-12 col-md-4">
+            <p class="mb-0 review_label">Amount*</p>
+            <input matInput value="{{lcForm.value.payment.amount_lcAmount}}" readonly class="mt-2 review-style" style="width:90%" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <p class="general-app-details-txt mb-0 mt-4">Bank & Other Parties</p>
+    <img *ngIf="!isChecker" src="assets/image/edit.png" (click)="goToTab(2)" class="cursorPointer editIcon mt-4" alt="">
+  </div>
+  <div class="container-fluid general-form-content px-3 pt-4 pb-3 mt-2">
+    <p class="general-app-details-txt">Credit Available With</p>
+    <div class="example-form" autocomplete="nope">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          
+          <p class="mb-0 review_label">Type*</p>
+          <input matInput value="{{lcForm.value.bank.creditAvailable_type}}" readonly class="mt-2 review-style" style="width:90%" />
+          
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+        </div>
+        <div class="col-12 col-md-4">
+            <p class="mb-0 review_label">Drawee Details*</p>
+            <input matInput value="{{lcForm.value.bank.creditAvailable_draweeDetails}}" readonly class="mt-2 review-style" style="width:90%" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div  class="d-flex justify-content-between">
+      <p class="general-app-details-txt mb-0 mt-4">Shipment</p>
+      <img *ngIf="!isChecker" src="assets/image/edit.png" (click)="goToTab(3)" class="cursorPointer editIcon mt-4" alt="">
+    </div>
+  <div class="container-fluid general-form-content px-3 pt-4 pb-3 mt-2">
+    <p class="general-app-details-txt">General Information</p>
+    <div class="example-form" autocomplete="nope">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          
+          <p class="mb-0 review_label">Named Place*</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_namedPlace}}" readonly class="mt-2 review-style" style="width:90%" />
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+        </div>
+        <div class="col-12 col-md-4">
+          
+          <p class="mb-0 review_label">Name of Insurance Company*</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_nameOfInsuranceCompany}}" readonly class="mt-2 review-style" style="width:90%" />
+          
+        </div>
+        <div class="col-2 justify-content-start pl-0 align-self-center d-none d-sm-block">
+        </div>
+        <div class="col-12 col-md-4 mt-3">
+          
+          <p class="mb-0 review_label">Shipment From*</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_shipmentFrom}}" readonly class="mt-2 review-style" style="width:90%" />
+         
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <p class="general-app-details-txt mb-0 mt-4">Documents Attached</p>
+    <img *ngIf="!isChecker" src="assets/image/edit.png" (click)="goToTab(3)" class="cursorPointer editIcon mt-4" alt="">
+  </div>
+<div class="container-fluid general-form-content px-3 pt-4 pb-4 mt-2">
+  <ng-container *ngIf="lcForm.value.attached_documents;">
+    <span *ngFor="let document of lcForm.value.attached_documents" (click)="downloadFile(document.file_name)">
+        <a class="document-style" [href]="fileUrl" download="{{document.file_path}}">{{document.file_name}}</a> 
+    </span>
+  </ng-container>
+  <!-- <ng-template #noDocumentsMessage>
+      <p class="general-app-details-txt">No Documents Attached</p>
+  </ng-template> -->
+</div>
+  
+</div>

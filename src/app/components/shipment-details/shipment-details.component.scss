@@ -1,0 +1,81 @@
+
+.shipmentDetails-label {
+    font-size: 20px;
+    color: #323232;
+    font-family: graphik_medium;
+    letter-spacing: -0.17px;
+    line-height: 1.6;
+}
+.shipmentDetails-link {
+    font-size:14px;
+    font-family: graphik_medium;
+    color:#71adff;
+    letter-spacing: 0;
+    line-height: 1.14;
+}
+
+.shipment-container {
+    background-color: #FFFFFF;
+    margin-top: 15px;
+    border-radius: 4px;
+    border: solid 1px #e7e7e7;
+}
+
+.shipment-add-field {
+    font-family: graphik_medium;
+    font-size: 14px;
+    font-weight: 500;
+    color: #71adff;
+}
+
+.shipment-container img{
+    cursor: pointer;
+}
+.alertIcon {
+  top: -40px;
+  right: 0;
+  position: absolute;
+}
+
+.checker_label {
+    font-family: fs_matthew_light;
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #4c4e54;
+  }
+  
+  .checker_label_val{
+    font-family: fs_matthew_light;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #3b3b3b;
+    border: none;
+    outline: none;
+  }
+  
+  .dropInfo {
+    margin-bottom: 7.5%;
+  }
+  
+  .comment_num{
+    position: absolute;
+    left: 10px;
+    font-size: 10px;
+    color: #ffffff;
+    width: 15px;
+    height: 15px;
+    background-color: #6dd400;
+    top: -10px;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 15px;
+
+  }

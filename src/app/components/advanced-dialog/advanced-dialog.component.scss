@@ -1,0 +1,60 @@
+.custom_btn {
+    width: 130px;
+    height: 40px;
+    background-color: #003087;
+    color: white;
+  }
+  .first-sec {
+    margin-right: 45px;
+    flex: 1;
+  }
+  .icon-sec {
+    margin-left: 30px;
+    flex: 1;
+    color: #003087;
+  }
+  .plus {
+    position: absolute;
+    right: 0;
+    font-size: 30px;
+    top: 22px;
+    cursor: pointer;
+  }
+  .minus {
+    font-size: 30px;
+    top: 22px;
+    position: absolute;
+    cursor: pointer;
+  }
+  .data-row {
+    position: relative;
+  }
+  .row-cross {
+    margin-bottom: 20px;
+  }
+  .cross {
+    position: absolute;
+    right: -30px;
+    background: none;
+    border: none;
+  }
+  .button-row {
+    margin-top: 20px;
+  }
+  
+  //new scss
+.dia-cont {
+    width: 1083px;
+    height: 593px;
+    box-shadow: 0 2px 4px 3px rgba(211, 211, 211, 0.5), 0 1px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+  }
+  // .mat-dialog-container {
+  //   position: relative;
+  //   top: 30px;
+  // }
+  // .mat-form-field-infix {
+  //   font: bold 16px FSMatthew;
+  //   color: #3b3b3b;
+  //   line-height: 1.5;
+  // }

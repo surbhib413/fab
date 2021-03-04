@@ -1,0 +1,142 @@
+.fab-logo {
+    width: 52px;
+    height: 31px;
+    object-fit: contain;
+  }
+
+.dashboard-logo {
+    width: 24px;
+    height: 20px;
+    object-fit: contain
+  }
+
+.amendment-logo{
+    width: 24px;
+    height: 18.1px;
+    object-fit: contain;
+}
+
+.bank-logo{
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.pendingLc-logo{
+    width: 23px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.inquiry-logo{
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.main-menu{
+//   width: 260px;
+  height: 100vh;
+  // height: 1432px;
+  box-shadow: 0 2px 6px 5px rgba(97, 97, 97, 0.14), 0 2px 4px 0 rgba(146, 146, 146, 0.5);
+  background-color: #fff;
+  margin-right: 0.15em;
+}
+
+.sidebarFont{
+    // width: 106px;
+    // height: 18px;
+    font-family: Graphik;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    color:#fafafa;
+    text-decoration-color: #fafafa;
+  }
+
+
+  a:link {
+    text-decoration: none;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  .nav-link{
+    text-transform: capitalize !important;
+
+    // width: 106px;
+    // height: 18px;
+    font-family: fs_matthew_light;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    color:#fff;
+    text-decoration-color: #fafafa;
+    padding: 15px;
+  }
+
+
+  .box{
+    display: flex;
+    align-items:center;
+}
+
+.active-tab{
+  border-left: solid #71adff;
+
+
+  a{
+    font-family: fs_matthew_light !important;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.13;
+    letter-spacing: normal;
+    // color: #71adff;
+    // text-decoration-color: #71adff;
+  }
+
+}
+
+
+.example-container {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-head-trade{
+  margin-top: 10px;
+  font-family: fs_matthew_medium;
+  li{
+    a{
+      display: inline-block;
+    }
+  }
+}
+.oval-nav-bar{
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: white;
+  display: inline-block;
+  margin-bottom: 2px;
+
+}
+
+
+.trade-finance-submenu li a{padding: 8px;}
+

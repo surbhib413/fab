@@ -1,0 +1,36 @@
+<div mat-dialog-content class="letter-of-credit-modal fsmatthew-normal">
+    <button [mat-dialog-close]="true" class="close-dialog" >
+      <img _ngcontent-nha-c28="" src="assets/icons/close_gray_icon.svg"></button>    
+    <div class="success-icon">
+      <img src="assets/icons/success_icon.svg" alt="">
+    </div>
+    <div class="dialog-content">
+      <div>
+        Letter of Credit with <span class="dialog-content-bold">ID: {{data}}</span> has
+      </div>
+      <div>
+        been returned on <span class="dialog-content-bold">{{currDate | date: 'MMM d, y'}} </span>
+      </div>
+      <div>
+        to the maker for correction
+      </div>
+      <div class="d-flex justify-content-center mt-4">
+        <div class="mx-4">
+          <img src="assets/icons/print.svg" alt="" class="mr-2">
+          <span>Print</span>
+        </div>
+        <div class="mx-4">
+          <img src="assets/icons/mailbox.svg" alt="" class="mr-2">
+          <span>Email</span>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-4">
+          <mat-dialog-actions>
+              <button mat-raised-button color="primary"
+               [mat-dialog-close]="true" class="custom_btn create_btn" (click)="redirectToLanding()" data-target="#myModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Done</button>
+            </mat-dialog-actions>
+      </div>
+    </div>
+  
+  </div>
+  

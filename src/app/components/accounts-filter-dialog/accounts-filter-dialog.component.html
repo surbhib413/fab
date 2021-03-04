@@ -1,0 +1,78 @@
+  <div mat-dialog-content style="overflow:hidden">
+      <div class="offset-11 col-1">
+        <button class="cross" style="background-color: transparent;border: none " [mat-dialog-close]="true"><img _ngcontent-nha-c28="" src="assets/icons/close_gray_icon.svg"></button>
+        
+      </div>
+    <div style="margin-top:-20px;">
+        <h2 class="advance-label">Advanced Filters</h2>  
+    </div>
+    <div class="row data-row">
+      <div class="col-3 first-sec">
+        <form class="advanced-filter">
+          <mat-form-field class="example-full-width">
+            <input
+              type="text"
+              placeholder="Filter By"
+              aria-label="Number"
+              matInput
+              [formControl]="myControl"
+              [matAutocomplete]="auto"
+            />
+            <img src="assets/icons/uparrow.svg" alt="" matSuffix>
+            <mat-autocomplete #auto="matAutocomplete" class="matAuto1">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-3 first-sec">
+        <form class>
+          <mat-form-field class="abc">
+            <input
+              type="text"
+              placeholder="Concentration"
+              aria-label="Number"
+              matInput
+              [formControl]="myControl"
+              [matAutocomplete]="auto1"
+              class="customInput"
+            />
+            <img src="assets/icons/uparrow.svg" alt="" matSuffix>
+            <mat-autocomplete #auto1="matAutocomplete" class="matAuto1" >
+              <mat-option *ngFor="let option1 of options1" [value]="option1" >
+                {{ option1 }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-2 icon-sec">
+          <img _ngcontent-nha-c28="" class="icons mt-3" src="assets/icons/minus.svg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <img _ngcontent-nha-c28="" class="icons mt-3" src="assets/icons/plusIcon.svg">
+        
+      </div>
+      <div class="col-2">
+          <button
+            mat-stroked-button
+            color="primary"
+            class="my-0 mx-2 custom_btn mt-3"
+            [mat-dialog-close]="true"
+        >
+            CLEAR ALL
+          </button>
+      </div>
+        <div class="col-2">
+          <button
+            mat-stroked-button
+            color="primary"
+            class="my-0 mx-2 apply_btn mt-3"
+            [mat-dialog-close]="true"
+          >
+            APPLY
+          </button>
+      </div>
+    </div>
+
+  </div>

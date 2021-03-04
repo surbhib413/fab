@@ -1,0 +1,72 @@
+<section class="transactions-details account-details">
+  <mat-tab-group>
+    <mat-tab label="Overview">
+      <div class="container-fluid">
+        <app-account></app-account>
+        <div class="row">
+          <div class="col-12">
+            <div class="px-3 pb-3 pt-1 border shadow-sm bg-white rounded">
+              <app-accounts-information></app-accounts-information>
+            </div>
+
+              <div class="section-heading py-3">
+                PRE-CONFIGURED CHARTS
+              </div>
+              <div class="shadow-sm bg-white rounded border px-2 py-3">
+                <div class="row">
+                  <div class="col-6 border-right" (mouseenter)="showOptionBeneficiary= true" (mouseleave)="showOptionBeneficiary = false">
+                    <div class="float-right pt-3" *ngIf="showOptionBeneficiary">
+                      <img src="assets/icons/group-dropdown.svg" />
+                    </div>
+                    <div class="chart-title pt-3 pb-1 pl-3">Top Beneficiary</div>
+                    <app-horizontal-bar-chart></app-horizontal-bar-chart>
+                  </div>
+                  <div class="col-6" (mouseenter)="showOptionCharges= true" (mouseleave)="showOptionCharges = false">
+                    <div class="float-right pt-3" *ngIf="showOptionCharges">
+                      <img src="assets/icons/group-dropdown.svg"/>
+                    </div>
+                    <div class="chart-title pt-3 pb-1 pl-3">Charges</div>
+                    <app-donut-chart [details]="charges"></app-donut-chart>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+        
+      </mat-tab>
+      <mat-tab label="Transaction List"> 
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <app-transaction-list [data]="data"></app-transaction-list>
+                </div>
+            </div>
+          <!-- <div class="px-3 pb-3 pt-1 border shadow-sm bg-white rounded"> -->
+           
+          <!-- </div> -->
+        </div>
+    </mat-tab>
+    <mat-tab label="Trend and Forecast">
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                  <app-trend-forecast></app-trend-forecast>
+              </div>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Report">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+              <app-report></app-report>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</section>
+
+
+

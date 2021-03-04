@@ -1,0 +1,73 @@
+.browse-file {
+    position: fixed;
+    right: 10px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.50);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.50);
+    //box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.50);
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 3px -2px rgba(0, 0, 0, 0.12), 0 3px 4px 0 rgba(0, 0, 0, 0.14);
+    bottom: 10px;
+    z-index: 5;
+    border-radius: 8px;
+  };
+
+.attachmentModalWidth{
+    width:32%;
+}
+.heading{
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    font-family: fs_matthew_medium;
+}
+.dropContainer{
+    border: dashed 1px #003087;
+    width:88%;
+    height:50px;
+    background: white!important;
+}
+.dragText{
+    font-family: fs_matthew_light;
+    font-size:12px;
+    line-height: 2.67;
+    letter-spacing: 0.21px;
+    color: #323232;
+    font-weight: 300;
+}
+.uploadButton{
+    height: 50px;
+    background-color: #003087;
+    width:10%;
+    vertical-align: middle;
+}
+.filesList{
+    background-color: white!important;
+    //width:80%;
+}
+.fileNames{
+    font-family: fs_matthew_light;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.25;
+    letter-spacing: 0.29px;
+    color: #323232;
+}
+.dividerLine{
+    width: 100%;
+    height: 1px;
+    //border: solid 1px #e9e9e9;
+    color:#e9e9e9;
+}
+.closeButton{
+    margin-right: -12px;
+}
+.deleteIcon{
+    margin-left: auto!important;
+    margin-right:-20px;
+}
+.cancelIcon{
+    margin-left: auto!important;
+    margin-right:-20px;
+}
+.statusIcon{
+    margin-left:-10px;
+}

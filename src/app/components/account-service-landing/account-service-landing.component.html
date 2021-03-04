@@ -1,0 +1,19 @@
+<div class="container-fluid py-3 px-4 account-service-landing">
+  <mat-tab-group>
+    <mat-tab label="Overview">
+      <app-account-service-overview></app-account-service-overview>
+    </mat-tab>
+    <mat-tab label="Accounts">
+
+      <app-account-list *ngIf="isAccountList" (displayAccountDetails)="displayAccountDetails($event)">
+      </app-account-list>
+      <app-account-details *ngIf="!isAccountList" [accountNum]="accountNum" (displayAccountList)="displayAccountList()">
+      </app-account-details>
+
+    </mat-tab>
+    <mat-tab label="Deposits" disabled> Content 3 </mat-tab>
+    <mat-tab label="Cards" disabled> Content 3 </mat-tab>
+    <mat-tab label="Loans" disabled> Content 3 </mat-tab>
+
+  </mat-tab-group>
+</div>

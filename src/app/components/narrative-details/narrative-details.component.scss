@@ -1,0 +1,128 @@
+.textbox-style{
+    width: 1108px !important;
+    height: 195px !important;
+}
+
+
+.narrativeDetails-label {
+    font-size: 20px;
+    color: #323232;
+    font-family: graphik_medium;
+    letter-spacing: -0.17px;
+    line-height: 1.6;
+}
+.narrativeDetails-link {
+    font-size:14px;
+    font-family: graphik_medium;
+    color:#003087;
+    letter-spacing: 0;
+    line-height: 1.14;
+}
+
+.narrativeDetails-container {
+    background-color: #FFFFFF;
+    margin-top: 15px;
+    border-radius: 4px;
+    border: solid 1px #e7e7e7;
+}
+
+.input-group-prepend{
+    border: 1px solid #e7e7e7;
+}
+
+.custom-file-label{
+    border: 1px solid #e7e7e7;
+}
+
+.narrativeDetails-progress-bar{
+    border: solid 1px #e7e7e7;
+}
+
+.resize{
+    resize: none;
+}
+
+.narrative-text{
+   
+    font-family: fs_matthew_light;
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #909aa1;
+}
+
+.shipment-add-field {
+    font-family: graphik_medium;
+    font-size: 14px;
+    font-weight: 500;
+    color: #71adff;
+}
+.expandIconContainer{
+  width:100%;
+  height: 0px;
+  .expandIcon{
+    top: 5px;
+    position: relative;
+    right: 20px;
+    z-index: 3;
+    float: right;
+    :hover{
+      cursor: pointer;
+    }
+  }
+}
+textarea::-webkit-scrollbar { 
+  width:5px;
+}
+textarea::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+.invalidChar{
+  color: red;
+}
+.expandedArea{
+  height: 600px;
+}
+.expandShadow{
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+}
+.grayBorder{
+  height:inherit;
+  border: solid 1px #dddddd;
+}
+.redBorder{
+  border: solid 1px #ff3138;
+}
+.red-text{
+  color: red;
+}
+.bg-yellow{
+  background-color: yellow;
+  // color: red;
+}
+.text-input-highlight-container .text-highlight-element {
+  background: none;
+  height: inherit !important;
+}
+
+.comment_num{
+  position: absolute;
+  left: 20px;
+  font-size: 10px;
+  color: #ffffff;
+  width: 15px;
+  height: 15px;
+  background-color: #6dd400;
+  top: -10px;
+  border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 15px;
+}

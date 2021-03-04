@@ -1,0 +1,118 @@
+<div mat-dialog-content class="preference-dialog">
+  <div class="title">
+    <div class="preference-head">Preferences</div>
+    <button [mat-dialog-close]="true" class="close-dialog"> <img _ngcontent-nha-c28="" src="assets/icons/close_gray_icon.svg" /></button>
+    <!-- <a _ngcontent-nha-c28="" [mat-dialog-close]="true" class="close-dialog closebutton position-absolute cursorPointer">
+    <img _ngcontent-nha-c28="" src="assets/icons/close_gray_icon.svg" /></a> -->
+  </div>
+
+    <div class="row dialog-content">
+      <div class="col-6 first-col">
+        <div class="row border-bottom">
+          <div class="col-12 dialog-headings">SWIFT TAGS</div>
+          <div class="col-12 dialog-toggle">
+            <span>Show SWIFT Tags</span>
+            <span><mat-slide-toggle #slideswift [color]="color" [checked]="isSwiftSelected" [disabled]="false" >
+              </mat-slide-toggle></span>
+          </div>
+          <mat-form-field class="col-8 bank-name">
+            <input
+              type="text"
+              aria-label="Number"
+              matInput
+              readonly
+            />
+            <mat-label
+              >Bank Name*
+              <span class="limit-character" *ngIf="isSwiftSelected"
+                >51A</span
+              ></mat-label
+            >
+            <img src="assets/images/dropdownArrow.svg" alt="" matSuffix />
+          </mat-form-field>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-12 dialog-headings">LC Tab Data</div>
+          <div class="col-12 dialog-toggle">
+              <span>Show Tab Data</span>
+              <span><mat-slide-toggle #slidedata [color]="color" [checked]="default_check" [disabled]="false" >
+                </mat-slide-toggle></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 dialog-headings">LC Titles</div>
+        </div>
+        <div class="row border-bottom">
+            <!-- <div *ngFor="let lctitle of lctitles" class="col-4">
+                <mat-checkbox color="primary" [checked]="lctitle.selected" (click)="updateLcTitle(lctitle.selected , lctitle.label)">{{ lctitle.label }}</mat-checkbox>
+            </div> -->
+
+            <div *ngFor="let lctitle of lctitles" class="col-4">
+                <mat-checkbox color="primary" [(ngModel)]="lctitle.selected" >{{ lctitle.label }}</mat-checkbox>
+            </div>
+            
+            <!-- <mat-checkbox color="primary" class="col-4" [checked]="lctitles[0].lcNameSelected" (click)="toggleLcName()">{{ lctitles[0].lcNamelabel }}</mat-checkbox>
+            <mat-checkbox color="primary"class="col-4" [checked]="lctitles[1].lcNumSelected" >{{ lctitles[1].lcNumlabel }}</mat-checkbox>
+            <mat-checkbox color="primary" class="col-4" [checked]="lctitles[2].statusQuoSelected" (click)="toggleStatusQuo()" >{{ lctitles[2].statusQuolabel }}</mat-checkbox>
+            <mat-checkbox color="primary" class="col-4" [checked]="lctitles[3].typeSelected" (click)="toggleLcType()" >{{ lctitles[3].typelabel }}</mat-checkbox>
+            <mat-checkbox color="primary" class="col-4" [checked]="lctitles[4].roleSelected" (click)="toggleRole()" >{{ lctitles[4].rolelabel }}</mat-checkbox>
+            <mat-checkbox color="primary" class="col-4" [checked]="lctitles[5].lcIdSelected" (click)="toggleId()" >{{ lctitles[5].lcIdlabel }}</mat-checkbox>
+         -->
+          </div>
+        <div class="row">
+            <div class="col-12 dialog-headings">LC Per Page</div>
+        </div>
+        <div class="row lc-per-page-radio">
+            <!-- <div *ngFor="let lcPage of lcperpages" class="col-4">
+                <mat-radio-button class="example-radio-button col-6" color="primary"  [value]="lcPage.label" [checked]="lcPage.selected"  (change)="RadioChange($event)">{{ lcPage.label }}</mat-radio-button>
+              </div> -->
+          <mat-radio-button name="perPageRadioName" class="example-radio-button col-6" color="primary" (click)="setLcPerPage(20)" [checked]="lcperpages[0].selected20">{{ lcperpages[0].label20 }}</mat-radio-button>
+          <mat-radio-button name="perPageRadioName" class="example-radio-button col-6" color="primary" (click)="setLcPerPage(60)" [checked]="lcperpages[1].selected60">{{ lcperpages[1].label60 }}</mat-radio-button>
+          <mat-radio-button name="perPageRadioName" class="example-radio-button col-6" color="primary" (click)="setLcPerPage(120)" [checked]="lcperpages[2].selected120">{{ lcperpages[2].label120 }}</mat-radio-button>
+          <mat-radio-button name="perPageRadioName" class="example-radio-button col-6" color="primary" (click)="setLcPerPage(999)" [checked]="lcperpages[3].selected999">{{ lcperpages[3].label999 }}</mat-radio-button>
+      
+        </div>
+      </div>
+      <div class="col-6 second-col">
+        <div class="row">
+          <div class="col-12 dialog-headings">Dashboard</div>
+          <div class="col-12 dialog-subheadings">Select Three*</div>
+          <div class="col-12">
+            <div *ngFor="let dashboard of dashboards ">
+              <mat-checkbox color="primary" name="dashboard.label" [checked]="dashboard.selected" (click)="statusCheckboxClick(dashboard.label)">{{ dashboard.label }}</mat-checkbox>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <mat-dialog-actions class="buttons-create">
+    <button
+      mat-stroked-button
+      color="primary"
+      class="custom_btn default_btn"
+      (click)="defaultPreferences()"
+    >
+      DEFAULT
+    </button>
+    <button
+      mat-stroked-button
+      color="primary"
+      [mat-dialog-close]="true"
+      class="custom_btn save_btn"
+      (click)="savePreferences()"
+    >
+      SAVE
+    </button>
+  </mat-dialog-actions>
+
+  <div *ngIf="isShown" class="floating-status col-4">
+    <div class="row">
+        <div class="col-12">
+            <div *ngFor="let dashfloating of dashfloatings">
+              <mat-checkbox color="primary" [checked]="dashfloating.selected">{{ dashfloating.label }}</mat-checkbox>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

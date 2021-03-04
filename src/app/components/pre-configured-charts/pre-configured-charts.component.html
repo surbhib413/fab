@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-6">
+    <h4 class="section-label mt-2 pl-2">Pre-configured Charts</h4>
+  </div>
+  <div class="col-6 text-right">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <!-- <mat-icon>more_vert</mat-icon> -->
+      <img src="assets/icons/group-dropdown.svg" />
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voice mail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
+
+  </div>
+</div>
+<div class="px-4 pb-4">
+  <!-- <div class="row border-top">
+    <div class="col-6 border-right">
+      <ul class="list-unstyled mb-0 d-inline-block w-100 mt-3">
+        <li class="float-left">
+          <p class="text-left chart-title pt-3 pl-3">By Bank</p>
+        </li>
+        <li class="float-right">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>dialpad</mat-icon>
+              <span>Redial</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>voicemail</mat-icon>
+              <span>Check voice mail</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Disable alerts</span>
+            </button>
+          </mat-menu>
+        </li>
+      </ul>
+
+      <app-donut-chart [details]="byBank"></app-donut-chart>
+    </div>
+    <div class="col-6">
+      <div class="chart-title pt-3 pl-3">Account Balance</div>
+      <app-donut-chart [details]="byEntity"></app-donut-chart>
+
+    </div>
+  </div> -->
+  <!-- <div class="row border-top">
+    <div class="col-6 border-right">
+      <div class="chart-title pt-3 pl-3">By Currency</div>
+      <app-donut-chart [details]="byCurrency"></app-donut-chart>
+    </div>
+    <div class="col-6">
+      <div class="chart-title pt-3 pl-3">By Account Status</div>
+      <app-donut-chart [details]="byAccountStatus"></app-donut-chart>
+    </div>
+  </div> -->
+  <div class="row border-top">
+    <div class="col-6 border-right" (mouseenter)="showOptionEntity = true" (mouseleave)="showOptionEntity = false">
+      <div class="float-right pt-3" *ngIf="showOptionEntity">
+        <img src="assets/icons/group-dropdown.svg" style="width:5px;" />
+      </div>
+      <div class="chart-title pt-3 pl-1">Account Balance by Entity</div>
+      <app-donut-chart [details]="byEntity"></app-donut-chart>
+    </div>
+    <div class="col-6" (mouseenter)="showOptionBank= true" (mouseleave)="showOptionBank = false">
+        <div class="float-right pt-3" *ngIf="showOptionBank">
+          <img src="assets/icons/group-dropdown.svg" />
+        </div>
+      <div class="chart-title pt-3 pl-1">Account Balance by Bank </div>
+      <app-trend-forecast-graph [displayFilters]="true"></app-trend-forecast-graph>
+    </div>
+  </div>
+  <div class="row border-top">
+    <div class="col-6 border-right" (mouseenter)="showOptionBeneficiary= true" (mouseleave)="showOptionBeneficiary = false">
+      <div class="float-right pt-3" *ngIf="showOptionBeneficiary">
+        <img src="assets/icons/group-dropdown.svg" style="width:5px;" />
+      </div>
+      <div class="chart-title pt-3 pl-1">Top Beneficiaries</div>
+      <app-bar-chart [details]="topBeneficiaries"></app-bar-chart>
+    </div>
+    <div class="col-6" (mouseenter)="showOptionPayee = true" (mouseleave)="showOptionPayee = false">
+      <div class="float-right pt-3" *ngIf="showOptionPayee">
+        <img src="assets/icons/group-dropdown.svg" />
+      </div>
+      <div class="chart-title pt-3 pl-1">Top Payee</div>
+      <app-bar-chart [details]="topPayee"></app-bar-chart>
+    </div>
+  </div>
+</div>

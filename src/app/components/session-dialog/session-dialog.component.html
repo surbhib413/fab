@@ -1,0 +1,18 @@
+  <div>
+    <div>
+      <h3 style="font-family:FSMatthew-Medium">Session Time Out ! </h3>
+    </div>
+    <div>
+      <span style="font-family: FSMatthew-Light">The Session will automatically log off in 2 minutes due to user inactivity </span>
+    </div>
+   
+    <div class="d-flex mt-4" style="float: right;" >
+        <mat-dialog-actions>
+            <button mat-stroked-button color="primary" class="my-0 mx-2 logout_btn fsmatthew-medium font-size-14">Log Out</button>
+            <!-- <button mat-raised-button color=""
+             [mat-dialog-close]="true" class="custom_btn create_btn" (click)="redirectToLanding()" data-target="#myModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Log Out</button> -->
+             <button mat-raised-button color="primary"
+             [mat-dialog-close]="true" class="custom_btn create_btn" (click)="redirectToLanding()" data-target="#myModal" data-toggle="modal" data-backdrop="static" data-keyboard="false">Stay Logged In </button>
+          </mat-dialog-actions>
+      </div>
+  </div>

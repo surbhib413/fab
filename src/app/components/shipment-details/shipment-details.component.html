@@ -1,0 +1,268 @@
+<div class="container-fluid shipment-container p-4 mt-0" [formGroup]="shipment">
+  <p class="shipmentDetails-label ">General Information</p>
+  <div class="row">
+    <div class="col-11 col-md-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input matInput id="namedPlace" placeholder="Named Place*" autocomplete="none" formControlName="generalInfo_namedPlace" (click)="shipment_generalInfo_namedPlace = true">
+        <mat-error *ngIf="shipment.controls['generalInfo_namedPlace'].hasError('required')">
+          Named Place is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Named Place*</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_namedPlace}}" formControlName="generalInfo_namedPlace"  (click)="shipment_generalInfo_namedPlace = true" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 justify-content-start align-self-center d-none d-sm-block">
+      <div class="cursorPointer position-relative" *ngIf="shipment_generalInfo_namedPlace || isChecker || lcComment['shipment_generalInfo_namedPlace'].updated">
+        <img src="assets/icons/comment_icon.svg" class="dropInfo" (click)="shipment_generalInfo_namedPlace = true;openComment('left','shipment_generalInfo_namedPlace','Named Place');"/>
+        <span class="comment_num">{{lcComment['shipment_generalInfo_namedPlace']?lcComment['shipment_generalInfo_namedPlace'].comments.length:0}}</span>
+        <app-comment style="position: absolute;" *ngIf="showComment==='shipment_generalInfo_namedPlace'"></app-comment>
+      </div>
+      
+    </div>
+    <div class="col-11 col-md-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input matInput id="nameOfInsuranceCompany" placeholder="Name of Insurance Company*" autocomplete="none"
+          formControlName="generalInfo_nameOfInsuranceCompany" (click)="shipment_generalInfo_nameOfInsuranceCompany = true">
+        <mat-error *ngIf="shipment.controls['generalInfo_nameOfInsuranceCompany'].hasError('required')">
+          Name of Insurance Company is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Name of Insurance Company*</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_nameOfInsuranceCompany}}" formControlName="generalInfo_nameOfInsuranceCompany"  (click)="shipment_generalInfo_nameOfInsuranceCompany = true" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 justify-content-start align-self-center d-none d-sm-block ">
+      <div class="cursorPointer position-relative" *ngIf="shipment_generalInfo_nameOfInsuranceCompany || isChecker || lcComment['shipment_generalInfo_nameOfInsuranceCompany'].updated">
+        <img src="assets/icons/comment_icon.svg" class="dropInfo" (click)="shipment_generalInfo_nameOfInsuranceCompany = true;openComment('right','shipment_generalInfo_nameOfInsuranceCompany','Name of Insurance Company');"/>
+        <span class="comment_num">{{lcComment['shipment_generalInfo_nameOfInsuranceCompany']?lcComment['shipment_generalInfo_nameOfInsuranceCompany'].comments.length:0}}</span>
+        <app-comment style="position: absolute;" *ngIf="showComment==='shipment_generalInfo_nameOfInsuranceCompany'"></app-comment>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-11 col-md-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input matInput id="policynumber" placeholder="Policy Number*" autocomplete="none"
+          formControlName="generalInfo_policynumber" (click)="shipment_generalInfo_policynumber = false">
+        <mat-error *ngIf="shipment.controls['generalInfo_policynumber'].hasError('required')">
+          Policy Number is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Policy Number*</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_policynumber}}" formControlName="generalInfo_policynumber"  (click)="shipment_generalInfo_policynumber = false" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block">
+        <div class="cursorPointer" *ngIf="shipment_generalInfo_policynumber">
+            <img src="assets/icons/comment_icon.svg" class="dropInfo"/>
+            <span class="comment_num">0</span>
+          </div>
+    </div>
+    
+    <div class="col-11 col-md-4" *ngIf="addFieldDiv">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input matInput id="" placeholder="Shipment From" autocomplete="none" formControlName="generalInfo_shipmentFrom" (click)="generalInfo_shipmentFrom = false">
+        <mat-error *ngIf="shipment.controls['generalInfo_shipmentFrom'].hasError('required')">
+          Shipment from is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Shipment From</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_shipmentFrom}}" formControlName="generalInfo_shipmentFrom"  (click)="generalInfo_shipmentFrom = false" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block" *ngIf="addFieldDiv">
+        <div class="cursorPointer" *ngIf="generalInfo_shipmentFrom">
+            <img src="assets/icons/comment_icon.svg" class="dropInfo"/>
+            <span class="comment_num">0</span>
+          </div>
+    </div>
+  </div>
+  <div class="row mt-3" *ngIf="addFieldDiv">
+    <div class="col-11 col-md-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input matInput id="" placeholder="Place of Landing" autocomplete="none" formControlName="generalInfo_placeOfLoading" (click)="generalInfo_placeOfLoading = false">
+        <mat-error *ngIf="shipment.controls['generalInfo_placeOfLoading'].hasError('required')">
+          Place of Landing is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Place of Landing</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_placeOfLoading}}" formControlName="generalInfo_placeOfLoading"  (click)="generalInfo_placeOfLoading = false" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block">
+        <div class="cursorPointer" *ngIf="generalInfo_placeOfLoading">
+            <img src="assets/icons/comment_icon.svg" class="dropInfo"/>
+            <span class="comment_num">0</span>
+          </div>
+    </div>
+    <div class="col-11 col-md-4">
+      <mat-form-field class="w-100"  *ngIf="!isChecker">
+        <input matInput id="" placeholder="Place of Discharge" autocomplete="none" formControlName="generalInfo_placeOfDischarge" (click)="generalInfo_placeOfDischarge = false">
+        <mat-error *ngIf="shipment.controls['generalInfo_placeOfDischarge'].hasError('required')">
+          Place of Dischange is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Place of Discharge</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_placeOfDischarge}}" formControlName="generalInfo_placeOfDischarge"  (click)="generalInfo_placeOfDischarge = false" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block">
+        <div class="cursorPointer" *ngIf="generalInfo_placeOfDischarge">
+            <img src="assets/icons/comment_icon.svg" class="dropInfo"/>
+            <span class="comment_num">0</span>
+          </div>
+  </div>
+
+  </div>
+  <div class="row mt-3" *ngIf="addFieldDiv">
+    <div class="col-11 col-md-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input matInput id="" placeholder="Shipment To" formControlName="generalInfo_shipmentTo" autocomplete="none" (click)="generalInfo_shipmentTo = false">
+        <mat-error *ngIf="shipment.controls['generalInfo_shipmentTo'].hasError('required')">
+          Shipment to is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Shipment To</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_shipmentTo}}" formControlName="generalInfo_shipmentTo"  (click)="generalInfo_shipmentTo = false" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block">
+      <div class="cursorPointer" *ngIf="generalInfo_shipmentTo">
+        <img src="assets/icons/comment_icon.svg" class="dropInfo"/>
+        <span class="comment_num">0</span>
+      </div>
+    </div>
+    <div class="col-11 col-md-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input type="text" matInput [matAutocomplete]="auto" formControlName="generalInfo_partialShipment"
+              autocomplete="none" (click)="generalInfo_partialShipment = false">
+            <mat-label>Partial Shipments</mat-label>
+            <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let partialship of partialships" [value]="partialship">
+                {{partialship}}
+              </mat-option>
+            </mat-autocomplete>
+        <mat-error *ngIf="shipment.controls['generalInfo_partialShipment'].hasError('required')">
+          Partial Shipment is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Partial Shipment</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_partialShipment}}" formControlName="generalInfo_partialShipment"  (click)="generalInfo_partialShipment = false" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block">
+        <!-- <div class="cursorPointer" *ngIf="generalInfo_partialShipment">
+            <img src="assets/icons/comment_icon.svg" class="dropInfo"/>
+            <span class="comment_num">0</span>
+          </div> -->
+         </div>
+  </div>
+  <div class="row mt-3" *ngIf="addFieldDiv">
+    <div class="col-11 col-md-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input matInput [matAutocomplete]="auto" formControlName="generalInfo_transhipment" (click)="generalInfo_transhipment = false">
+        <mat-label>Transhipment</mat-label>
+            <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let transship of transships" [value]="transship">
+                {{transship}}
+              </mat-option>
+            </mat-autocomplete>
+        <mat-error *ngIf="shipment.controls['generalInfo_transhipment'].hasError('required')">
+          Transhipment is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Transhipment</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_transhipment}}" formControlName="generalInfo_transhipment"  (click)="generalInfo_transhipment = false" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block">
+        <div class="cursorPointer" *ngIf="generalInfo_transhipment">
+            <img src="assets/icons/comment_icon.svg" class="dropInfo"/>
+            <span class="comment_num">0</span>
+          </div>
+         </div>
+    <div class="col-11 col-md-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input matInput [matDatepicker]="picker" placeholder="Latest Shipment Date" autocomplete="none"
+          formControlName="generalInfo_latestShipmentDate" (click)="generalInfo_latestShipmentDate = false">
+        <mat-error *ngIf="shipment.controls['generalInfo_latestShipmentDate'].hasError('required')">
+          Latest Shipment Date is <strong>required</strong>
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Latest Shipment Date</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_latestShipmentDate | date:'shortDate'}}" formControlName="generalInfo_latestShipmentDate"  (click)="generalInfo_latestShipmentDate = false" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block">
+        <div class="cursorPointer" *ngIf="generalInfo_latestShipmentDate">
+            <img src="assets/icons/comment_icon.svg" class="dropInfo"/>
+            <span class="comment_num">0</span>
+          </div>
+         </div>
+  </div>
+  <div class="row mt-3" *ngIf="addFieldDiv">
+    <div class="col-11 col-md-4">
+      <mat-form-field class="w-100" *ngIf="!isChecker">
+        <input matInput [matAutocomplete]="auto" formControlName="generalInfo_purchaseTerms" autocomplete="none"  (click)="generalInfo_purchaseTerms = false">
+        <mat-label>Purchase Terms</mat-label>
+            <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let purchaseterm of purchaseterms" [value]="purchaseterm">
+                {{purchaseterm}}
+              </mat-option>
+            </mat-autocomplete>
+        <mat-error *ngIf="shipment.controls['generalInfo_purchaseTerms'].hasError('required')">
+          Purchase Terms is <strong>required</strong>
+          <img class="alertIcon" src="assets/icons/alert_circle_red.svg" alt="">
+        </mat-error>
+      </mat-form-field>
+      <div *ngIf="isChecker" class="mt-3">
+          <p class="mb-0 checker_label">Latest Shipment Date</p>
+          <input matInput value="{{lcForm.value.shipment.generalInfo_purchaseTerms}}" formControlName="generalInfo_purchaseTerms"  (click)="generalInfo_purchaseTerms = false" class="mt-1 checker_label_val" readonly/>
+      </div>
+    </div>
+    <div class="col-2 d-none d-md-block">
+        <div class="cursorPointer" *ngIf="generalInfo_purchaseTerms">
+            <img src="assets/icons/comment_icon.svg" class="dropInfo"/>
+            <span class="comment_num">0</span>
+          </div>
+    </div>
+  </div>
+  
+      <p  *ngIf="!addFieldDiv && !isChecker" class="shipmentDetails-link my-4" style="cursor: pointer" (click)="displayAdditonalFields()" ><img src="assets/icons/plus.svg" class="pr-2">Add Field</p>
+     
+</div>
+<div class="container-fluid shipment-container p-4 mt-3 d-flex align-items-center">
+  <span class="shipment-add-field pl-1"><img src="assets/icons/plus.svg" class="pr-2 pb-1">Add Shipment Period</span>
+</div>
+<div class="container-fluid shipment-container p-4 mt-3 d-flex align-items-center">
+  <span class="shipment-add-field pl-1"><img src="assets/icons/plus.svg" class="pr-2 pb-1">Add Additional Amount</span>
+</div>
+<div class="container-fluid shipment-container p-4 mt-3 d-flex align-items-center">
+  <span class="shipment-add-field pl-1"><img src="assets/icons/plus.svg" class="pr-2 pb-1">Add Period for
+    Presentation</span>
+</div>

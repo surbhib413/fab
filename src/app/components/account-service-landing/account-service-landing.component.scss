@@ -1,0 +1,120 @@
+.overview-tab-col {
+  background-color: #fff;
+  // color: #094684;
+  // box-shadow: 1px -2px 2px 0 rgba(100, 109, 130, 0.2), 0 1px 1px 0 rgba(100, 109, 130, 0.08);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+  border-radius: 2px;
+  max-width: 23.74% !important;
+  margin-left: 15px;
+}
+
+// table{
+//   border: solid 1px #979797;
+// }
+
+.text-blue {
+  color: #003087;
+}
+
+.accounts-landing-page {
+  overflow-y: scroll;
+  height: calc(100vh - 42px);
+  background: #ebeef1;
+}
+
+.section-heading {
+  font-family: fs_matthew_medium;
+  font-size: 16px;
+  font-weight: 500;
+  color: #969995;
+}
+
+.chart-title {
+  font-family: fs_matthew_light;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4c4e54;
+}
+
+.overview-header {
+  font-family: fs_matthew_light;
+  font-size: 16px;
+  color: #9b9b9b;
+}
+
+.overview-card-bal {
+  font-family: fs_matthew_medium;
+  font-size: 30px;
+  color: #485465;
+}
+
+.overview-card-cur {
+  font-family: fs_matthew_light;
+  font-size: 12px;
+  color: #485465;
+  vertical-align: super;
+}
+
+.overview-card-percentage {
+  font-family: fs_matthew_light;
+  font-size: 12px;
+}
+
+.overview-card-green {
+  color: #7dd34c;
+}
+
+.overview-card-red {
+  color: #fc2f20;
+}
+
+.overview-card-thisweek {
+  font-family: fs_matthew_light;
+  font-size: 12px;
+  color: #9b9b9b;
+}
+
+.graph-container {
+  box-shadow: -10px 10px 20px 0 rgba(30, 30, 30, 0.05);
+  background-color: #ffffff;
+  margin-left: 15px;
+  max-width: 48.6%;
+}
+
+.overview-card-graph {
+  margin-left: -10px;
+  margin-bottom: -8px;
+}
+
+.chart-class {
+  //overflow: auto;
+  // overflow-y: hidden !important;
+  // overflow-x: hidden !important;
+  margin-left: -10px;
+  margin-bottom: -10px;
+  margin-top: -15px;
+  // position: relative;
+  // min-width: 100%;
+}
+
+.filter-dropdown {
+  border-right: 0.5px solid rgba(155, 155, 155, 0.5);
+  border-bottom: 0.5px solid rgba(155, 155, 155, 0.5);
+  font-family: fs_matthew_light;
+  font-size: 12px;
+  color: #9b9b9b;
+}
+
+.filter-dropdown-right {
+  border-bottom: 0.5px solid rgba(155, 155, 155, 0.5);
+}
+
+.active-filter {
+  border-top: 3px solid #2979ff;
+  background-color: #edf4ff;
+  color: #0c2340 !important;
+}
+
+.account-service-landing {
+  overflow: hidden;
+}

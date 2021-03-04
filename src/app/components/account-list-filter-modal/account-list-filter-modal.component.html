@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-3">
+    <div class="filter-box">
+      <div class="row">
+        <a class="closebutton position-absolute cursorPointer" (click)="closeFilter()">
+          <img width="10px" src="assets/icons/close_gray_icon.svg" /></a>
+      </div>
+      <div class="row ml-3 mt-4 mr-1 filter-row">
+        <section class="filter-selectors">
+          <div *ngFor="let obj of dropDownVal.list;let i=index">
+            <mat-checkbox [checked]="obj.checked" (change)="valueChange($event,i)"
+              [ngClass]="{'checkedLabel':obj.checked}">
+              {{ obj.label }}
+            </mat-checkbox>
+          </div>
+        </section>
+      </div>
+      <div class="container p-2">
+        <div class="hori-line">&nbsp;</div>
+        <div class="apply-filter-button cursorPointer" (click)="applyFilter()">
+          <img src="assets/icons/apply-button.svg" class="w-100 pb-1" />
+          <div class="centered cursorPointer">Apply</div>
+        </div>
+        <div class="default-text text-center cursorPointer" (click)="selectDefault()"><u>Default</u></div>
+      </div>
+    </div>
+  </div>
+</div>

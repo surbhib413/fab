@@ -1,0 +1,48 @@
+
+<mat-dialog-content class="mat-typography">
+  <div class="row">
+    <div class="col-12 position-relative">
+        <button mat-dialog-close class="position-absolute border-0 bg-gradient-primary" style="right: 0;"><img
+          src="assets/icons/close_gray_icon.svg" />
+      </button>
+
+      <div class="mt-4 report-dialog px-5 py-3">
+        <h1 class="font-size-24 fsmatthew-medium text-center">Generate New Report</h1>
+        <p class="mt-4 graphik_regular font-size-16 text-gray">Report Date</p>
+        <ul class="list-unstyled">
+          <li class="list-inline-item mr-4">
+              <mat-radio-button value="1" class="graphik_regular fab-text-gray-two font-size-15">1W</mat-radio-button>
+          </li>
+          <li class="list-inline-item mr-4">
+              <mat-radio-button value="2" class="graphik_regular fab-text-gray-two font-size-15">1M</mat-radio-button>
+          </li>
+          <li class="list-inline-item mr-4">
+              <mat-radio-button value="3" class="graphik_regular fab-text-gray-two font-size-15">3M</mat-radio-button>
+          </li>
+          <li class="list-inline-item mr-4">
+              <mat-radio-button value="4" class="graphik_regular fab-text-gray-two font-size-15">6M</mat-radio-button>
+          </li>
+          <li class="list-inline-item">
+              <mat-radio-button value="5" class="graphik_regular fab-text-gray-two font-size-15">CUSTOM</mat-radio-button>
+          </li>
+        </ul>
+        <p class="mt-4 graphik_regular font-size-16 text-gray mt-4">Report Delivery Preference</p>
+        <ul class="list-unstyled mt-2">
+          <li class="list-inline-item mr-4">
+              <mat-checkbox class="graphik_regular fab-text-gray-two font-size-16">By Email</mat-checkbox>
+          </li>
+          <li class="list-inline-item">
+              <mat-checkbox class="graphik_regular fab-text-gray-two font-size-16">By Post</mat-checkbox>
+          </li>
+        </ul>
+
+        <p class="mt-4 fsmatthew-normal font-size-14" style="color: #5c5c5c;">Note : By default once the report is ready, will be available along with other previous report </p>
+
+        <div class="text-center mt-3">
+            <button mat-button class="fab-bg-blue text-white mt-3 px-5 py-1 fsmatthew-medium font-size-14
+              ">SUBMIT</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

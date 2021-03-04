@@ -1,0 +1,16 @@
+version: "3.5"
+services:
+  angular-fab-client:
+    image: deloitte/fab-client
+    container_name: angular-fab-client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ".:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    ports:
+      - "4215:4200"
+
+
+     

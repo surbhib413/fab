@@ -1,0 +1,271 @@
+.flag-icon{
+  float: right;
+  font-size: 18px;
+  top: 14px;
+  position: relative;
+}
+.float-flag{
+  float: right;
+  margin-right: 10px;
+}
+.general-form-content {
+  background-color: #FFFFFF;
+  margin-top: 15px;
+  border-radius: 4px;
+  border: solid 1px #e7e7e7;
+
+  .general-app-details-txt {
+    font-family: fs_matthew_medium;
+    font-size: 20px;
+    font-style: normal;
+    font-stretch: normal;
+    color: #323232;
+  }
+
+  .general-add-field {
+    font-family: graphik_medium;
+    font-size: 14px;
+    font-weight: 500;
+    color: #71adff;
+  }
+
+
+  .sendLcByText {
+    font-family: fs_matthew_light;
+    color: #4c4e54;
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+
+  .dropInfo {
+    margin-bottom: 7.5%;
+  }
+
+  // .example-form {
+  //     min-width: 150px;
+  //     max-width: 500px;
+  //     width: 100%;
+  //   }
+
+  //   .example-full-width {
+  //     width: 100%;
+  //   }
+
+}
+
+.alertIcon {
+  top: -40px;
+  right: 0;
+  position: absolute;
+}
+.general-content-container {
+  overflow-y: auto;
+  position: absolute;
+  height: 150%;
+  .general-form-content {
+    background-color: #FFFFFF;
+    margin-top: 15px;
+    border-radius: 4px;
+    border: solid 1px #e7e7e7;
+    // box-shadow: none;
+  }
+
+  .general-section-label {
+    font-size: 20px;
+    color: #4c4e54;
+    font-family: graphik_medium;
+  }
+
+  .general-form-addition-info {
+    color: #003087;
+    font-size: 14px;
+    font-family: fs_matthew_medium;
+  }
+
+
+  .general-dropdown {
+    border: none;
+    border-radius: 4px;
+    border-bottom: solid 1px #e7e7e7;
+    outline: none;
+    box-shadow: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .general-dropdown-label {
+    font-family: fs_matthew_light;
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #4c4e54;
+  }
+
+}
+
+.narrative-text {
+  font-family: Graphik-Regular;
+  font-size: 12px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #909aa1;
+}
+
+.comment_num{
+  position: absolute;
+  left: 15px;
+  font-size: 10px;
+  color: #ffffff;
+  width: 15px;
+  height: 15px;
+  background-color: #6dd400;
+  top: -5px;
+  border-radius: 10px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 15px;
+}
+
+.chat-box {
+  position: absolute;
+  right: -32%;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  z-index: 5;
+  display: none;
+}
+
+.chat-box:after, .chat-box:before {
+  right: 100%;
+	top: 15%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+
+.chat-box:after{
+  border-color: rgba(255, 255, 255, 0);
+	border-right-color: #fff;
+	border-width: 15px;
+	margin-top: -15px;
+}
+
+.chat-box:before{
+  border-color: rgba(204, 204, 204, 0);
+	border-right-color: #ccc;
+	border-width: 16px;
+	margin-top: -16px;
+}
+
+
+.comments-input{
+  background: initial;
+}
+
+.chat-box .input-group{
+  border: 1px solid #e2e2e2;
+}
+
+.comments-input:focus {
+  outline-offset: inherit !important ;
+}
+
+span.comments-num {
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 2px 4px 0 #ffdf72;
+  background-image: linear-gradient(to bottom, #fff8c0, #ffe513 32%, #fec708);
+  border-radius: 50px;
+  display: inline-block;
+  text-align: center;
+  line-height: 23px;
+  margin-left: 5px;
+}
+
+.closebutton{right: 15px; top: 15px;}
+.comment-box{  background-color: #f5faff;
+}
+
+
+
+
+.comments-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-size: 14px;
+}
+.comments-input::-moz-placeholder { /* Firefox 19+ */
+  font-size: 14px;
+}
+.comments-input:-ms-input-placeholder { /* IE 10+ */
+  font-size: 14px;
+}
+.comments-input:-moz-placeholder { /* Firefox 18- */
+  font-size: 14px;
+}
+
+.checker_label {
+  font-family: fs_matthew_light;
+  font-size: 12px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #4c4e54;
+}
+
+.checker_label_val{
+  font-family: fs_matthew_light;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #3b3b3b;
+  border: none;
+  outline: none;
+}
+
+
+.w-95{
+  width: 95%;
+}
+
+.input-flag-icon{
+  top: 0px;
+  right: 48px;
+}
+.input-country-abbr{
+  top: 2px;
+  right : 44px;
+  position: relative;
+}
+.width80{
+  width:80%;
+}
+.checkerAbbr{
+  top:-2px; 
+  left:140px;
+}
+
+.checkerFlag{
+  top:0px;
+  // left:180px;
+}

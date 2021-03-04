@@ -1,0 +1,97 @@
+<div class="report-div">
+  <div class="row pt-2 mb-10-neg">
+    <div class="col-6">
+      <h4 class="section-heading">REPORT</h4>
+    </div>
+    <div class="col-6 text-right">
+      <img src="assets/icons/group-dropdown.svg" class="pr-1" />
+    </div>
+  </div>
+  <div class="shadow-sm bg-white rounded-border border p-4 mt-0">
+    <div class="row">
+      <div class="col-3">
+        <mat-form-field class="w-100">
+          <input type="text" aria-label="Number" matInput [matAutocomplete]="entity">
+          <mat-label>Entity</mat-label>
+          <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+          <mat-autocomplete #entity="matAutocomplete">
+            <mat-option *ngFor="let e of entityList" [value]="e">
+              {{e}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field class="w-100">
+          <input type="text" aria-label="Number" matInput [matAutocomplete]="bank">
+          <mat-label>Bank</mat-label>
+          <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+          <mat-autocomplete #bank="matAutocomplete">
+            <mat-option *ngFor="let e of bankList" [value]="e">
+              {{e}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>  
+      </div>
+      <div class="col-3">
+        <mat-form-field class="w-100">
+          <input matInput placeholder="Account Number" autocomplete="none">
+          <img src="assets/images/dropdownArrow.svg" alt="" matSuffix>
+        </mat-form-field>
+      </div>
+      <div class="col-3 text-right mt-2">
+        <button mat-stroked-button color="primary" class="report_btn show-report">SHOW REPORT</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pt-4 mb-10-neg">
+    <div class="col-6">
+      <h4 class="section-heading">PREVIOUS REPORT</h4>
+    </div>
+    <div class="col-6 text-right">
+      <img src="assets/icons/group-dropdown.svg" class="pr-1" />
+    </div>
+  </div>
+  <div class="shadow-sm prev-report-bg-color rounded-border border p-4 mt-0">
+      <div class="row">
+        <div class="ml-1 d-flex flex-row w-100">
+          <div class="report-card flex-fill p-4 mr-3">
+            <div class="report-card-label">Name</div>
+            <div class="report-card-value">MT940</div>
+            <div class="report-card-label pt-3">Date</div>
+            <div class="report-card-value">2019, March 30</div>
+            <div class="report-card-label pt-3">Generated on</div>
+            <div class="report-card-value">2019, March 31<img class="pl-3 float-right" src="assets/icons/download.png" /></div>
+          </div>
+          <div class="report-card flex-fill p-4 mr-3">
+            <div class="report-card-label">Name</div>
+            <div class="report-card-value">MT940</div>
+            <div class="report-card-label pt-3">Date</div>
+            <div class="report-card-value">2019, March 30</div>
+            <div class="report-card-label pt-3">Generated on</div>
+            <div class="report-card-value">2019, March 31<img class="pl-3 float-right" src="assets/icons/download.png" /></div>
+          </div>
+          <div class="report-card flex-fill p-4 mr-3">
+            <div class="report-card-label">Name</div>
+            <div class="report-card-value">MT940</div>
+            <div class="report-card-label pt-3">Date</div>
+            <div class="report-card-value">2019, March 30</div>
+            <div class="report-card-label pt-3">Generated on</div>
+            <div class="report-card-value">2019, March 31<img class="pl-3 float-right" src="assets/icons/download.png" /></div>
+          </div>
+          <div class="report-card flex-fill p-4 mr-3">
+            <div class="report-card-label">Name</div>
+            <div class="report-card-value">MT940</div>
+            <div class="report-card-label pt-3">Date</div>
+            <div class="report-card-value">2019, March 30</div>
+            <div class="report-card-label pt-3">Generated on</div>
+            <div class="report-card-value">2019, March 31<img class="pl-3 float-right" src="assets/icons/download.png" /></div>
+          </div>
+        </div>
+        <div class="col-12 text-right mt-4">
+          <button mat-stroked-button color="primary" (click)="openDialog()" class="report_btn generate-report bg-white">GENERATE/SCHEDULE REPORT</button>
+        </div>
+      </div>
+    </div>
+  </div>

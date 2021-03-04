@@ -1,0 +1,55 @@
+.notificationLabel {
+  font-family: fs_matthew_medium;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #565454;
+}
+
+.notificationFont{
+  font-family: fs_matthew_medium;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: 0.25px;
+  color: #565454;
+}
+
+.subLabel{
+    font-family: fs_matthew_medium;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.21px;
+    color: #969995;
+}
+
+.custom_Btn {
+  width: 320px;
+  height: 42px;
+  // border-color: #003087;
+//   border-radius: 4px;
+//   font-size: 14px;
+  background-color: white;
+  border-radius: 4px;
+  border: solid 1px #003087;
+}
+
+.btnLabel{
+  font-family: fs_matthew_medium;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  text-align: center;
+  color: #003087;
+}

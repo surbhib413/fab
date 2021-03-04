@@ -1,0 +1,66 @@
+.review_label {
+  font-family: fs_matthew_light;
+  font-size: 12px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #4c4e54;
+}
+
+.review_label_value {
+  font-family: fs_matthew_light;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #3b3b3b;
+}
+
+.general-app-details-txt {
+    font-family: graphik_medium;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    color: #323232;
+  }
+
+  .general-form-content {
+    background-color: #FFFFFF;
+    margin-top: 15px;
+    border-radius: 4px;
+    border: solid 1px #e7e7e7;
+    // box-shadow: none;
+}
+
+.editIcon{
+  width:35px;
+  height:35px;
+}
+
+.review-style{
+  font-family: fs_matthew_light;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #3b3b3b;
+  outline:none;
+  border:none;
+}
+
+.document-style{
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.5;
+  letter-spacing: -0.13px;
+  color: #003087;
+  margin: 1rem 3rem;
+  cursor: pointer;
+}

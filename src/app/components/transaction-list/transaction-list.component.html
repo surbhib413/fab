@@ -1,0 +1,251 @@
+<!-- <div class="shadow-sm bg-white rounded border px-4 pt-2"> -->
+    <div class="row fsmatthew-medium">
+      <div class="col-12 d-flex justify-content-end align-items-center mx-0 mb-2">
+        <div class="d-inline-block mr-3">
+          <img src="assets/icons/search.svg" />
+        </div>
+        <button mat-button>Clear All</button>
+        <button mat-button>Advanced Filters</button>
+        <mat-menu #listMenu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="sortMenu" class="pr-0">
+          <span>Sort By</span>
+          <img class="ml-2" src="assets/icons/down_arrow_gray.svg">
+        </button>
+        <mat-menu #sortMenu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+        <button mat-icon-button [matMenuTriggerFor]="accountOption" color="primary" class="d-flex justify-content-end">
+          <img class="px-2" src="assets/icons/menu_gray.svg" />
+        </button>
+        <mat-menu #accountOption="matMenu">
+          <button mat-menu-item>
+            <!-- <mat-icon>dialpad</mat-icon> -->
+            <span>Redial</span>
+          </button>
+          <button mat-menu-item disabled>
+            <!-- <mat-icon>voicemail</mat-icon> -->
+            <span>Check voice mail</span>
+          </button>
+          <button mat-menu-item>
+            <!-- <mat-icon>notifications_off</mat-icon> -->
+            <span>Disable alerts</span>
+          </button>
+          <button mat-menu-item [matMenuTriggerFor]="grouopBy">
+            <!-- <img src="assets/icons/group_folder.svg"/> -->
+            <span>Group By</span>
+          </button>
+        </mat-menu>
+
+        <mat-menu #grouopBy="matMenu">
+          <button mat-menu-item (click)="groupByDate()">Date</button>
+        </mat-menu>
+      </div>
+    </div>
+  
+    <div class="row fsmatthew-light">
+      <div class="col-4">
+        <button mat-button class="pl-0" [matMenuTriggerFor]="entity">Tag &nbsp;<img
+            src="assets/icons/down_arrow.svg" /></button>
+        <mat-menu #entity="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+        <ul class="list-unstyled alrlines">
+          <li class="d-inline-block w-50 text-center font-size-18 border-right border-bottom position-relative">
+            <span>Transport</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img src="assets/icons/down_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="d-inline-block w-50 text-center font-size-18 border-bottom position-relative">
+            <span>Payout</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="d-inline-block w-50 text-center font-size-18  border-right position-relative">
+            <span>Lease</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="d-inline-block w-50 text-center font-size-18 position-relative">
+            <span>Utilities</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="col-4 fsmatthew-light">
+        <button mat-button class="pl-0" [matMenuTriggerFor]="bank">Time &nbsp;<img
+            src="assets/icons/account_list_down_arrow.svg" /></button>
+        <mat-menu #bank="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+        <ul class="list-unstyled alrlines">
+          <li class="d-inline-block w-50 text-center font-size-18 border-right border-bottom position-relative">
+            <span>Today</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="d-inline-block w-50 text-center font-size-18 border-bottom position-relative">
+            <span>Last Week</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="d-inline-block w-50 text-center font-size-18 border-right position-relative">
+            <span>Last Month</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="d-inline-block w-50 text-center font-size-18 position-relative">
+            <span>Last 3 Months</span>
+  
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="col-4 fsmatthew-light">
+        <button mat-button class="pl-0" [matMenuTriggerFor]="baseCurrency">Amount &nbsp;<img
+            src="assets/icons/account_list_down_arrow.svg" />
+        </button>
+        <button mat-button [matMenuTriggerFor]="sortMenu" class="pr-0">
+            <span>Transaction Currency</span>
+            <img class="ml-2" src="assets/icons/down_arrow_gray.svg">
+        </button>
+        <button mat-button [matMenuTriggerFor]="sortMenu" class="pr-0">
+            <span>in AED</span>
+            <img class="ml-2" src="assets/icons/down_arrow_gray.svg">
+        </button>
+        <mat-menu #baseCurrency="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+        <ul class="list-unstyled alrlines">
+          <li class="d-inline-block w-50 text-center font-size-18 border-right border-bottom position-relative">
+            <span>> 50,000</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="d-inline-block w-50 text-center font-size-18 border-bottom position-relative">
+            <span>50,000 - 200,000</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="d-inline-block w-50 text-center font-size-18 border-right position-relative">
+            <span>200,000 - 500,000</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="d-inline-block w-50 text-center font-size-18 position-relative">
+            <span>> 500,000</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="fsmatthew-normal table-options d-flex align-items-center justify-content-between font-size-12">
+      <div class="left-options toggle d-flex align-items-center mt-3">
+        <span class="selectOptionText">Select</span>
+        <!-- <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled">
+          <span class="float-right fsmatthew-normal px-3">Wrap Text</span>
+        </mat-slide-toggle> -->
+      </div>
+      <div class="right-options pr-4">
+        
+        <!-- <span class="mr-3 viewTransactionText">View Transactions</span>
+        <span>Converted in</span>
+        <button mat-button [matMenuTriggerFor]="convertedIn" class="mr-2 px-0">
+          <span class="convertedInText">AED</span>
+          <img class="" src="assets/icons/down_arrow_gray.svg">
+        </button>
+        <mat-menu #convertedIn="matMenu">
+          <button mat-menu-item>AED</button>
+          <button mat-menu-item>USD</button>
+        </mat-menu> -->
+      </div>
+    </div>
+    <div class="row tablePage">
+      <div class="col-12">
+        <app-table [data]="transactionData"></app-table>
+      </div>
+    </div>
+  <!-- </div> -->
+  

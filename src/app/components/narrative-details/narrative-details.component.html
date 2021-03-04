@@ -1,0 +1,117 @@
+<div class="container-fluid pl-0 " [formGroup]="narrative">
+  <div class="container-fluid narrativeDetails-container mt-0">
+    <div class="d-flex justify-content-between pt-5">
+      <div class="narrativeDetails-label align-items-center pb-2">Description of Goods
+        <span *ngIf="isSwiftSelected" class="limit-character" >45A</span>
+        <span>
+            <img src="assets/icons/i.svg" class="dropInfo pl-2 "/>
+        </span>
+        <span class="cursorPointer position-relative pl-2" *ngIf="narrative_descriptionOfGoods || isChecker || lcComment['narrative_descriptionOfGoods'].updated">
+          <img src="assets/icons/comment_icon.svg" class="dropInfo" (click)="narrative_descriptionOfGoods = true;openComment('left','narrative_descriptionOfGoods','Description of Goods');"/>
+          <span class="comment_num">{{lcComment['narrative_descriptionOfGoods']?lcComment['narrative_descriptionOfGoods'].comments.length:0}}</span>
+          <app-comment style="position: absolute;" *ngIf="showComment==='narrative_descriptionOfGoods'"></app-comment>
+        </span>
+      </div> 
+      
+      <div class="d-flex">
+        <p class="invalidChar mr-4" *ngIf="narrative.controls['descriptionOfGoods'].errors?.pattern">{{descCount}} Invalid Characters</p>
+        <p class="narrative-text my-0">Description within {{6500 - textarea1.value.length}} characters</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="expandIconContainer">
+        <img class="expandIcon mr-3 mt-2 cursor-pointer" src="assets/icons/extent-option-arrows.svg" alt="" (click)="descExpandedArea()" />
+      </div>
+      <div class="col-12" [ngClass]="{'expandedArea': descExpanded}">
+        <div mwlTextInputHighlightContainer class="grayBorder"
+          [ngClass]="{'redBorder': narrative.controls['descriptionOfGoods'].errors?.pattern, 'expandShadow': descExpanded}">
+          <textarea maxlength="6500" placeholder="Type here...." mwlTextInputElement class="form-control"
+            formControlName="descriptionOfGoods" #textarea1 (input)="addTagsDesc()" rows="10" (click)="narrative_descriptionOfGoods = true" [readonly]="isChecker">
+              </textarea>
+          <mwl-text-input-highlight [tags]="tags1" [tagCssClass]="'bg-yellow' " [textInputElement]="textarea1">
+          </mwl-text-input-highlight>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between pt-5 mt-2">
+      <div class="narrativeDetails-label align-items-center pb-2">Documents Required
+        <span *ngIf="isSwiftSelected" class="limit-character">46A</span>
+        <span>
+            <img src="assets/icons/i.svg" class="dropInfo pl-2"/>
+        </span>
+        <span class="cursorPointer position-relative pl-2" *ngIf="narrative_documentRequired || isChecker || lcComment['narrative_documentRequired'].updated">
+          <img src="assets/icons/comment_icon.svg" class="dropInfo" (click)="narrative_documentRequired = true;openComment('left','narrative_documentRequired','Documents Required');"/>
+          <span class="comment_num">{{lcComment['narrative_documentRequired']?lcComment['narrative_documentRequired'].comments.length:0}}</span>
+          <app-comment style="position: absolute;" *ngIf="showComment==='narrative_documentRequired'"></app-comment>
+        </span>
+      </div>
+      <div class="d-flex align-items-center mb-3">
+        <p class="invalidChar mr-4 mb-0" *ngIf="narrative.controls['documentRequired'].errors?.pattern">{{docsCount}} Invalid Characters</p>
+        <img src="assets/icons/plus.svg" class="pr-2" />
+        <span class="shipment-add-field">
+          Static Phrases
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="expandIconContainer">
+        <img class="expandIcon mr-3 mt-2 cursor-pointer" src="assets/icons/extent-option-arrows.svg" alt="" (click)="docsExpandedArea()" />
+      </div>
+      <div class="col-12" [ngClass]="{'expandedArea': docsExpanded}">
+        <div mwlTextInputHighlightContainer class="grayBorder"
+          [ngClass]="{'redBorder': narrative.controls['documentRequired'].errors?.pattern, 'expandShadow': docsExpanded}">
+          <textarea placeholder="Type here...." mwlTextInputElement class="form-control"
+            formControlName="documentRequired" #textarea2 (input)="addTagsDocs()" rows="10" [readonly]="isChecker" (click)="narrative_documentRequired = true">
+                  </textarea>
+          <mwl-text-input-highlight [tags]="tags2" [tagCssClass]="'bg-yellow'" [textInputElement]="textarea2">
+          </mwl-text-input-highlight>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between pt-5 mt-2">
+      <p class="narrativeDetails-label align-items-center">Additional Instructions
+        <span class="limit-character" >47A</span>
+        <span>
+            <img src="assets/icons/i.svg" class="dropInfo pl-2"/>
+        </span>
+      </p>
+    </div>
+    <div class="row">
+      <div class="expandIconContainer">
+        <img class="expandIcon mr-3 mt-2 cursor-pointer" src="assets/icons/extent-option-arrows.svg" alt="" (click)="instExpandedArea()" />
+      </div>
+      <div class="col-12" [ngClass]="{'expandedArea': instExpanded}">
+        <div mwlTextInputHighlightContainer class="grayBorder"
+          [ngClass]="{'redBorder': narrative.controls['additionalInstructions'].errors?.pattern, 'expandShadow': instExpanded}">
+          <textarea placeholder="Type here...." mwlTextInputElement class="form-control"
+            formControlName="additionalInstructions" #textarea3 (input)="addTagsInst()" rows="10" [readonly]="isChecker">
+            </textarea>
+          <mwl-text-input-highlight [tags]="tags3" [tagCssClass]="'bg-yellow'" [textInputElement]="textarea3">
+          </mwl-text-input-highlight>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between pt-5 mt-2">
+      <p class="narrativeDetails-label align-items-center">Special Payment Condition
+        <span class="limit-character" >49G</span>
+        <span>
+            <img src="assets/icons/i.svg" class="dropInfo pl-2"/>
+        </span></p>
+    </div>
+    <div class="row">
+      <div class="expandIconContainer">
+        <img class="expandIcon mr-3 mt-2 cursor-pointer" src="assets/icons/extent-option-arrows.svg" alt="" (click)="payExpandedArea()" />
+      </div>
+      <div class="col-12" [ngClass]="{'expandedArea': payExpanded}">
+        <div mwlTextInputHighlightContainer class="grayBorder"
+          [ngClass]="{'redBorder': narrative.controls['special_paymentCondition'].errors?.pattern, 'expandShadow': payExpanded}">
+          <textarea placeholder="Type here...." mwlTextInputElement class="form-control"
+            formControlName="special_paymentCondition" #textarea4 (input)="addTagsPay()" rows="10" [readonly]="isChecker">
+              </textarea>
+          <mwl-text-input-highlight [tags]="tags4" [tagCssClass]="'bg-yellow'" [textInputElement]="textarea4">
+          </mwl-text-input-highlight>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

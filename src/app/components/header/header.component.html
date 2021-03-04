@@ -1,0 +1,108 @@
+<div class="col-12 eur-usd" *ngIf="showTickerVar">
+  <span (click)="tickerBox()" class="open-btn float-left ticker-open-btn"><img
+      src="assets/icons/left_arrow_icon.svg" /></span>
+  <ul class="list-unstyled mb-0 pl-4 ticker">
+    <li class="list-inline-item mx-4 fsmatthew-normal font-size-14">EUR/USD <span class="arrow_green">&uarr;</span>
+      1.1202 1.1204</li>
+    <li class="list-inline-item mx-4 fsmatthew-normal font-size-14">GBP/USD <span class="arrow_red">&#8595;</span>
+      1.1308 1.1204</li>
+    <li class="list-inline-item mx-4 fsmatthew-normal font-size-14">EUR/USD <span class="arrow_green">&uarr;</span>
+      1.1202 1.1204</li>
+    <li class="list-inline-item mx-4 fsmatthew-normal font-size-14">GBP/USD <span class="arrow_red">&#8595;</span>
+      1.1308 1.1204</li>
+    <li class="list-inline-item mx-4 fsmatthew-normal font-size-14">EUR/USD <span class="arrow_green">&uarr;</span>
+      1.1202 1.1204</li>
+  </ul>
+</div>
+
+
+<section class="login-top">
+  <div class="d-flex">
+    <div class="position-absolute" *ngIf="!showTickerVar">
+      <span (click)="tickerBox()" class="open-btn float-left" style="background: #d8d8d8; cursor: pointer; ">
+        <img src="assets/icons/right_blue_arrow.svg" /></span>
+    </div>
+    <div class="pl-2">
+      <p class="mb-0 ml-5">{{pageHeading}}</p>
+    </div>
+
+    <div class="breadcrumLabel float-left pl-5 ml-2 fsmatthew-normal font-size-12">Home
+      <span class="breadcrumLabel cursor-pointer" *ngIf="accountService" (click)="goToAccountService()">
+        <span class="px-2">/</span> Account Services</span>
+      <span class="breadcrumLabel cursor-pointer" *ngIf="!accountService">
+        <span class="px-2">/</span> Trade Finance</span>
+      <span class="breadcrumLabel cursor-pointer " *ngIf="lcDashboard" (click)="goToDashboard()">
+        <span class="px-2">/</span> Letter Of Credit </span>
+      <span class="breadcrumLabel cursor-pointer" *ngIf="createLC">
+        <span class="px-2">/</span> Create New LC</span>
+      <span class="breadcrumLabel cursor-pointer" *ngIf="breadCrumbLcId">
+        <span class="px-2">/</span> LC Id - {{lcId}}</span>
+    </div>
+
+    <div class="ml-auto pr-2">
+      <ul class="top-icons pl-0 mb-0">
+        <!-- <li class="d-inline-block pr-4"><img class="dashboard-logo" src="assets/icons/search.svg"/></li> -->
+        <!-- <li class="d-inline-block pr-4"><img class="dashboard-logo img-fluid" src="assets/icons/mailbox.svg"/></li> -->
+        <li class="d-inline-block pr-2 pr-sm-4"><img class="dashboard-logo img-fluid cursor-pointer" src="assets/icons/bell_white.svg" (click)="openNotificationDialog()" />
+            </li>
+        <!-- <li class="d-inline-block pr-2 pr-sm-4">
+          <button mat-icon-button [matMenuTriggerFor]="notificationMenu" color="primary"
+            class="d-flex justify-content-end">
+            <img class="dashboard-logo img-fluid" src="assets/icons/bell_white.svg" />
+          </button>
+          <mat-menu #notificationMenu="matMenu" class="notificationMenuDiv">
+              <div mat-menu-item class="sub-menu-options">
+                <span class="fsmatthew-normal font-size-14 fab-color-gray fab-text-black px-3">
+                  Pending Notifications Bill Payment for xxxx from Acc xxxx successful
+                  
+                </span>
+                <span>Bill Payment for xxxx from Acc xxxx successful</span>
+                <div style="border:1px solid black;">
+                    <span>Bill Payment for xxxx from Acc xxxx successful</span>
+                </div>
+              </div>
+            </mat-menu>
+        </li> -->
+
+        <li class="d-inline-block pr-sm-4 pr-1">
+          <button mat-button [matMenuTriggerFor]="profileMenu" class="profile_menu px-0">
+            <!-- <img class="dashboard-logo img-fluid mr-2" src="assets/image/user-pic@3x.png" width="32px" /> -->
+            <img class="dashboard-logo img-fluid mr-2" [src]="url ? url : profile_url" width="32px" />
+
+            Ahmed
+            <span>
+              <img src="assets/icons/down_arrow_white.svg" class="mb-1 px-2" />
+            </span>
+          </button>
+          <mat-menu #profileMenu="matMenu" class="profileMenuDiv">
+            <button mat-menu-item class="sub-menu-options">
+              <!-- <span> -->
+              <img src="assets/icons/my_profile_icon.svg" width="16px" />
+              <!-- </span> -->
+              <span class="fsmatthew-normal font-size-14 fab-color-gray fab-text-black px-3">
+                My Profile
+              </span>
+            </button>
+            <button mat-menu-item class="sub-menu-options" (click)="openDialog()">
+              <!-- <span> -->
+              <img src="assets/icons/preference_icon.svg" width="16px" />
+              <!-- </span> -->
+              <span class="fsmatthew-normal font-size-14 fab-color-gray fab-text-black px-3">
+                Preference
+              </span>
+            </button>
+            <button mat-menu-item class="sub-menu-options" (click)="logout()">
+              <!-- <span> -->
+              <img src="assets/icons/arrow-circle-left.svg" width="16px" />
+              <!-- </span> -->
+              <span class="fsmatthew-normal font-size-14 fab-color-gray fab-text-black px-3">
+                Log Out
+              </span>
+            </button>
+          </mat-menu>
+        </li>
+        <!-- <li class="d-inline-block"><img class="dashboard-logo img-fluid" src="assets/icons/arrow-circle-left.svg"/></li> -->
+      </ul>
+    </div>
+  </div>
+</section>

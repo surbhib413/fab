@@ -1,0 +1,31 @@
+<section class="trends-and-forecast">
+    <mat-dialog-content class="mat-typography">
+      <div class="row">
+        <div class="col-12">
+          <button mat-dialog-close class="position-absolute border-0 bg-gradient-primary" style="right: 0;"><img
+              src="assets/icons/close_gray_icon.svg" />
+          </button>
+          <div class="mt-4">
+            <h2 class="text-center pt-3" style="color: #6c7c93;">Save Template</h2>
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Chart Name*" class="">
+            </mat-form-field>
+            <div class="">
+              <div class="">
+                  <mat-checkbox [(ngModel)]="checked" class="graphik_regular font-size-16 fab-text-gray-two">Dashboard pre-congigured chart list
+                    </mat-checkbox>
+              </div>
+              <div class="mt-2">
+                  <mat-checkbox [(ngModel)]="saveFilter" class="graphik_regular font-size-16 fab-text-gray-two mt-1">Save filter option for easy use</mat-checkbox>
+              </div>
+            </div>
+            <div class="text-center">
+              <button mat-button class="fab-bg-blue text-white mt-3 px-5 py-1 fsmatthew-medium font-size-14
+              ">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+  </section>
+  

@@ -1,0 +1,50 @@
+<div class="row" #commentDiv>
+    <div class="col-5">
+      <div class="chat-box" [ngClass]="{'chat_box_right': position==='right','chat_box_left': position==='left'}">
+          <!-- <div class="chatk-box"> -->
+        <a class="closebutton position-absolute cursorPointer" (click)="closeComment()"><img src="assets/icons/close_gray_icon.svg"/></a>
+        <p class="fsmatthew-medium font-size-16">{{fieldName}}</p>
+        <p class="fsmatthew-medium font-size-12 fab-text-blue">Comments <span class="comments-num">{{lcComments[id].comments.length}}</span></p>
+
+        <div class="input-group mb-3 px-2">
+          <input type="text" #comment class="comments-input form-control border-0 fsmatthew-normal font-size-14 mt-1" placeholder="Type your comment@name" id={{id}}>
+          <div class="input-group-append">
+            <button class="input-group-text" (click)="saveComment(comment.value)"><img src="assets/image/send.png" width="15px" /></button>
+          </div>
+        </div>
+        <div style="overflow-y: scroll;max-height:150px;">
+        <div *ngFor="let comment of lcComments[id].comments.slice().reverse()" class="comment-box px-2 pt-2 mb-2">
+          <div class="d-flex">
+            <div class="mr-3"><img [src]="url ? url : comment.profile_url"  width="26px"/></div>
+            <div>
+                <p class="mb-1"><span class="fsmatthew-medium font-size-12">{{comment.name}}.&nbsp;</span> 
+                  <span class="fsmatthew-normal font-size-12 fab-text-gray">{{getFormattedDate(comment.savedOn)}}</span></p>
+                <p class="fsmatthew-medium font-size-12">{{comment.comment}}</p>
+            </div>
+            <div class="menu-icon-align">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon class="alignicon">more_horiz</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                      <mat-icon>dialpad</mat-icon>
+                      <span>Redial</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                      <mat-icon>voicemail</mat-icon>
+                      <span>Check voice mail</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>notifications_off</mat-icon>
+                      <span>Disable alerts</span>
+                    </button>
+                  </mat-menu>
+            </div>
+          </div>
+          <!-- <div class="col-12 p-1" style="background-color: white;"></div> -->
+        </div>
+        
+      </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,205 @@
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-10">
+      <h5 class="font-size-20">Advanced Filters</h5>
+    </div>
+    <div class="col-2 text-right">
+      <span mat-button class="text-right ml-3 cursor-pointer" (click)="onNoClick()"><img
+          src="assets/icons/close_gray_icon.svg" />
+      </span>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <p class="border-bottom mb-0 font-size-14">Entity <span (click)="addEntity()" class="cursor-pointer float-right">+</span></p>
+    </div>
+  </div>
+
+  <div class="row" id="contentInside" *ngFor="let container of containers">
+    <div class="col-6 advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">All Entity</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-6 text-right advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">Include</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+      <span class="cursor-pointer" (click)="containers.splice(i, 1)"><img
+        src="assets/icons/close_gray_icon.svg" width="10px" class="ml-3"/></span>
+    </div>
+  </div>
+
+
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <p class="border-bottom mb-0 font-size-14">Currency <span (click)="addCurrency()" class="cursor-pointer float-right">+</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="row" id="contentInside" *ngFor="let container of currency ">
+    <div class="col-3 advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">Converted Value</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+    </div>
+    <div class="col-3 advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">in AED</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-3"></div>
+
+    <div class="col-3 text-right advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">Include</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+      <span class="cursor-pointer" (click)="currency.splice(i, 1)"><img
+        src="assets/icons/close_gray_icon.svg" width="10px" class="ml-3"/></span>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <p class="border-bottom mb-0 font-size-14">Geographies <span (click)="addGeographies()"
+          class="cursor-pointer float-right">+</span></p>
+    </div>
+  </div>
+
+  <div class="row" id="contentInside" *ngFor="let container of geographies">
+    <div class="col-6 advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">All Regions</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-6 text-right advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">Include</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+
+      <span class="cursor-pointer" (click)="geographies.splice(i, 1)"><img
+        src="assets/icons/close_gray_icon.svg" width="10px" class="ml-3"/></span>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <p class="border-bottom mb-0 font-size-14">Banks <span (click)="addBanks()" class="cursor-pointer float-right">+</span></p>
+    </div>
+  </div>
+
+  <div class="row" id="contentInside" *ngFor="let container of banks">
+    <div class="col-6 advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">All Banks</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-6 text-right advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">Include</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+      <span class="cursor-pointer" (click)="banks.splice(i, 1)"><img
+        src="assets/icons/close_gray_icon.svg" width="10px" class="ml-3"/></span>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <p class="border-bottom mb-0 font-size-14">Amount <span (click)="addAmount()" class="cursor-pointer float-right">+</span></p>
+    </div>
+  </div>
+
+  <div class="row" id="contentInside" *ngFor="let container of amount">
+    <div class="col-6 advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">Balance</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-6 text-right advenced-filters-dropdowns">
+      <mat-form-field>
+        <select matNativeControl required class="font-size-12">
+          <option value="volvo">Include</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </mat-form-field>
+
+      <span class="cursor-pointer" (click)="amount.splice(i, 1)"><img
+        src="assets/icons/close_gray_icon.svg" width="10px" class="ml-3"/></span>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+      <div class="col-6">
+          <button mat-raised-button class="px-5 bg-light">Apply</button>
+      </div>
+      <div class="col-6 text-right">
+          <button mat-button>Default</button>
+      </div>
+  </div>
+</div>
+
+
+<!-- <div id="content">
+    <div id="contentInside" *ngFor="let container of containers"></div>
+    <span (click)="add()" class="cursor-pointer">+</span>
+  </div> -->

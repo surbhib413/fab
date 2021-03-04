@@ -1,0 +1,392 @@
+<form id="lcForm" [formGroup]="lcForm" class="px-0 px-sm-2">
+  <div class="container-fluid bg-white border mt-3 lc_header">
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <ul class="pl-0 mb-0 lc-num-section">
+          <li class="d-inline-block px-0 pr-md-2 mt-4 mt-sm-0 fsmatthew-normal font-size-14" *ngIf="showLcName">
+            <span class="lc-content-label align-self-center text-gray d-inline-block overflow-hidden">LC Name </span>
+            <span class="align-self-center word_wrap">
+              <input type="text" class="border-bottom pl-2" formControlName="common_info_lc_name"
+                style="width: 100px; border:0; height: 20px;">
+            </span>
+          </li>
+          <li class="d-inline-block px-0 px-md-2 mt-4 mt-sm-0 fsmatthew-normal font-size-14" *ngIf="showLcType">
+            <span class="lc-content-label align-self-center text-gray d-inline-block overflow-hidden">Type - </span>
+            <span class="lc-content-val pl-2 align-self-center capitalize word_wrap"
+              *ngIf="lcForm.value.common_info_lc_type">
+              {{lcForm.value.common_info_lc_type}}</span>
+          </li>
+          <li class="d-inline-block px-0 px-md-2 mt-4 mt-lg-0 fsmatthew-normal font-size-14" *ngIf="showLcId">
+            <span class="lc-content-label align-self-center text-gray d-inline-block overflow-hidden">ID - </span>
+            <span class="lc-content-val align-self-center pl-2 word_wrap" *ngIf="lcForm.value.common_info_lc_id">
+              {{lcForm.value.common_info_lc_id}} </span>
+          </li>
+          <li class="d-inline-block px-0 px-md-2  mt-4 mt-lg-0 fsmatthew-normal font-size-14" *ngIf="showLcRole">
+            <span class="lc-content-label text-gray d-inline-block overflow-hidden">Role -</span>
+            <span class="lc-content-val pl-2 capitalize word_wrap"> {{role}} </span>
+          </li>
+          <li class="d-inline-block px-0 px-md-2  mt-4 mt-lg-0 fsmatthew-normal font-size-14" *ngIf="showStatusQuo">
+            <span class="lc-content-label text-gray d-inline-block overflow-hidden">Status Quo -</span>
+            <span class="lc-content-val pl-2 word_wrap"> 15/08/2019 </span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-4 text-right">
+        <ul class="attachment-section pl-0 mb-0 mt-4 mt-md-0">
+          <li class="d-inline-block pr-0 pr-sm-4 mr-5 mr-md-0">
+            <div class="image-upload">
+              <label (click)="openAttachment()" class="cursorPointer">
+                <img class="mr-2" src="assets/icons/path.svg" /><span class="sum-num">{{numOfDocsAttached}}</span>
+                Attachment
+              </label>
+            </div>
+          </li>
+          <li class="d-inline-block">
+            <!-- <button mat-button (click)="showStepper()"class="profile_menu lifecycle-dropdown" [ngClass]="{'lifecycle_blue':isStepper}">Lifecycle</button> -->
+            <button mat-button (click)="showStepper()"
+              class="profile_menu lifecycle-dropdown lifecycle_blue pl-2">
+            <img src="assets/icons/group.svg" /> &nbsp; Lifecycle</button>
+            <button mat-icon-button [matMenuTriggerFor]="lcOption" color="primary">
+              <!-- <mat-icon>more_vert</mat-icon> -->
+              <img class="p-2" src="assets/icons/menu_gray.svg" />
+            </button>
+            <mat-menu #lcOption="matMenu" class="lc-right-dropdown">
+              <button mat-menu-item>
+                <img src="assets/icons/pdf.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14fsmatthew-normal font-size-14 fab-text-black pl-4">PDF</span>
+              </button>
+              <button mat-menu-item disabled>
+                <img src="assets/icons/print.svg" width="20px" />
+                <span
+                  class="fsmatthew-normal font-size-14fsmatthew-normal font-size-14 fab-text-black pl-4">Print</span>
+              </button>
+              <button mat-menu-item disabled>
+                <img src="assets/icons/assign.svg" width="20px" />
+                <span
+                  class="fsmatthew-normal font-size-14fsmatthew-normal font-size-14 fab-text-black pl-4">Assign</span>
+              </button>
+              <button mat-menu-item disabled>
+                <img src="assets/icons/mailbox.svg" width="20px" />
+                <span
+                  class="fsmatthew-normal font-size-14fsmatthew-normal font-size-14 fab-text-black pl-4">Email</span>
+              </button>
+              <button mat-menu-item disabled>
+                <img src="assets/icons/save_as_template.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14fsmatthew-normal font-size-14 fab-text-black pl-4">Save as
+                  Template</span>
+              </button>
+              <button mat-menu-item disabled>
+                <img src="assets/icons/approve_icon.svg" width="20px" />
+                <span
+                  class="fsmatthew-normal font-size-14fsmatthew-normal font-size-14 fab-text-black pl-4">Approve</span>
+              </button>
+              <button mat-menu-item (click)="downloadSwiftFile()">
+                <img src="assets/icons/view_in_swift_mode_icon.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14fsmatthew-normal font-size-14 fab-text-black pl-4">View in
+                  Swift mode</span>
+              </button>
+              <!-- <button mat-menu-item (click)="downloadSwiftFile()">
+                  <span>View in Swift mode</span>
+                </button> -->
+              <button mat-menu-item (click)="showAuditLogDialog()">
+                <img src="assets/icons/audit_log.svg" width="20px" />
+                <span class="fsmatthew-normal font-size-14fsmatthew-normal font-size-14 fab-text-black pl-4">Audit
+                  Log</span>
+              </button>
+            </mat-menu>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="md-stepper-horizontal stepper_container" *ngIf="isStepper">
+    <!-- Add class active for the active step -->
+    <div class="md-step">
+      <div class="md-step-circle">
+        <img src="assets/icons/stepper_green.svg" *ngIf="initiate=='completed'" />
+        <img src="assets/icons/stepper_yellow.svg" *ngIf="initiate=='active'" />
+        <img src="assets/icons/lifecycle_grey_icon.svg" *ngIf="initiate==''" />
+      </div>
+      <div class="md-step-title mt-2">INITIATE</div>
+      <div class="md-step-subtitle d-flex justify-content-center">
+        <span class="subtitle-name pr-2">Ahmed</span>
+        <span class="subtitle-date">{{lcForm.value.createdAt}}</span>
+      </div>
+      <div class="md-step-bar-left" [ngClass]="{'completed': initiate=='completed'}"></div>
+      <div class="md-step-bar-right" [ngClass]="{'completed': initiate=='completed'}"></div>
+  </div>
+  <div class="md-step">
+    <div class="md-step-circle">
+      <img src="assets/icons/stepper_green.svg" *ngIf="reviewer1=='completed'" />
+      <img src="assets/icons/stepper_yellow.svg" *ngIf="reviewer1=='active'" />
+      <img src="assets/icons/lifecycle_grey_icon.svg" *ngIf="reviewer1==''" />
+    </div>
+    <div class="md-step-title mt-2">REVIWER 1</div>
+    <div class="md-step-subtitle d-flex justify-content-center">
+      <span class="subtitle-name pr-2">Sayed</span>
+      <span class="subtitle-date">{{lcForm.value.updatedAt}}</span>
+    </div>
+    <div class="md-step-bar-left" [ngClass]="{'completed': initiate=='completed'}"></div>
+    <div class="md-step-bar-right" [ngClass]="{'completed': reviewer1=='completed'}"></div>
+  </div>
+  <div class="md-step">
+    <div class="md-step-circle">
+      <img src="assets/icons/stepper_green.svg" *ngIf="reviewer2=='completed'" />
+      <img src="assets/icons/stepper_yellow.svg" *ngIf="reviewer2=='active'" />
+      <img src="assets/icons/lifecycle_grey_icon.svg" *ngIf="reviewer2==''" />
+    </div>
+    <div class="md-step-title mt-2">REVIEWER 2</div>
+    <div class="md-step-bar-left" [ngClass]="{'completed': reviewer1=='completed'}"></div>
+    <div class="md-step-bar-right" [ngClass]="{'completed': reviewer2=='completed'}"></div>
+  </div>
+
+  <!-- <div class="md-step" [ngClass]="{'completed': checker1=='completed', 'active': checker1=='active'}"> -->
+  <div class="md-step">
+    <div class="md-step-circle">
+      <img src="assets/icons/stepper_green.svg" *ngIf="checker1=='completed'" />
+      <img src="assets/icons/stepper_yellow.svg" *ngIf="checker1=='active'" />
+      <img src="assets/icons/lifecycle_grey_icon.svg" *ngIf="checker1==''" />
+    </div>
+    <div class="md-step-title mt-2">CHECKER 1</div>
+    <div class="md-step-bar-left" [ngClass]="{'completed': reviewer2=='completed'}"></div>
+    <div class="md-step-bar-right" [ngClass]="{'completed': checker1=='completed'}"></div>
+  </div>
+  <div class="md-step">
+    <div class="md-step-circle">
+      <img src="assets/icons/stepper_green.svg" *ngIf="checker2=='completed'" />
+      <img src="assets/icons/stepper_yellow.svg" *ngIf="checker2=='active'" />
+      <img src="assets/icons/lifecycle_grey_icon.svg" *ngIf="checker2==''" />
+    </div>
+    <div class="md-step-title mt-2">CHECKER 2</div>
+    <div class="md-step-bar-left" [ngClass]="{'completed': checker1=='completed'}"></div>
+    <div class="md-step-bar-right" [ngClass]="{'completed': checker2=='completed'}"></div>
+  </div>
+  <div class="md-step">
+    <div class="md-step-circle">
+      <img src="assets/icons/stepper_green.svg" *ngIf="checker3=='completed'" />
+      <img src="assets/icons/stepper_yellow.svg" *ngIf="checker3=='active'" />
+      <img src="assets/icons/lifecycle_grey_icon.svg" *ngIf="checker3==''" />
+    </div>
+    <div class="md-step-title mt-2">CHECKER 3</div>
+    <div class="md-step-bar-left" [ngClass]="{'completed': checker2=='completed'}"></div>
+    <div class="md-step-bar-right" [ngClass]="{'completed': checker3=='completed'}"></div>
+  </div>
+  <div class="md-step">
+    <div class="md-step-circle">
+      <img src="assets/icons/stepper_green.svg" *ngIf="lcIssued=='completed'" />
+      <img src="assets/icons/stepper_yellow.svg" *ngIf="lcIssued=='active'" />
+      <img src="assets/icons/lifecycle_grey_icon.svg" *ngIf="lcIssued==''" />
+    </div>
+    <div class="md-step-title mt-2">LC ISSUED</div>
+    <div class="md-step-bar-left" [ngClass]="{'completed': checker3=='completed'}"></div>
+    <div class="md-step-bar-right" [ngClass]="{'completed': lcIssued=='completed'}"></div>
+  </div>
+  </div>
+  <!-- <app-comment *ngIf="showComments"></app-comment> -->
+  <div class="container-fluid lc-tabs px-0 header-tabs">
+    <mat-tab-group mat-stretch-tabs color="accent" [selectedIndex]="selectedIndex"
+      (selectedTabChange)="tabChanged($event)">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <ul class="w-100 pl-0 text-left mb-0 list-none general-tab"
+            [ngClass]="{'green-border-active': lcForm.get('general').value.valid && !this.isChecker, 'yellow-border-active': !lcForm.get('general').value.valid && lcForm.get('general').value.visited && !this.isChecker}">
+            <li class="my-2">
+              <img src="assets/icons/general_icon_white.svg" class="mr-1" *ngIf="activeTab == 0">
+              <img src="assets/icons/gereral_icon_blue.svg" class="mr-1" *ngIf="activeTab !== 0">
+              <span class="lc-tab-content mb-0 d-inline-blcok">General</span>
+              <span class="cursorPointer float-right">
+                <img src="assets/icons/comment_icon.svg">
+                <span class="comment_num">{{getTabCommentsCount('general')}}</span>
+              </span>
+            </li>
+            <li>
+              <span *ngIf="isShown" class="d-inline-block overflow-hidden">Issuer's Reference - &nbsp;</span>
+                <span class="word_wrap">&nbsp; {{lcForm.value.general.applicant_issuerReference}}</span>
+            </li>
+            <li>
+              <span *ngIf="isShown" class="d-inline-block overflow-hidden">Beneficiary Name - &nbsp;</span>
+              <span class="word_wrap">&nbsp; {{lcForm.value.general.beneficiary_name}}</span>
+            </li>
+          </ul>
+        </ng-template>
+        <app-general [general]="lcForm.get('general')" [lcForm]="lcForm" (messageEvent)="receiveAuditLog($event)">
+        </app-general>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <ul class="w-100 pl-0 text-left mb-0 list-none general-tab"
+            [ngClass]="{'green-border-active': lcForm.get('payment').value.valid && !this.isChecker, 'yellow-border-active': !lcForm.get('payment').value.valid && lcForm.get('payment').value.visited && !this.isChecker}">
+            <li class="my-2">
+              <img src="assets/icons/wallet_icon_white.svg" class="mr-1" *ngIf="activeTab == 1">
+              <img src="assets/icons/wallet_icon_blue.svg" class="mr-1" *ngIf="activeTab !== 1">
+              <span class="lc-tab-content mb-0 ">Payment</span>
+              <span class="cursorPointer float-right">
+                <img src="assets/icons/comment_icon.svg">
+                <span class="comment_num">{{getTabCommentsCount('payment')}}</span>
+              </span>
+            </li>
+            <li>
+              <span *ngIf="isShown" class="d-inline-block overflow-hidden">Currency - &nbsp;</span>
+              <span class="word_wrap">&nbsp; {{lcForm.value.payment.amount_currency}}</span>
+            </li>
+            <li>
+              <span *ngIf="isShown" class="d-inline-block overflow-hidden">LC Amount - &nbsp;</span>
+              <span class="word_wrap">&nbsp; {{lcForm.value.payment.amount_lcAmount}}</span>
+            </li>
+          </ul>
+        </ng-template>
+        <app-payment-details [payment]="lcForm.get('payment')" [lcForm]="lcForm"></app-payment-details>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <ul class="w-100 pl-0 text-left mb-0 list-none general-tab"
+            [ngClass]="{'green-border-active': lcForm.get('bank').value.valid && !this.isChecker, 'yellow-border-active': !lcForm.get('bank').value.valid && lcForm.get('bank').value.visited && !this.isChecker}">
+            <li class="my-2">
+              <img src="assets/icons/bank_icon_white.svg" class="mr-1" *ngIf="activeTab == 2">
+              <img src="assets/icons/bank_icon_blue.svg" class="mr-1" *ngIf="activeTab !== 2">
+              <span class="lc-tab-content">Bank & Other Parties</span>
+              <span class="cursorPointer float-right">
+                <img src="assets/icons/comment_icon.svg">
+                <span class="comment_num">{{getTabCommentsCount('bank')}}</span>
+              </span>
+            </li>
+            <li>
+              <span *ngIf="isShown" class="d-inline-block overflow-hidden">Available with - &nbsp;</span>
+              <span class="word_wrap">&nbsp; {{lcForm.value.bank.creditAvailable_type}}</span>
+            </li>
+            <li>
+              <span *ngIf="isShown" class="d-inline-block overflow-hidden">Availabe by - &nbsp;</span>
+              <span class="word_wrap">&nbsp; {{lcForm.value.bank.creditAvailable_creditAvailableBy}}</span>
+            </li>
+          </ul>
+        </ng-template>
+        <app-bank-details [bank]="lcForm.get('bank')" [lcForm]="lcForm"></app-bank-details>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <ul class="w-100 pl-0 text-left mb-0 list-none general-tab"
+            [ngClass]="{'green-border-active': lcForm.get('shipment').value.valid && !this.isChecker, 'yellow-border-active': !lcForm.get('shipment').value.valid && lcForm.get('shipment').value.visited && !this.isChecker}">
+            <li class="my-2">
+              <img src="assets/icons/shipment_icon_white.svg" class="mr-1" *ngIf="activeTab == 3">
+              <img src="assets/icons/shipment_icon_blue.svg" class="mr-1" *ngIf="activeTab !== 3">
+              <span class="lc-tab-content">Shipment</span>
+              <span class="cursorPointer float-right">
+                <img src="assets/icons/comment_icon.svg">
+                <span class="comment_num">{{getTabCommentsCount('shipment')}}</span>
+              </span>
+            </li>
+            <li>
+              <span *ngIf="isShown" class="d-inline-block overflow-hidden">Shipment From - &nbsp;</span>
+              <span class="word_wrap">&nbsp; {{lcForm.value.shipment.generalInfo_shipmentFrom}}</span>
+            </li>
+            <li>
+              <span *ngIf="isShown" class="d-inline-block overflow-hidden">Shipment To - &nbsp;</span>
+              <span class="word_wrap">&nbsp; {{lcForm.value.shipment.generalInfo_shipmentTo}}</span>
+            </li>
+          </ul>
+        </ng-template>
+        <app-shipment-details [shipment]="lcForm.get('shipment')" [lcForm]="lcForm"></app-shipment-details>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <ul class="w-100 pl-0 text-left mb-0 list-none general-tab"
+            [ngClass]="{'green-border-active': lcForm.get('narrative').value.valid && !this.isChecker, 'yellow-border-active': !lcForm.get('narrative').value.valid && lcForm.get('narrative').value.visited && !this.isChecker}">
+            <li class="my-2">
+              <img src="assets/icons/narrative_icon_white.svg" class="mr-1" *ngIf="activeTab == 4">
+              <img src="assets/icons/narrative_icon_blue.svg" class="mr-1" *ngIf="activeTab !== 4">
+              <span class="lc-tab-content">Narrative</span>
+              <span class="cursorPointer float-right">
+                <img src="assets/icons/comment_icon.svg">
+                <span class="comment_num">{{getTabCommentsCount('narrative')}}</span>
+              </span>
+            </li>
+          </ul>
+
+        </ng-template>
+        <app-narrative-details [narrative]="lcForm.get('narrative')" [lcForm]="lcForm"></app-narrative-details>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <ul class="w-100 pl-0 text-left mb-0 list-none general-tab"
+            [ngClass]="{'green-border-active': lcForm.value.valid && !this.isChecker, 'yellow-border-active': !lcForm.value.valid && lcForm.value.visited && !this.isChecker}">
+            <li class="my-1 mb-2">
+              <!-- <img src="assets/icons/review.svg" class="mr-1"> -->
+              <img src="assets/icons/review_icon_white.svg" class="mr-1" *ngIf="activeTab == 5">
+              <img src="assets/icons/review_icon_blue.svg" class="mr-1" *ngIf="activeTab !== 5">
+              <span class="lc-tab-content">Review</span>
+            </li>
+          </ul>
+        </ng-template>
+        <app-review [lcForm]="lcForm" (switchTab)="switchTab($event)"></app-review>
+      </mat-tab>
+    </mat-tab-group>
+    <div class="row">
+      <div class="col-12 dashboardFooter"
+        [ngClass]="{'dashboardFooterWithPadding': !isExpandedVar, 'dashboardFooterWithoutPadding': isExpandedVar}">
+        <!-- <div class="col-12 dashboardFooter {{isExtended}}" [class]="isExtended"> -->
+        <app-footer [lcForm]="lcForm" [selectedTabIndex]=selectedIndex (auditLogEvent)="sendAuditLogs($event)"
+          (switchTab)="switchTab($event)" (saveLcFormEvent)="saveLcForm($event)"></app-footer>
+      </div>
+    </div>
+  </div>
+</form>
+
+<app-attachment *ngIf="attachmentOpen" (closeModal)="closeAttachment()" (uploadFile)="uploadFile($event)"
+  [attachedDocuments]=lcForm.value.attached_documents [progress]=progress (deleteFile)="deleteFile($event)">
+</app-attachment>
+
+
+<div class="container audit-log-dialog float-right" cdkDrag *ngIf="showAuditLogDialogDiv" mwlResizable
+  [enableGhostResize]="true" [resizeEdges]="{bottom: true, right: true, top: true, left: true}"
+  (resizeEnd)="onResizeEnd($event)">
+  <div class="row">
+    <div class="col-6 py-3 d-flex align-items-center">
+      <img class="text-left" src="assets/icons/audit-icon.svg" />
+      <span class="pl-3 pt-1 audit-log-text fsmatthew-medium font-size-20">Audit Log</span>
+    </div>
+    <div class="col-6 py-3 d-flex align-items-center justify-content-end">
+      <input type="text" class="audit-log-search text-white fsmatthew-normal font-size-14"
+        (keyup)="applyFilter($event.target.value)">
+      <img src="assets/icons/close.svg" class="pl-3 audit-lo-dialog-close cursor-pointer"
+        (click)="closeAuditLogDialog()" alt="">
+    </div>
+
+    <div class="col-12 mt-2 px-0 table-responsive">
+      <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8 audit-log-table">
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef class="audit-log-table-head align-middle"> Date </th>
+          <td mat-cell *matCellDef="let element" class="text-center"> {{element.date | date:' h:mm a, d MMM y'}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef class="audit-log-table-head align-middle"> User </th>
+          <td mat-cell *matCellDef="let element" class="text-center"> {{element.user}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="activity">
+          <th mat-header-cell *matHeaderCellDef class="audit-log-table-head align-middle"> Activity </th>
+          <td mat-cell *matCellDef="let element" class=""> {{element.activity}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- <div class="container">
+    <p><b>Audit Log</b></p>
+    <p class="mt-4">01:30AM 14 July 2019 : User: Akmal| Status: Submitted</p>
+    <p>01:30AM 14 July 2019 : User: Akmal| Status: Submitted</p>
+    <p>01:30AM 14 July 2019 : User: Akmal| Status: Submitted</p>
+    <p>01:30AM 14 July 2019 : User: Akmal| Status: Submitted</p>
+    <p>01:30AM 14 July 2019 : User: Akmal| Status: Submitted</p>
+    <p>01:30AM 14 July 2019 : User: Akmal| Status: Submitted</p>
+    <p>01:30AM 14 July 2019 : User: Akmal| Status: Submitted</p>
+    <p>01:30AM 14 July 2019 : User: Akmal| Status: Submitted</p>
+  </div> -->
+
+
+</div>

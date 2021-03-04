@@ -1,0 +1,292 @@
+
+    <div>
+    <div class="row">
+      <div class="col-12 text-right align-tab">
+        <div class="d-inline-block mr-3">
+          <img src="assets/icons/search_gray.svg" />
+        </div>
+        <div class="d-inline-block mr-3">
+          <div class="border-0 fsmatthew-normal font-size-14 text-style cursorPointer" (click)="openDialog()">Save Template</div>
+        </div>
+        <div class="d-inline-block mr-3">
+          <div class="border-0 fsmatthew-normal font-size-14 text-style">Advanced Filters</div>
+        </div>
+        
+        <div class="d-inline-block mr-3">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+            style="color: #848484;">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>dialpad</mat-icon>
+              <span>Redial</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>voicemail</mat-icon>
+              <span>Check voice mail</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Disable alerts</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="shadow-sm bg-white rounded border p-4"> -->
+    <div class="row pl-4">
+      <div class="col-4 ml-13-neg">
+        <button mat-button [matMenuTriggerFor]="entity"
+          class="fsmatthew-normal font-size-12 dropdown-text-color">Entity &nbsp;<img
+            src="assets/icons/account_list_down_arrow.svg" /></button>
+        <mat-menu #entity="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+        <ul class="list-unstyled alrlines">
+          <li (click) = "clicked11 = !clicked11"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color border-right border-bottom position-relative"
+            [ngClass]="{'activeCard':clicked11}">
+            <span>Airlines</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li (click) = "clicked12 = !clicked12"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color border-bottom position-relative"
+            [ngClass]="{'activeCard':clicked12}">
+            <span>Beverages</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li (click) = "clicked13 = !clicked13"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color border-right position-relative"
+            [ngClass]="{'activeCard':clicked13}">
+            <span>Steel</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+
+          <li (click) = "clicked14 = !clicked14"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color position-relative"
+            [ngClass]="{'activeCard':clicked14}">
+            <span>Consulting</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-4">
+        <button mat-button [matMenuTriggerFor]="entity"
+          class="fsmatthew-normal font-size-12 dropdown-text-color ml-13-neg">Bank &nbsp;<img
+            src="assets/icons/account_list_down_arrow.svg" /></button>
+        <mat-menu #entity="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+        <ul class="list-unstyled alrlines">
+          <li (click) = "clicked21 = !clicked21"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color border-right border-bottom position-relative"
+            [ngClass]="{'activeCard':clicked21}">
+            <span>FAB</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li (click) = "clicked22 = !clicked22"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color border-bottom position-relative"
+            [ngClass]="{'activeCard':clicked22}">
+            <span>ENBD</span>
+
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li (click) = "clicked23 = !clicked23"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color border-right position-relative"
+            [ngClass]="{'activeCard':clicked23}" >
+            <span>Kuwait Bank</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li (click) = "clicked24 = !clicked24"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color position-relative"
+            [ngClass]="{'activeCard':clicked24}">
+            <span>Riyadh Bank</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-4">
+        <button mat-button [matMenuTriggerFor]="entity"
+          class="fsmatthew-normal font-size-12 dropdown-text-color ml-13-neg">Account Currency &nbsp;<img
+            src="assets/icons/account_list_down_arrow.svg" /></button>
+        <mat-menu #entity="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+        <ul class="list-unstyled alrlines">
+          <li (click)="clicked31 = !clicked31" 
+          class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color border-right border-bottom position-relative"
+          [ngClass]="{'activeCard':clicked31}">
+            <span>AED</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li (click) = "clicked32 = !clicked32"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color border-bottom position-relative"
+            [ngClass]="{'activeCard':clicked32}">
+            <span>INR</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li (click) = "clicked33 = !clicked33"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color border-right position-relative"
+            [ngClass]="{'activeCard':clicked33}">
+            <span>EUROS</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+          <li (click) = "clicked34 = !clicked34"
+            class="d-inline-block w-50 text-center fsmatthew-normal font-size-18 card-text-color position-relative"
+            [ngClass]="{'activeCard':clicked34}">
+            <span>USD</span>
+            <div class="position-absolute inner-drop-down">
+              <span mat-button [matMenuTriggerFor]="menu"><img
+                  src="assets/icons/account_details_inner_arrow.svg" /></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+              </mat-menu>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  <!-- </div> -->
+  <div class="row d-flex justify-content-between pt-0 mr-0 ml-0">
+    <div class="pl-3 clear-all-text">Clear All</div>
+    <div class="pr-3">
+      <span class="fsmatthew-normal font-size-14 pr-1 clear-all-text">Show Consolidated</span>
+      <mat-slide-toggle class="example-margin pr-4" [color]="color" [checked]="checked" [disabled]="disabled">
+      </mat-slide-toggle>
+      <span class="fsmatthew-normal font-size-14 pr-1 clear-all-text">Show Average</span>
+      <mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [disabled]="disabled">
+      </mat-slide-toggle>
+    </div>
+  </div>
+  
+  <div class="row mt-3 shadow-sm bg-color rounded border p-2 mr-2 ml-2">
+    <div class="col-8 p-0 border-right">
+      <div class="col-12 heading-text ml-2 mt-1">Trend</div>
+      <div class="d-flex justify-content-end pt-3">
+          <div class="fsmatthew-normal font-size-12 filter-text pl-5">1 W</div>
+          <div class="fsmatthew-normal font-size-12 filter-text pl-5">1 M</div>
+          <div class="fsmatthew-normal font-size-12 filter-text pl-5">3 M</div>
+          <div class="fsmatthew-normal font-size-12 filter-text pl-5">6 M</div>
+          <div class="fsmatthew-normal font-size-12 filter-text pl-5">1 Y</div>
+          <div class="fsmatthew-normal font-size-12 filter-text pl-5 mr-4">Custom</div>
+      </div>
+      <div class="bg-white col-12 ">
+        <!-- <app-trend-forecast-graph [displayFilters]=false></app-trend-forecast-graph> -->
+        <app-multi-line-chart></app-multi-line-chart>
+      </div>
+      <div class="col-12 mt-10-neg pl-4 pb-3">
+        <span class="footer-text cursorPointer" (click)="trendCurrency()">AED &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="footer-text">GO TO TRANSACTIONS&nbsp;<span class="font-size-20">&nbsp;&nbsp;></span></span>
+      </div>
+    </div>
+    <div class="col-4 position-relative">
+      <div class="col-12 heading-text mt-1 ml-10-neg">Forecast</div>
+      <div class="d-flex justify-content-end  pt-3">
+          <div class="fsmatthew-normal font-size-12 filter-text pl-4">1 W</div>
+          <div class="fsmatthew-normal font-size-12 filter-text pl-4">1 M</div>
+          <div class="fsmatthew-normal font-size-12 filter-text pl-4">3 M</div>
+          <div class="fsmatthew-normal font-size-12 filter-text pl-4">6 M</div>
+          <div class="fsmatthew-normal font-size-12 filter-text pl-4">1 Y</div>
+          <div class="fsmatthew-normal font-size-12 filter-text pl-4 mr-4">Custom</div>
+      </div>
+      <div class="pt-4 pl-2">
+        <div class="projected-text">Projected Balance</div>
+        <div class="pt-1 projected-val">AED 23,234,234.09</div>
+      </div>
+      <div class="pt-4 pl-2">
+        <div class="projected-text">Projected Credit</div>
+        <div class="pt-1 projected-val">AED 123,123,123.54</div>
+      </div>
+      <div class="pt-4 pl-2">
+        <div class="projected-text">Projected Debit</div>
+        <div class="pt-1 projected-val">AED 45,123,423.76</div>
+      </div>
+      <div class="position-absolute go-to-prjctd-trans pl-3 pb-3 footer-text">GO TO PROJECTED TRANSACTIONS&nbsp;<span class="font-size-20">&nbsp;&nbsp;></span></div>
+    </div>
+  </div>
+
+</div>

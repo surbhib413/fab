@@ -1,0 +1,171 @@
+<!-- <div class="main-menu sidebarFont">
+  <div class="pt-2 pl-3">
+      <a routerLink="/home">
+        <img class="fab-logo"  src="assets/image/fab.png" />
+      </a>
+  </div>
+
+  <div class="mt-4">
+      <ul class="nav flex-column">
+          <li class="nav-item mt-2" routerLink="/" routerLinkActive="active-tab">
+            <div class="box pl-3">
+                <img class="dashboard-logo active"  src="assets/images/dashboard.svg" />
+                <a class="nav-link" routerLink="/dashboard" >Account Service</a>
+            </div>
+          </li>
+          <li class="nav-item mt-2" routerLink="/home" routerLinkActive="active-tab" >
+            <div class="box  pl-3" >
+                <img class="dashboard-logo"  src="assets/images/dashboard.svg"  alt=""/>
+                <a  class="nav-link"  href="#">Payments</a>
+
+            </div>
+          </li>
+          <li class="nav-item mt-2" routerLink="/home" routerLinkActive="active-tab"  >
+            <div class="box  pl-3">
+                <img class="dashboard-logo"  src="assets/images/dashboard.svg" />
+                <a class="nav-link" href="#">Collections</a>
+
+            </div>
+          </li>
+          <li class="nav-item mt-2" routerLink="/home" routerLinkActive="active-tab" >
+            <div class="box  pl-3">
+                <img class="dashboard-logo"  src="assets/images/dashboard.svg" />
+                <a class="nav-link"  href="#">Liquidity Management</a>
+
+            </div>
+          </li>
+          <li class="nav-item mt-2"  >
+              <div class="box  pl-3">
+                  <img class="dashboard-logo"  src="assets/images/dashboard.svg" />
+                  <a class="nav-link" (click)="toggleMenu()">Trade Finance </a>
+              </div>
+              <div *ngIf="isShown" class="box pl-3 sub-head-trade">
+                  <ul class="trade-finance-submenu">
+                    <li><span class="oval-nav-bar"></span><a class="nav-link"  (click)="locBreadcrumb(true)">Letter of Credit</a></li>
+                    <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Bill Collection</a></li>
+                    <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Financing Solutions</a></li>
+                    <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Bonds</a></li>
+                    <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Structured Trade</a></li>
+                  </ul>
+              </div>
+          </li>
+          <li class="nav-item mt-2" routerLink="/home" routerLinkActive="active-tab">
+              <div class="box  pl-3">
+                  <img class="dashboard-logo"  src="assets/images/dashboard.svg" />
+                  <a class="nav-link" href="#">Supply Chain Finance</a>
+              </div>
+          </li>
+          <li class="nav-item mt-2" routerLink="/home" routerLinkActive="active-tab">
+            <div class="box  pl-3">
+                <a class="nav-link pl-0 pt-4" href="#">Quick Link</a>
+            </div>
+        </li>
+        </ul>
+  </div>
+</div> -->
+
+
+
+<div class="main-menu sidebarFont">
+  <div class="d-flex pt-2">
+    <div class="ml-auto sidebar-button mr-2 pr-2" >
+      <button mat-mini-fab (click)="(isExpanded = !isExpanded); resizeFooter()" color="#000" style="box-shadow: initial !important;">
+        <mat-icon aria-label="Menu">menu</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <mat-nav-list>
+      <div class="">
+          <ul class="nav flex-column">
+              <li class="nav-item mb-4 px-2" routerLink="/home" routerLinkActive="active-tab">
+                <img class="align-top ml-2" src="assets/icons/logo_2.png" width="55px"/>
+              </li>
+              <li class="nav-item my-2 px-2" routerLink="/home" routerLinkActive="active-tab">
+                <div class="box">
+                    <mat-list-item class="text-white">
+                        <mat-icon mat-list-icon class="px-3"><img class="align-top" (click)="accountServiceBreadCrumb(true)" src="assets/icons/account_service_white.svg"/></mat-icon>
+                        <h4 mat-line *ngIf="isExpanded" class="fsmatthew-normal font-size-16 pr-4" (click)="accountServiceBreadCrumb(true)">Account Service</h4>
+                      </mat-list-item>
+                </div>
+                <div mat-line *ngIf="isExpanded">
+                  <div *ngIf="accountSubMenu" class="box pl-3 sub-head-trade">
+                      <ul class="account-service-submenu ml-3 ">
+                        <li><span class="oval-nav-bar"></span><a class="nav-link"  (click)="locBreadcrumb(true)">Letter of Credit</a></li>
+                        <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Bill Collection</a></li>
+                        <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Financing Solutions</a></li>
+                        <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Bonds</a></li>
+                        <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Structured Trade</a></li>
+                      </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item my-2 px-2" routerLink="/home" routerLinkActive="active-tab" >
+                <div class="box">
+                    <mat-list-item class="text-white">
+                        <mat-icon mat-list-icon class="px-3"><img class="align-top" src="assets/icons/payment_blue.svg"/></mat-icon>
+                        <h4 mat-line *ngIf="isExpanded" class="fsmatthew-normal font-size-16 pr-4">Payments</h4>
+                      </mat-list-item>
+                </div>
+              </li>
+              <li class="nav-item my-2 px-2" routerLink="/home" routerLinkActive="active-tab"  >
+                <div class="box">
+                    <mat-list-item class="text-white">
+                        <mat-icon mat-list-icon class="px-3"><img class="align-top" src="assets/icons/collections_blue.svg"/></mat-icon>
+                        <h4 mat-line *ngIf="isExpanded" class="fsmatthew-normal font-size-16 pr-4">Collections</h4>
+                      </mat-list-item>
+                </div>
+              </li>
+              <li class="nav-item my-2 active-tab px-2" routerLink="/home" routerLinkActive="active-tab" >
+                <div class="box">
+                    <mat-list-item class="text-white">
+                        <mat-icon mat-list-icon class="px-3"><img class="align-top" src="assets/icons/liquidity_management_blue.svg"/></mat-icon>
+                        <h4 mat-line *ngIf="isExpanded" class="fsmatthew-normal font-size-16 pr-4">Liquidity Management</h4>
+                      </mat-list-item>
+                </div>
+              </li>
+              <li class="nav-item my-2 px-2">
+                  <div class="box">
+                      <mat-list-item class="text-white">
+                          <mat-icon mat-list-icon class="px-3"><img class="align-top" src="assets/icons/trade_finance_blue.svg"/></mat-icon>
+                          <a mat-line *ngIf="isExpanded" class="nav-link pr-4" (click)="toggleMenu()" class="fsmatthew-normal font-size-16">Trade Finance <img class="ml-1" src="assets/icons/down_gray_arrow.svg"/></a>
+                          
+                      </mat-list-item>
+                  </div>
+                  <div mat-line *ngIf="isExpanded">
+                      <div *ngIf="isShown" class="box pl-3 sub-head-trade">
+                          <ul class="trade-finance-submenu ml-3">
+                            <li><span class="oval-nav-bar"></span><a class="nav-link cursorPointer"  (click)="locBreadcrumb(true)">Letter of Credit</a></li>
+                            <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Bill Collection</a></li>
+                            <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Financing Solutions</a></li>
+                            <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Bonds</a></li>
+                            <li><span class="oval-nav-bar"></span><a class="nav-link"  href="#">Structured Trade</a></li>
+                          </ul>
+                      </div>
+                    </div>
+              </li>
+              <li class="nav-item my-2 px-2" routerLink="/home" routerLinkActive="active-tab">
+                  <div class="box">
+                      <mat-list-item class="text-white">
+                          <mat-icon mat-list-icon class="px-3"><img class="align-top" src="assets/icons/suply_chain_blue.svg"/></mat-icon>
+                          <h4 mat-line *ngIf="isExpanded" class="fsmatthew-normal font-size-16 pr-4">Supply Chain Finance</h4>
+                        </mat-list-item>
+                  </div>
+              </li>
+              <li class="nav-item my-2 px-2" routerLink="/home" routerLinkActive="active-tab">
+                <div class="box  px-3">
+                    <mat-list-item class="text-white">
+                        <mat-icon mat-list-icon class=""><img class="align-top" src="assets/icons/quick_links_icon.svg" width="23px"/></mat-icon>
+                        <h4 mat-line *ngIf="isExpanded" class="fsmatthew-normal font-size-16 pr-4">Quick Links</h4>
+                      </mat-list-item>
+                </div>
+            </li>
+            </ul>
+      </div>
+      <div class="pt-2 pl-3" *ngIf="isExpanded" style="position: absolute; bottom: 40px;">
+          <a routerLink="/home">
+            <img class="fab-logo" src="assets/icons/fab_logo.svg" />
+          </a>
+        </div>
+  </mat-nav-list>
+</div>

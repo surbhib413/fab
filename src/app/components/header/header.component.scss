@@ -1,0 +1,146 @@
+.custom_header {
+  font-family: fs_matthew_medium;
+  background-color: white;
+  height: 64px;
+
+  .header_title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .header_icons {
+    color: white;
+
+    .profile_menu {
+      font-family: graphik_medium;
+
+      color: black;
+    }
+  }
+
+}
+
+.profile_menu_icon {
+  padding-right: 20px;
+}
+
+.sub-menu-options:hover {
+  color: #003087;
+}
+
+.sub-menu-options{
+  width: 500px;
+  //height: 500px;
+}
+
+.login-top {
+  box-shadow: 7px 0 6px 6px rgba(195, 203, 222, 0.59);
+  height: 42px;
+  line-height: 42px;
+  background: #0c2340;
+}
+
+.login-top p {
+  font-family: graphik_medium;
+  font-size: 16px;
+  color: #b7b7b7;
+}
+
+
+.eur-usd {
+  height: 44px;
+  background: #00101f;
+  line-height: 44px;
+  overflow: hidden;
+}
+
+.eur-usd li {
+  color: #b7b7b7;
+}
+
+// .open-btn:focus + .eur-usd{display: block;}
+.open-btn:focus {
+  opacity: 0;
+  transition-duration: 0.2s;
+}
+
+// .open-btn{background: #ededed; padding:0 10px; height: 64px; z-index: 1; line-height: 64px;}
+.open-btn {
+  padding: 0 10px;
+  height: 42px;
+  line-height: 42px;
+}
+
+.profile-menu {
+  margin-top: 30px;
+}
+
+.eur-usd .open-btn {
+  position: absolute;
+  left: 0;
+}
+
+.breadcrumLabel {
+  color: #919191;
+}
+.breadcrumLabel:last-child {
+  color: white;
+}
+
+/* Ticker CSS */
+
+$duration: 30s;
+
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+
+.ticker{
+    overflow: hidden;
+    padding-left: 100% !important;
+    box-sizing: content-box;
+    width: 100%;
+
+  -webkit-animation-iteration-count: infinite; 
+            animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+   -webkit-animation-name: ticker;
+           animation-name: ticker;
+    -webkit-animation-duration: $duration;
+            animation-duration: $duration;
+}
+
+/* End Ticker CSS */
+
+
+.ticker-open-btn{
+  height: 44px; 
+  line-height: 44px; 
+  cursor: pointer; 
+  z-index: 50; 
+  background: #00101f;
+}

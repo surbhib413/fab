@@ -1,0 +1,152 @@
+.line-chart-container {
+    .forecast-head {
+      color: #6c7c93;
+      font-size: 18px;
+    }
+   
+  
+    .right-block {
+      .balance-title {
+        font-size: 13px;
+        color: #6c7c93;
+      }
+  
+      .balance-value {
+        color: #6c7c93;
+        font-size: 18px;
+      }
+    }
+  
+    .dropdown-text {
+      font-family: graphik_light;
+      font-size: 16px;
+      font-weight: 500;
+      color: #848484;
+    }
+  }
+  
+  
+  
+  
+  
+  .line-chart{
+    svg{
+    height: 370px;
+    width:100%;
+    }
+  
+    .no-data-msg{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  .axis {
+  font: 10px sans-serif;
+  }
+  
+  .axis path,
+  .axis line {
+  fill: none;
+  stroke: #D4D8DA;
+  stroke-width: 2px;
+  shape-rendering: crispEdges;
+  }
+  
+  .line {
+  fill: none;
+  stroke: #6F257F;
+  stroke-width: 5px;
+  }
+  
+  .overlay {
+  fill: none;
+  pointer-events: all;
+  }
+  
+  .focus{
+  background-color:blue;
+  height:20px;
+  width:20px;
+  }
+  
+  .focus circle {
+  fill: #F1F3F3;
+  stroke: #6F257F;
+  stroke-width: 5px;
+  }
+  
+  .hover-line {
+  stroke: #6F257F;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+  }
+  
+  
+  
+  body {
+  font: 10px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+  .axis path,
+  .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+  }
+  
+  .x.axis path {
+  display: none;
+  }
+  
+  .line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+  }
+  
+  .overlay {
+  fill: none;
+  pointer-events: all;
+  }
+  
+  .focus circle {
+  fill: steelblue;
+  }
+  
+  .focus text {
+  font-size: 14px;
+  }
+  
+  div.tooltip {
+  // fill: white;
+  // stroke: #000;
+  color: white;
+  position: absolute;
+  width:60px;
+  height:20px;
+  padding:2px;
+  background:grey;
+  }
+  
+  .tooltip-date, .tooltip-likes {
+  font-weight: bold;
+  }
+  
+  .entity-field-width{
+    width:90px!important;
+  }
+  .option-field-width{
+    width:160px!important;
+  }
+  .currency-field-width{
+    width:60px!important;
+  }
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,21 @@
+<div class="row custom_footer px-0 px-md-3" [formGroup]="lcForm">
+    <div class="col-8 col-sm-6 my-3 my-sm-0 ">
+    <div *ngIf="selectedTabIndex == 5" class="col-12 pl-2 pt-2 terms-check-style"><mat-checkbox [checked]="termsChecked" (change)="toggleSubmit()">I agree to <a class="terms-link-style">Terms & Conditions</a></mat-checkbox></div>
+    <div class="d-sm-flex align-items-sm-center text-left text-sm-center" [ngClass]="{'pt-4':selectedTabIndex != 5}">
+      <!-- <button type="button" class="btn btn-outline-primary my-0 mx-2">Cancel</button> -->
+      <button mat-stroked-button color="primary" class="my-0 mx-2 custom_btn fsmatthew-medium font-size-14" (click)="goToDashboard()">EXIT</button>
+      <button *ngIf="selectedTabIndex != 5 && !isChecker" mat-stroked-button color="primary" class="my-0 mx-2 custom_btn fsmatthew-medium font-size-14" (click)="openDialog()">RESET</button>
+    </div>
+  </div>
+  <div class="col-4 col-sm-6 d-sm-flex align-items-sm-center justify-content-md-end mb-3 mb-sm-0 text-center">
+      <!-- <button mat-stroked-button color="primary" class="my-0 mx-2 custom_btn" (click)="saveLcForm()">SAVE & EXIT</button>
+      <button mat-flat-button color="primary" class="my-0 mx-2 next_button" (click)="updateForm()">NEXT</button> -->
+      <!-- <button *ngIf="selectedTabIndex == 5" mat-stroked-button color="primary" class="my-0 mx-2 swift-button" (click)="downloadSwiftFile()">GENERATE SWIFT</button> -->
+      <button *ngIf="isChecker" mat-stroked-button color="primary" class="my-0 mx-2 return-button submit_btn" (click)="updateStatusOfLcForm('not_processed')">RETURN FOR CORRECTION</button>
+      <button *ngIf="isChecker" mat-stroked-button color="primary" class="my-0 mx-2 authorize-button submit_btn" (click)="updateStatusOfLcForm('submitted_to_bank_for_authorization')">AUTHORISE</button>
+      <button *ngIf="!isChecker && (selectedTabIndex != 5 && !lcForm.get(tabNumbers[selectedTabIndex]).valid)" mat-stroked-button color="primary" class="my-0 mx-2 save-button fsmatthew-medium font-size-14" (click)="saveLcForm('draft')">SAVE AS DRAFT</button>
+      <button *ngIf="!isChecker && (selectedTabIndex != 5 && lcForm.get(tabNumbers[selectedTabIndex]).valid)" mat-stroked-button color="primary" class="my-0 mx-2 save-button fsmatthew-medium font-size-14" (click)="saveLcForm('next')">SAVE AND NEXT</button>
+      <button *ngIf="!isChecker && (selectedTabIndex == 5)" mat-stroked-button color="primary" class="my-0 mx-2 custom_btn " [ngClass]="{'submit_btn': !disableSubmitButton }" [disabled]=disableSubmitButton (click)="submitLcForm()">SUBMIT</button>
+      <!-- <button *ngIf="!isChecker && (selectedTabIndex == 5)" mat-stroked-button color="primary" class="my-0 mx-2 custom_btn" (click)="submitLcForm()">SUBMIT</button> -->
+  </div>
+</div>

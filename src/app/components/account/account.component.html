@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row mt-2 mx-0">
+        <div class="col-12 text-right mb-2 px-0">
+          <button mat-button [matMenuTriggerFor]="menu" class="fsmatthew-medium font-size-16 fab-text-gray">All
+            Entities &nbsp;<img src="assets/icons/down_arrow.svg" /></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>All Entities</button>
+            <button mat-menu-item>Consulting</button>
+            <button mat-menu-item>Tax</button>
+            <button mat-menu-item>Audit & Assurance</button>
+            <button mat-menu-item>Deloittte Shared Services</button>
+          </mat-menu>
+    
+          <button mat-button [matMenuTriggerFor]="menu" class="fsmatthew-medium font-size-16 fab-text-gray">
+            <span class="border-bottom">Account Currency</span>
+            &nbsp;<img src="assets/icons/down_arrow.svg" />
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+          <span class="fsmatthew-normal font-size-16 fab-text-gray">in</span>
+          <button mat-button [matMenuTriggerFor]="menu" class="fsmatthew-medium font-size-16 fab-text-gray">
+            <span class="border-bottom">AED</span>
+            &nbsp;<img src="assets/icons/down_arrow.svg" />
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+        </div>
+      </div>
+</div>

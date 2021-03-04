@@ -1,0 +1,150 @@
+.account-details-div{
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+  background-color: #ffffff;
+
+
+  .header{
+    font-family: fs_matthew_light;
+    font-size: 12px;
+    color: #000000;
+  }
+  .value{
+    font-family: fs_matthew_medium;
+    font-size: 14px;
+    color: #000000;
+  }
+
+  .details-row1{
+    background-color: #e0e6f0;
+  }
+
+}
+.graph-container{
+  box-shadow: -10px 10px 20px 0 rgba(30, 30, 30, 0.05);
+  background-color: #ffffff;
+}
+
+.div-alignment {
+  margin-left: -26px;
+  margin-right: -26px;
+}
+
+.filter-dropdown {
+  border-right: 0.5px solid rgba(155, 155, 155, 0.5);
+  border-bottom: 0.5px solid rgba(155, 155, 155, 0.5);
+  font-family: fs_matthew_light;
+  font-size: 12px;
+  color: #364dac;
+}
+
+.filter-dropdown-right {
+  border-bottom: 0.5px solid rgba(155, 155, 155, 0.5);
+}
+
+.active-filter {
+  background-color: #0c2340;
+}
+
+.box {
+  border-top-color: red;
+  border-left-color: red;
+}
+
+.box::before,
+.box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+.box::before {
+  border-width: 9px;
+  border-left-color: #a1adbb;
+  border-top-color: #a1adbb;
+}
+
+.box::after {
+  border-width: 9px;
+  border-left-color: inherit;
+  border-top-color: inherit;
+}
+
+.filter-date {
+  font-family: fs_matthew_medium;
+  font-size: 12px;
+  color: #003087;
+  text-decoration: underline;
+}
+
+.back-button-container{
+  margin-bottom: -12px;
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
+.back-button{
+  font-family: fs_matthew_bold;
+  font-size: 14px;
+  color: #003087;
+}
+
+.legend-color{
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.legend-div{
+  // display: flex;
+  // justify-content: space-between;
+  display:-webkit-box;
+}
+  
+.legend-val{
+  font-family: fs_matthew_light;
+  font-size: 12px;
+  color: #11284a;
+}
+
+.filled-box{
+  border-left-color:rgba(12,35,64,0.7);
+  border-top-color:rgba(12,35,64,0.7);
+}
+
+.container-heading {
+  font-family: graphik_regular;
+  font-size: 20px;
+  color: #000000;
+}
+table {
+  width: 100%;
+  box-shadow: initial;
+}
+
+.left-card-layout {
+  width: 416px;
+  height: 64px;
+  box-shadow: -10px 10px 20px 0 rgba(30, 30, 30, 0.05);
+  background-color: #ffffff;
+}
+
+.right-card-layout {
+  width: 880px;
+  height: 64px;
+  box-shadow: -10px 10px 20px 0 rgba(30, 30, 30, 0.05);
+  background-color: #e0e6f0;
+}
+
+.reports-container {
+  box-shadow: -10px 10px 20px 0 rgba(30, 30, 30, 0.05);
+  background-color: #ffffff;
+}
+
+.actions-container {
+  background-color: rgba(0, 48, 135, 0.12);
+}
